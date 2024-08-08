@@ -1,8 +1,13 @@
+import { signOutAction } from "@/app/_lib/actions";
+import { auth } from "@/app/_lib/auth";
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 
-export default function NavBar() {
+export default async function NavBar() {
+  const session = await auth();
+  const isLogged = session?.user ? true : false;
+  console.log(session);
   return (
     <header className="sticky z-50 bg-blur bg-white/75 backdrop-blur-lg border-gray-100 border-b transition-all h-20 w-full flex items-center justify-between top-0">
       <MaxWidthWrapper>
@@ -40,9 +45,15 @@ export default function NavBar() {
               </Link>
             </li>
             <li>
-              <Link href="/signin" className=" hover:text-green-800">
-                Sign in
-              </Link>
+              {!isLogged ? (
+                <Link href="/login" className=" hover:text-green-800">
+                  Sign in
+                </Link>
+              ) : (
+                <form action={signOutAction}>
+                  <button className=" hover:text-green-800">Sign out</button>
+                </form>
+              )}
             </li>
             <li>
               <Link href="/cart" className=" hover:text-green-800">
