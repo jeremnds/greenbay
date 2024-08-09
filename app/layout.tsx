@@ -7,7 +7,10 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Greenbay",
+  title: {
+    template: "%s | Greenbay",
+    default: "Welcome | Greenbay",
+  },
   description: "Shop of plants",
 };
 

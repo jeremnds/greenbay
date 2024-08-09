@@ -1,6 +1,8 @@
 import { Check, X } from "lucide-react";
+import Link from "next/link";
 import { getCategory } from "../_lib/services";
 import { CategoryNameType, ProductType } from "../_models/types";
+import { buttonVariants } from "./ui/button";
 
 export default async function Product({ product }: { product: ProductType }) {
   const category: CategoryNameType = await getCategory(product.category_id);
@@ -26,12 +28,9 @@ export default async function Product({ product }: { product: ProductType }) {
         )}
       </td>
       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
-        <a
-          href="#"
-          className="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
-        >
+        <Link href="#" className={buttonVariants({ variant: "outline" })}>
           View
-        </a>
+        </Link>
       </td>
     </tr>
   );

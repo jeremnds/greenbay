@@ -1,6 +1,14 @@
+import { Metadata } from "next";
 import { ReactNode } from "react";
 import DashboardNavbar from "../_components/ui/DashboardNavbar";
 import MaxWidthWrapper from "../_components/ui/MaxWidthWrapper";
+
+export const metadata: Metadata = {
+  title: {
+    template: "%s | Dashboard",
+    default: "Dashboard",
+  },
+};
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (

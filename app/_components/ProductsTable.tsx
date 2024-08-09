@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import { getProducts } from "../_lib/services";
 import { ProductsType } from "../_models/types";
 import Product from "./Product";
+import Spinner from "./ui/Spinner";
 
 export default async function ProductsTable() {
   const products: ProductsType = await getProducts();
@@ -30,9 +32,11 @@ export default async function ProductsTable() {
         </thead>
 
         <tbody className="divide-y divide-gray-200">
-          {products.map((product) => (
-            <Product product={product} key={product.id} />
-          ))}
+          <Suspense fallback={<Spinner />}>
+            {products.map((product) => (
+              <Product product={product} key={product.id} />
+            ))}
+          </Suspense>
         </tbody>
       </table>
     </div>
