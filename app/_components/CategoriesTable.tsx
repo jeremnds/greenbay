@@ -3,7 +3,6 @@ import Category from "./Category";
 
 export default async function CategoriesTable() {
   const categories = await getCategories();
-  console.log(categories);
 
   return (
     <div className="overflow-x-auto">
