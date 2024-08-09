@@ -40,6 +40,21 @@ export async function getProductsWithPagination(page: number, limit: number) {
   return { products, count, totalPages: totalPages ?? 0 };
 }
 
+export async function getProduct(id: number) {
+  const { data: product, error } = await supabase
+    .from("products")
+    .select("name, image, id, description, price, category_id")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Product could not be loaded");
+  }
+
+  return product;
+}
+
 export async function getCategories() {
   const { data: categories, error } = await supabase
     .from("categories")
@@ -56,7 +71,7 @@ export async function getCategories() {
 export async function getCategory(id: number) {
   const { data: category, error } = await supabase
     .from("categories")
-    .select("name")
+    .select("name, image, id")
     .eq("id", id)
     .single();
 

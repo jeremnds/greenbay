@@ -17,7 +17,7 @@ export type CategoryNameType = {
 export type CategoryType = {
   id: number;
   name: string;
-  image: string;
+  image?: string;
 };
 
 export type CategoriesType = CategoryType[];
