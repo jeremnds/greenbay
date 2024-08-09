@@ -13,6 +13,32 @@ export async function getProducts() {
 
   return products;
 }
+export async function getProductsWithPagination(page: number, limit: number) {
+  const startIndex = (page - 1) * limit;
+  const endIndex = startIndex + limit - 1;
+
+  const {
+    data: products,
+    count,
+    error,
+  } = await supabase
+    .from("products")
+    .select("id, name, description, price, image, category_id, available", {
+      count: "exact",
+    })
+    .order("id")
+    .range(startIndex, endIndex);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Products could not be loaded");
+  }
+
+  let totalPages;
+  if (count) totalPages = count / limit;
+
+  return { products, count, totalPages: totalPages ?? 0 };
+}
 
 export async function getCategories() {
   const { data: categories, error } = await supabase

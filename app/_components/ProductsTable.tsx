@@ -1,12 +1,11 @@
-import { Suspense } from "react";
-import { getProducts } from "../_lib/services";
 import { ProductsType } from "../_models/types";
 import Product from "./Product";
-import Spinner from "./ui/Spinner";
 
-export default async function ProductsTable() {
-  const products: ProductsType = await getProducts();
-
+export default async function ProductsTable({
+  products,
+}: {
+  products: ProductsType;
+}) {
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
@@ -19,10 +18,10 @@ export default async function ProductsTable() {
               Description
             </th> */}
             <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-              Price
+              Category
             </th>
             <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-              Category
+              Price
             </th>
             <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
               Available
@@ -32,11 +31,9 @@ export default async function ProductsTable() {
         </thead>
 
         <tbody className="divide-y divide-gray-200">
-          <Suspense fallback={<Spinner />}>
-            {products.map((product) => (
-              <Product product={product} key={product.id} />
-            ))}
-          </Suspense>
+          {products.map((product) => (
+            <Product product={product} key={product.id} />
+          ))}
         </tbody>
       </table>
     </div>

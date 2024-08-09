@@ -17,7 +17,7 @@ const iconMap: Record<NavLinkName, React.ComponentType> = {
 export default function DashboardNavbar() {
   const pathName = usePathname();
   return (
-    <div className="border-r-2 border-gray-20000 h-screen">
+    <div className="border-r-2 border-gray-20000 h-full text-green-800">
       <div className="">
         <ul className="text-black flex flex-col gap-6 md:gap-2 items-center md:items-start ">
           {navLinks.map((link) => {
