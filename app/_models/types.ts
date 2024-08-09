@@ -13,3 +13,20 @@ export type ProductsType = ProductType[];
 export type CategoryNameType = {
   name: string;
 };
+
+export type CategoryType = {
+  id: number;
+  name: string;
+  image: string;
+};
+
+export type CategoriesType = CategoryType[];
+
+export type UserType = {
+  id: number;
+  email: string;
+  name: string;
+  role: "admin" | "customer";
+};
+
+export type UsersType = UserType[];

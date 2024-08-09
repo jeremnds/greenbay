@@ -43,7 +43,7 @@ export async function getProductsWithPagination(page: number, limit: number) {
 export async function getCategories() {
   const { data: categories, error } = await supabase
     .from("categories")
-    .select("*");
+    .select("id,name");
 
   if (error) {
     console.error(error);
