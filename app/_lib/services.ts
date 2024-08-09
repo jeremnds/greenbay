@@ -35,7 +35,7 @@ export async function getProductsWithPagination(page: number, limit: number) {
   }
 
   let totalPages;
-  if (count) totalPages = count / limit;
+  if (count) totalPages = Math.ceil(count / limit);
 
   return { products, count, totalPages: totalPages ?? 0 };
 }

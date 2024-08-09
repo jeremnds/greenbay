@@ -27,6 +27,8 @@ export default async function Page({
     ITEMS_PER_PAGE
   );
 
+  console.log(totalPages);
+
   return (
     <>
       <ProductsTable products={products} />
