@@ -1,7 +1,9 @@
 import { supabase } from "./supabase";
 
 export async function getProducts() {
-  const { data: products, error } = await supabase.from("products").select("*");
+  const { data: products, error } = await supabase
+    .from("products")
+    .select("id, name, description, price, image, category_id, available");
 
   if (error) {
     console.error(error);
@@ -22,6 +24,21 @@ export async function getCategories() {
   }
 
   return categories;
+}
+
+export async function getCategory(id: number) {
+  const { data: category, error } = await supabase
+    .from("categories")
+    .select("name")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Category could not be loaded");
+  }
+
+  return category;
 }
 
 export async function getUsers() {

@@ -1,3 +1,5 @@
+import ProductsTable from "@/app/_components/ProductsTable";
+
 export default function Page() {
-  return <div>Products</div>;
+  return <ProductsTable />;
 }
