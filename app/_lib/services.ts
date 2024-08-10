@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 import {
   CategoriesType,
   CategoryType,
@@ -7,6 +8,9 @@ import {
   UsersType,
 } from "../_models/types";
 import { supabase } from "./supabase";
+
+const SUPABASE_STORAGE =
+  "https://kowwjfqvfqxwztgasfiq.supabase.co/storage/v1/object/public/images/";
 
 export async function getProducts(): Promise<ProductsType> {
   const { data: products, error } = await supabase
@@ -104,4 +108,20 @@ export async function getUsers(): Promise<UsersType> {
   }
 
   return users;
+}
+
+export async function uploadImage(file: File, prefix: string) {
+  const uuid = randomUUID();
+  const fileName = `${prefix}-${uuid}-${file.name}`;
+
+  const { error } = await supabase.storage
+    .from("images")
+    .upload(fileName, file);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Image could not be uploaded");
+  }
+
+  return `${SUPABASE_STORAGE}${fileName}`;
 }

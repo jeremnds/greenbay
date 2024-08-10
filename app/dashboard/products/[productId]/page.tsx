@@ -1,6 +1,8 @@
 import ProductForm from "@/app/_components/ProductForm";
+import Spinner from "@/app/_components/ui/Spinner";
 import { getCategories, getProduct } from "@/app/_lib/services";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Product",
@@ -20,5 +22,9 @@ export default async function Page({ params }: ProductProps) {
     getCategories(),
   ]);
 
-  return <ProductForm product={product} categories={categories} />;
+  return (
+    <Suspense fallback={<Spinner />}>
+      <ProductForm product={product} categories={categories} />
+    </Suspense>
+  );
 }

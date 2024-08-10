@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export type ProductType = {
   id: number;
   name: string;
@@ -14,6 +16,14 @@ export type ProductsWithPaginationType = {
   products: ProductsType;
   totalPages: number;
   count?: number;
+};
+
+export type UpdatedProductType = {
+  name: string;
+  description: string;
+  price: number;
+  category_id: number;
+  image?: File; // Optional image property
 };
 
 export type CategoryNameType = {

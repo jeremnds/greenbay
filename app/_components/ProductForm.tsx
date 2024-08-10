@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { updateProductAction } from "../_lib/actions";
 import { CategoriesType, ProductType } from "../_models/types";
 import { Button } from "./ui/shadcn/button";
 import { Input } from "./ui/shadcn/input";
@@ -18,17 +19,7 @@ type ProductFormProps = {
 };
 
 type ProductFormData = z.infer<typeof ProductSchema>;
-
-type UpdatedProductType = {
-  name: string;
-  description: string;
-  price: number;
-  category_id: number;
-  image?: File; // Optional image property
-};
-
 const ProductSchema = z.object({
-  // id: z.coerce.number(),
   productName: z
     .string()
     .trim()
@@ -52,9 +43,7 @@ export default function ProductForm({ product, categories }: ProductFormProps) {
     (category) => category.id === product.category_id
   );
 
-  const productCategoryId = productCategory.length
-    ? productCategory[0].id
-    : undefined;
+  const productCategoryId = productCategory.length && productCategory[0].id;
 
   const {
     register,
@@ -73,23 +62,23 @@ export default function ProductForm({ product, categories }: ProductFormProps) {
   });
 
   const updateProductClient = async (data: ProductFormData) => {
-    const updatedProduct: UpdatedProductType = {
-      name: data.productName,
-      description: data.description,
-      price: data.price,
-      category_id: data.category,
-    };
+    const formData = new FormData();
+
+    formData.append("name", data.productName);
+    formData.append("description", data.description);
+    formData.append("price", String(data.price));
+    formData.append("category_id", String(data.category));
+    formData.append("available", String(data.available));
 
     if (uploadedImage) {
-      updatedProduct.image = uploadedImage;
+      formData.append("image", uploadedImage);
     }
 
-    console.log(updatedProduct);
+    await updateProductAction(formData, product.id);
   };
 
   return (
     <form onSubmit={handleSubmit(updateProductClient)}>
-      {/* <input type="hidden" name="id" /> */}
       <div className="grid  max-w-sm md:max-w-max xl:grid-cols-[20rem_1fr] w-full  items-center  gap-3 lg:gap-2">
         {product.image ? (
           <div className="relative h-72 w-60  ">

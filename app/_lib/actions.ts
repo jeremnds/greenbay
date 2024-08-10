@@ -1,6 +1,10 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { signIn, signOut } from "./auth";
+import { uploadImage } from "./services";
+import { supabase } from "./supabase";
 
 export async function signInAction() {
   await signIn("google", { redirectTo: "/" });
@@ -11,5 +15,41 @@ export async function signOutAction() {
 }
 
 export async function updateProductAction(formData: FormData, id: number) {
-  console.log(formData);
+  // const session = await auth();
+  // if (!session) throw new Error("You must be logged in");
+
+  const name = formData.get("name");
+  const description = formData.get("description");
+  const price = Number(formData.get("price"));
+  const category_id = Number(formData.get("category_id"));
+  const available = formData.get("available");
+  const image = formData.get("image");
+
+  let imageUrl = null;
+  if (image && typeof image !== "string") {
+    imageUrl = await uploadImage(image, "product");
+  }
+
+  const updatedProduct = {
+    name,
+    description,
+    price,
+    category_id,
+    available,
+    ...(imageUrl && { image: imageUrl }),
+  };
+
+  const { error } = await supabase
+    .from("products")
+    .update(updatedProduct)
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) throw new Error("Product could not be updated");
+
+  revalidatePath("/dashboard/product/", "layout");
+  revalidatePath("/dashboard/product");
+
+  redirect("/dashboard/products");
 }
