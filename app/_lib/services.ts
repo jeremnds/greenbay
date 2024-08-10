@@ -1,6 +1,14 @@
+import {
+  CategoriesType,
+  CategoryType,
+  ProductsType,
+  ProductsWithPaginationType,
+  ProductType,
+  UsersType,
+} from "../_models/types";
 import { supabase } from "./supabase";
 
-export async function getProducts() {
+export async function getProducts(): Promise<ProductsType> {
   const { data: products, error } = await supabase
     .from("products")
     .select("id, name, description, price, image, category_id, available")
@@ -13,7 +21,11 @@ export async function getProducts() {
 
   return products;
 }
-export async function getProductsWithPagination(page: number, limit: number) {
+
+export async function getProductsWithPagination(
+  page: number,
+  limit: number
+): Promise<ProductsWithPaginationType> {
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit - 1;
 
@@ -37,13 +49,13 @@ export async function getProductsWithPagination(page: number, limit: number) {
   let totalPages;
   if (count) totalPages = Math.ceil(count / limit);
 
-  return { products, count, totalPages: totalPages ?? 0 };
+  return { products, count: count ?? 0, totalPages: totalPages ?? 0 };
 }
 
-export async function getProduct(id: number) {
+export async function getProduct(id: number): Promise<ProductType> {
   const { data: product, error } = await supabase
     .from("products")
-    .select("name, image, id, description, price, category_id")
+    .select("name, image, id, description, price, category_id, available")
     .eq("id", id)
     .single();
 
@@ -55,7 +67,7 @@ export async function getProduct(id: number) {
   return product;
 }
 
-export async function getCategories() {
+export async function getCategories(): Promise<CategoriesType> {
   const { data: categories, error } = await supabase
     .from("categories")
     .select("id,name");
@@ -68,7 +80,7 @@ export async function getCategories() {
   return categories;
 }
 
-export async function getCategory(id: number) {
+export async function getCategory(id: number): Promise<CategoryType> {
   const { data: category, error } = await supabase
     .from("categories")
     .select("name, image, id")
@@ -83,7 +95,7 @@ export async function getCategory(id: number) {
   return category;
 }
 
-export async function getUsers() {
+export async function getUsers(): Promise<UsersType> {
   const { data: users, error } = await supabase.from("users").select("*");
 
   if (error) {

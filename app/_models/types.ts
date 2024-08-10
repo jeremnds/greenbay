@@ -10,6 +10,12 @@ export type ProductType = {
 
 export type ProductsType = ProductType[];
 
+export type ProductsWithPaginationType = {
+  products: ProductsType;
+  totalPages: number;
+  count?: number;
+};
+
 export type CategoryNameType = {
   name: string;
 };

@@ -1,4 +1,5 @@
-import { getProduct } from "@/app/_lib/services";
+import ProductForm from "@/app/_components/ProductForm";
+import { getCategories, getProduct } from "@/app/_lib/services";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,8 +15,10 @@ type ProductProps = {
 export default async function Page({ params }: ProductProps) {
   const { productId } = params;
 
-  const product = await getProduct(productId);
-  console.log(product);
+  const [product, categories] = await Promise.all([
+    getProduct(productId),
+    getCategories(),
+  ]);
 
-  return <div>Product {productId} </div>;
+  return <ProductForm product={product} categories={categories} />;
 }
