@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import * as z from "zod";
 import { updateProductAction } from "../_lib/actions";
 import { CategoriesType, ProductType } from "../_models/types";
@@ -76,6 +77,9 @@ export default function ProductForm({ product, categories }: ProductFormProps) {
     }
 
     await updateProductAction(formData, product.id);
+    toast.success(`Product ${product.id} succesfully edited`, {
+      position: "bottom-right",
+    });
   };
 
   return (
@@ -86,7 +90,7 @@ export default function ProductForm({ product, categories }: ProductFormProps) {
             <Image
               src={product.image}
               alt={`Image of ${product.name}`}
-              priority={true}
+              priority
               fill
               className="object-cover object-bottom"
             />
