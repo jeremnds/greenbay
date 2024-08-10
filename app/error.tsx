@@ -1,6 +1,7 @@
 "use client";
 
 import MaxWidthWrapper from "./_components/ui/MaxWidthWrapper";
+import { Button } from "./_components/ui/shadcn/button";
 
 type ErrorProps = {
   error: Error;
@@ -10,16 +11,15 @@ type ErrorProps = {
 export default function Error({ error, reset }: ErrorProps) {
   return (
     <MaxWidthWrapper>
-      <main className="flex justify-center items-center flex-col gap-6">
-        <h1 className="text-3xl font-semibold">Something went wrong!</h1>
+      <main className="h-[calc(100vh-5rem)] flex justify-center items-center flex-col gap-6">
+        <h1 className="text-3xl font-semibold text-red-600">
+          Something went wrong!
+        </h1>
         <p className="text-lg">{error.message}</p>
 
-        <button
-          className="inline-block bg-accent-500 text-primary-800 px-6 py-3 text-lg"
-          onClick={reset}
-        >
+        <Button onClick={reset} variant="secondary">
           Try again
-        </button>
+        </Button>
       </main>
     </MaxWidthWrapper>
   );

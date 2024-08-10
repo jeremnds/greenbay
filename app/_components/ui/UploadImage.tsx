@@ -22,16 +22,6 @@ export default function UploadImage({ onUploadImage }: UploadImageProps) {
         setUploadedText("ERROR: Max size:10MB, .png, .jpg, .jpeg accepted");
         onUploadImage(null);
       }
-      // const file = acceptedFiles[0];
-      // // const { data, error } = await supabase.storage
-      // //   .from('your-bucket-name')  // Remplacez par le nom de votre bucket Supabase
-      // //   .upload(`public/${file.name}`, file);
-
-      // if (error) {
-      //   console.error("Erreur lors du téléchargement", error.message);
-      // } else {
-      //   console.log("Fichier téléchargé avec succès:", data.Key);
-      // }
     },
     [onUploadImage]
   );

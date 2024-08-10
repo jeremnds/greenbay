@@ -1,5 +1,5 @@
-import ProductForm from "@/app/_components/ProductForm";
 import Spinner from "@/app/_components/ui/Spinner";
+import UpdateProduct from "@/app/_components/UpdateProduct";
 import { getCategories, getProduct } from "@/app/_lib/services";
 import { Metadata } from "next";
 import { Suspense } from "react";
@@ -24,7 +24,7 @@ export default async function Page({ params }: ProductProps) {
 
   return (
     <Suspense fallback={<Spinner />}>
-      <ProductForm product={product} categories={categories} />
+      <UpdateProduct product={product} categories={categories} />
     </Suspense>
   );
 }
