@@ -2,7 +2,7 @@ import { Package, PhoneOutgoing, Sprout } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import MaxWidthWrapper from "./_components/ui/MaxWidthWrapper";
-import { buttonVariants } from "./_components/ui/button";
+import { buttonVariants } from "./_components/ui/shadcn/button";
 import { cn } from "./_lib/utils";
 
 export default function Home() {

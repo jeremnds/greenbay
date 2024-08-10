@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CategoryType } from "../_models/types";
-import { buttonVariants } from "./ui/button";
+import { buttonVariants } from "./ui/shadcn/button";
 
 export default function Category({ category }: { category: CategoryType }) {
   return (

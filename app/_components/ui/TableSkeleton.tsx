@@ -1,4 +1,4 @@
-import { Skeleton } from "@/app/_components/ui/skeleton";
+import { Skeleton } from "@/app/_components/ui/shadcn/skeleton";
 import {
   Table,
   TableBody,
@@ -6,7 +6,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/app/_components/ui/table";
+} from "@/app/_components/ui/shadcn/table";
 
 export default function TableSkeleton() {
   return (
