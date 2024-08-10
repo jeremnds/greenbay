@@ -10,6 +10,6 @@ export async function signOutAction() {
   await signOut({ redirectTo: "/" });
 }
 
-export async function updateProductAction(formData) {
+export async function updateProductAction(formData: FormData, id: number) {
   console.log(formData);
 }

@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 type UploadImageProps = {
-  onUploadImage: (value: File) => void;
+  onUploadImage: (value: File | null) => void;
 };
 
 export default function UploadImage({ onUploadImage }: UploadImageProps) {
@@ -16,8 +16,11 @@ export default function UploadImage({ onUploadImage }: UploadImageProps) {
     (acceptedFiles: File[]) => {
       if (acceptedFiles?.length) {
         const image = acceptedFiles[0];
-        setUploadedText(`Your image ${image.name} has been accepted! 🥳`);
+        setUploadedText(`Your image ${image.name} has been uploaded! 🥳`);
         onUploadImage(image);
+      } else {
+        setUploadedText("ERROR: Max size:10MB, .png, .jpg, .jpeg accepted");
+        onUploadImage(null);
       }
       // const file = acceptedFiles[0];
       // // const { data, error } = await supabase.storage
@@ -29,7 +32,6 @@ export default function UploadImage({ onUploadImage }: UploadImageProps) {
       // } else {
       //   console.log("Fichier téléchargé avec succès:", data.Key);
       // }
-      console.log(acceptedFiles);
     },
     [onUploadImage]
   );
