@@ -11,6 +11,7 @@ import { Button } from "./ui/shadcn/button";
 import { Input } from "./ui/shadcn/input";
 import { Label } from "./ui/shadcn/label";
 import { Textarea } from "./ui/shadcn/textarea";
+import Spinner from "./ui/Spinner";
 import UploadImage from "./ui/UploadImage";
 
 type ProductFormProps = {
@@ -49,7 +50,7 @@ export default function ProductForm({ product, categories }: ProductFormProps) {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(ProductSchema),
     defaultValues: {
@@ -178,7 +179,13 @@ export default function ProductForm({ product, categories }: ProductFormProps) {
           <Label>Available</Label>
 
           <div className="ml-auto flex gap-3 ">
-            <Button type="submit">Edit</Button>
+            {isSubmitting ? (
+              <Button type="submit" disabled>
+                <Spinner />
+              </Button>
+            ) : (
+              <Button type="submit">Edit</Button>
+            )}
             <Button variant="destructive" type="button">
               Delete
             </Button>

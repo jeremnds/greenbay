@@ -48,8 +48,7 @@ export async function updateProductAction(formData: FormData, id: number) {
 
   if (error) throw new Error("Product could not be updated");
 
-  revalidatePath("/dashboard/product/", "layout");
-  revalidatePath("/dashboard/product");
+  revalidatePath("/dashboard/products/", "layout");
 
   redirect("/dashboard/products");
 }
