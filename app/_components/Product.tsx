@@ -32,7 +32,7 @@ export default async function Product({ product }: { product: ProductType }) {
           href={`/dashboard/products/${product.id}`}
           className={buttonVariants({ variant: "outline" })}
         >
-          View
+          Edit
         </Link>
       </td>
     </tr>
