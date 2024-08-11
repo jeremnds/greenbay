@@ -14,9 +14,7 @@ export default function ProductsTable({
             <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
               Name
             </th>
-            {/* <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-              Description
-            </th> */}
+
             <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
               Category
             </th>

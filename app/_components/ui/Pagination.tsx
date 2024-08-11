@@ -13,7 +13,6 @@ export default function Pagination({
 }: PaginationProps) {
   const router = useRouter();
 
-  // Fonction pour naviguer vers une autre page
   const navigateToPage = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       router.push(`?page=${page}`);

@@ -26,7 +26,7 @@ export default function DashboardCard({
       <CardHeader className="text-center">
         <CardTitle className="text-green-800">{cardTitle}</CardTitle>
       </CardHeader>
-      <CardContent>{children}</CardContent>
+      <CardContent className="lg:h-20">{children}</CardContent>
       <CardFooter>
         <Link
           href={href}
