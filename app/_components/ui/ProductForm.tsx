@@ -112,7 +112,7 @@ export default function ProductForm({
         <input
           type="checkbox"
           className="size-4 rounded border-input accent-primary"
-          id="Option1"
+          id="available"
           {...register("available")}
         />
         <Label>Available</Label>

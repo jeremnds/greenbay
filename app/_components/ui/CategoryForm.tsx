@@ -6,16 +6,18 @@ import {
 } from "@/app/_models/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import DeleteItemModal from "./DeleteItemModal";
 import FormField from "./FormField";
 import { Button } from "./shadcn/button";
 import Spinner from "./Spinner";
 import UploadImage from "./UploadImage";
 
 type CategoryFormProps = {
-  category: CategoryType;
+  category?: CategoryType;
   btnLabel: string;
   onUploadImage: OnUploadImageType;
-  onFnClient: () => void;
+  onFnClient: (data: CategoryFormData) => void;
+  onDeleteClient?: () => void;
 };
 
 export default function CategoryForm({
@@ -23,8 +25,8 @@ export default function CategoryForm({
   btnLabel,
   onUploadImage,
   onFnClient,
-}: // onDeleteClient,
-CategoryFormProps) {
+  onDeleteClient,
+}: CategoryFormProps) {
   const defaultValues = {
     categoryName: category?.name || "",
   };
@@ -56,7 +58,7 @@ CategoryFormProps) {
         ) : (
           <Button type="submit">{btnLabel}</Button>
         )}
-        {/* {onDeleteClient && <DeleteItemModal onDeleteClient={onDeleteClient} />} */}
+        {onDeleteClient && <DeleteItemModal onDeleteClient={onDeleteClient} />}
       </div>
     </form>
   );

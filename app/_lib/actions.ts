@@ -106,24 +106,60 @@ export async function updateCategoryAction(formData: FormData, id: number) {
 
   let imageUrl = null;
   if (image && typeof image !== "string") {
-    imageUrl = await uploadImage(image, "product");
+    imageUrl = await uploadImage(image, "category");
   }
 
-  const updatedProduct = {
+  const updatedCategory = {
     name,
     ...(imageUrl && { image: imageUrl }),
   };
 
   const { error } = await supabase
-    .from("products")
-    .update(updatedProduct)
+    .from("categories")
+    .update(updatedCategory)
     .eq("id", id)
     .select()
     .single();
 
-  if (error) throw new Error("Product could not be updated");
+  if (error) throw new Error("Category could not be updated");
 
   revalidatePath("/dashboard/categories/", "layout");
+
+  redirect("/dashboard/categories");
+}
+
+export async function createCategoryAction(formData: FormData) {
+  // const session = await auth();
+  // if (!session) throw new Error("You must be logged in");
+
+  const name = formData.get("name");
+  const image = formData.get("image");
+
+  let imageUrl = null;
+  if (image && typeof image !== "string") {
+    imageUrl = await uploadImage(image, "product");
+  }
+
+  const newCategory = {
+    name,
+    ...(imageUrl && { image: imageUrl }),
+  };
+
+  const { error } = await supabase.from("categories").insert([newCategory]);
+
+  if (error) throw new Error("Product could not be created");
+
+  revalidatePath("/dashboard/", "layout");
+
+  redirect("/dashboard/categories");
+}
+
+export async function deleteCategoryAction(id: number) {
+  const { error } = await supabase.from("categories").delete().eq("id", id);
+
+  if (error) throw new Error("Category could not be created");
+
+  revalidatePath("/dashboard/", "layout");
 
   redirect("/dashboard/categories");
 }

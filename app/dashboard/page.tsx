@@ -20,7 +20,7 @@ export default async function Page() {
       <DashboardCard href="/dashboard/products/add" cardTitle="Products">
         There are currently {productsCount ? productsCount : "no"} products.
       </DashboardCard>
-      <DashboardCard href="/dashboard/products/add" cardTitle="Categories">
+      <DashboardCard href="/dashboard/categories/add" cardTitle="Categories">
         There are currently {categoriesCount ? categoriesCount : "no"} products.
       </DashboardCard>
       <DashboardCard href="/dashboard/products/add" cardTitle="Users">
