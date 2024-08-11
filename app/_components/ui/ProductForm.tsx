@@ -45,7 +45,6 @@ export default function ProductForm({
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(ProductSchema),

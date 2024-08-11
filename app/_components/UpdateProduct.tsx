@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { updateProductAction } from "../_lib/actions";
 import { CategoriesType, ProductFormData, ProductType } from "../_models/types";
+import ItemImage from "./ui/ItemImage";
 import ProductForm from "./ui/ProductForm";
 
 type ProductFormProps = {
@@ -39,21 +39,7 @@ export default function UpdateProduct({
 
   return (
     <div className="grid  max-w-sm md:max-w-max xl:grid-cols-[20rem_1fr] w-full  items-center  gap-3 lg:gap-2">
-      {product.image ? (
-        <div className="relative h-72 w-60  ">
-          <Image
-            src={product.image}
-            alt={`Image of ${product.name}`}
-            priority
-            fill
-            className="object-cover object-bottom"
-          />
-        </div>
-      ) : (
-        <div className="h-72 w-60 bg-gray-200 font-bold flex items-center justify-center">
-          <p>NO IMAGE YET</p>
-        </div>
-      )}
+      <ItemImage item={product} />
       <ProductForm
         onFnClient={updateProductClient}
         btnLabel="Edit"

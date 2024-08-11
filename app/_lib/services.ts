@@ -8,6 +8,7 @@ import {
   UsersType,
 } from "../_models/types";
 import { supabase } from "./supabase";
+import { sanitizeFileName } from "./utils";
 
 const SUPABASE_STORAGE =
   "https://kowwjfqvfqxwztgasfiq.supabase.co/storage/v1/object/public/images/";
@@ -130,7 +131,8 @@ export async function getUsers(): Promise<UsersType> {
 
 export async function uploadImage(file: File, prefix: string) {
   const uuid = randomUUID();
-  const fileName = `${prefix}-${uuid}-${file.name}`;
+  const sanitizedFileName = sanitizeFileName(file.name);
+  const fileName = `${prefix}-${uuid}-${sanitizedFileName}`;
 
   const { error } = await supabase.storage
     .from("images")

@@ -2,7 +2,7 @@ import { getCategories } from "../_lib/services";
 import Category from "./CategoryRow";
 
 export default async function CategoriesTable() {
-  const categories = await getCategories();
+  const { categories } = await getCategories();
 
   return (
     <div className="overflow-x-auto">
