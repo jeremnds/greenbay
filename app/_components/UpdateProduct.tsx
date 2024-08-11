@@ -3,17 +3,14 @@
 import Image from "next/image";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import * as z from "zod";
 import { updateProductAction } from "../_lib/actions";
-import { CategoriesType, ProductType } from "../_models/types";
-import ProductForm, { ProductSchema } from "./ui/ProductForm";
+import { CategoriesType, ProductFormData, ProductType } from "../_models/types";
+import ProductForm from "./ui/ProductForm";
 
 type ProductFormProps = {
   product: ProductType;
   categories: CategoriesType;
 };
-
-export type ProductFormData = z.infer<typeof ProductSchema>;
 
 export default function UpdateProduct({
   product,

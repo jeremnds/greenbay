@@ -1,31 +1,17 @@
-import { CategoriesType, ProductType } from "@/app/_models/types";
+import { ProductSchema } from "@/app/_models/schemas";
+import {
+  CategoriesType,
+  ProductFormData,
+  ProductType,
+} from "@/app/_models/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { ProductFormData } from "../UpdateProduct";
 import { Button } from "./shadcn/button";
 import { Input } from "./shadcn/input";
 import { Label } from "./shadcn/label";
 import { Textarea } from "./shadcn/textarea";
 import Spinner from "./Spinner";
 import UploadImage from "./UploadImage";
-
-export const ProductSchema = z.object({
-  productName: z
-    .string()
-    .trim()
-    .min(1, "Product name is required.")
-    .max(100, '"Product name must not exceed 100 chars'),
-  description: z
-    .string()
-    .trim()
-    .min(1, "Description is required.")
-    .max(200, "Description must not exceed 200 chars"),
-  price: z.coerce.number().min(1, "Price must be a positive number"),
-  category: z.coerce.number(),
-  image: z.instanceof(File).optional(),
-  available: z.boolean(),
-});
 
 type ProductFormProps = {
   onFnClient: (data: ProductFormData) => void;

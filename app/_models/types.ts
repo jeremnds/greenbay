@@ -1,3 +1,6 @@
+import { z } from "zod";
+import { ProductSchema } from "./schemas";
+
 export type ProductType = {
   id: number;
   name: string;
@@ -23,6 +26,8 @@ export type UpdatedProductType = {
   category_id: number;
   image?: File; // Optional image property
 };
+
+export type ProductFormData = z.infer<typeof ProductSchema>;
 
 export type CategoryNameType = {
   name: string;
