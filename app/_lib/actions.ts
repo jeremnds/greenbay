@@ -86,3 +86,13 @@ export async function createProductAction(formData: FormData) {
 
   redirect("/dashboard/products");
 }
+
+export async function deleteProductAction(id: number) {
+  const { error } = await supabase.from("products").delete().eq("id", id);
+
+  if (error) throw new Error("Product could not be created");
+
+  revalidatePath("/dashboard/", "layout");
+
+  redirect("/dashboard/products");
+}

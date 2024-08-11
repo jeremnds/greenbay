@@ -6,6 +6,7 @@ import {
 } from "@/app/_models/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import DeleteItemModal from "./DeleteItemModal";
 import { Button } from "./shadcn/button";
 import { Input } from "./shadcn/input";
 import { Label } from "./shadcn/label";
@@ -19,6 +20,7 @@ type ProductFormProps = {
   product?: ProductType;
   categories: CategoriesType;
   onUploadImage: (value: File | null) => void;
+  onDeleteClient?: () => void;
 };
 
 export default function ProductForm({
@@ -27,6 +29,7 @@ export default function ProductForm({
   product,
   categories,
   onUploadImage,
+  onDeleteClient,
 }: ProductFormProps) {
   const productCategory = categories.filter(
     (category) => category.id === product?.category_id
@@ -143,9 +146,9 @@ export default function ProductForm({
           ) : (
             <Button type="submit">{btnLabel}</Button>
           )}
-          <Button variant="destructive" type="button">
-            Delete
-          </Button>
+          {onDeleteClient && (
+            <DeleteItemModal onDeleteClient={onDeleteClient} />
+          )}
         </div>
       </div>
     </form>

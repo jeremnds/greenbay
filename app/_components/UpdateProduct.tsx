@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { updateProductAction } from "../_lib/actions";
+import { deleteProductAction, updateProductAction } from "../_lib/actions";
 import { CategoriesType, ProductFormData, ProductType } from "../_models/types";
 import ItemImage from "./ui/ItemImage";
 import ProductForm from "./ui/ProductForm";
@@ -17,6 +17,13 @@ export default function UpdateProduct({
   categories,
 }: ProductFormProps) {
   const [uploadedImage, setUploadedImage] = useState<null | File>(null);
+
+  const deleteProductClient = async () => {
+    await deleteProductAction(product.id);
+    toast.success(`Product ${product.id} succesfully deleted`, {
+      position: "bottom-right",
+    });
+  };
 
   const updateProductClient = async (data: ProductFormData) => {
     const formData = new FormData();
@@ -46,6 +53,7 @@ export default function UpdateProduct({
         product={product}
         categories={categories}
         onUploadImage={setUploadedImage}
+        onDeleteClient={deleteProductClient}
       />
     </div>
   );
