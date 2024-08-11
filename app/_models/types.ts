@@ -41,6 +41,12 @@ export type CategoryType = {
 
 export type CategoriesType = CategoryType[];
 
+export type CategoriesWithPaginationType = {
+  categories: CategoriesType;
+  totalPages: number;
+  count?: number;
+};
+
 export type UserType = {
   id: number;
   email: string;

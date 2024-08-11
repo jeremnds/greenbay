@@ -1,9 +1,13 @@
-import { getCategories } from "../_lib/services";
+import { CategoriesType } from "../_models/types";
 import Category from "./CategoryRow";
 
-export default async function CategoriesTable() {
-  const { categories } = await getCategories();
+type CategoriesTableProps = {
+  categories: CategoriesType;
+};
 
+export default async function CategoriesTable({
+  categories,
+}: CategoriesTableProps) {
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
