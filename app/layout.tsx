@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import NavBar from "./_components/ui/NavBar";
 import { cn } from "./_lib/utils";
 import "./globals.css";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Greenbay",
+  title: {
+    template: "%s | Greenbay",
+    default: "Welcome | Greenbay",
+  },
   description: "Shop of plants",
 };
 
@@ -25,6 +28,7 @@ export default function RootLayout({
           <NavBar />
           <div className="flex-grow flex-1">{children}</div>
         </main>
+        <Toaster />
       </body>
     </html>
   );

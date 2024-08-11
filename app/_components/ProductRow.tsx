@@ -1,6 +1,8 @@
 import { Check, X } from "lucide-react";
+import Link from "next/link";
 import { getCategory } from "../_lib/services";
 import { CategoryNameType, ProductType } from "../_models/types";
+import { buttonVariants } from "./ui/shadcn/button";
 
 export default async function Product({ product }: { product: ProductType }) {
   const category: CategoryNameType = await getCategory(product.category_id);
@@ -9,14 +11,12 @@ export default async function Product({ product }: { product: ProductType }) {
       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
         {product.name}
       </td>
-      {/* <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
-        {product.description}
-      </td> */}
-      <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
-        ${product.price.toFixed(2)}
-      </td>
+
       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
         {category.name}
+      </td>
+      <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
+        ${product.price.toFixed(2)}
       </td>
       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
         {product.available ? (
@@ -26,12 +26,12 @@ export default async function Product({ product }: { product: ProductType }) {
         )}
       </td>
       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
-        <a
-          href="#"
-          className="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+        <Link
+          href={`/dashboard/products/edit/${product.id}`}
+          className={buttonVariants({ variant: "outline" })}
         >
-          View
-        </a>
+          Edit
+        </Link>
       </td>
     </tr>
   );
