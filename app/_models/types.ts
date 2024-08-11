@@ -1,5 +1,3 @@
-import { z } from "zod";
-
 export type ProductType = {
   id: number;
   name: string;

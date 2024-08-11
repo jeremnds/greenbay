@@ -17,7 +17,7 @@ type ProductProps = {
 export default async function Page({ params }: ProductProps) {
   const { productId } = params;
 
-  const [product, categories] = await Promise.all([
+  const [product, { categories }] = await Promise.all([
     getProduct(productId),
     getCategories(),
   ]);

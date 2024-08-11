@@ -1,5 +1,5 @@
 import { ProductsType } from "../_models/types";
-import Product from "./Product";
+import Product from "./ProductRow";
 
 export default function ProductsTable({
   products,

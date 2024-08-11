@@ -1,5 +1,5 @@
 import { getCategories } from "../_lib/services";
-import Category from "./Category";
+import Category from "./CategoryRow";
 
 export default async function CategoriesTable() {
   const categories = await getCategories();

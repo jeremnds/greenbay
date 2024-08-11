@@ -12,10 +12,19 @@ import { supabase } from "./supabase";
 const SUPABASE_STORAGE =
   "https://kowwjfqvfqxwztgasfiq.supabase.co/storage/v1/object/public/images/";
 
-export async function getProducts(): Promise<ProductsType> {
-  const { data: products, error } = await supabase
+export async function getProducts(): Promise<{
+  products: ProductsType;
+  count?: number;
+}> {
+  const {
+    data: products,
+    error,
+    count,
+  } = await supabase
     .from("products")
-    .select("id, name, description, price, image, category_id, available")
+    .select("id, name, description, price, image, category_id, available", {
+      count: "exact",
+    })
     .order("id");
 
   if (error) {
@@ -23,7 +32,7 @@ export async function getProducts(): Promise<ProductsType> {
     throw new Error("Products could not be loaded");
   }
 
-  return products;
+  return { products, count: count ?? 0 };
 }
 
 export async function getProductsWithPagination(
@@ -53,7 +62,11 @@ export async function getProductsWithPagination(
   let totalPages;
   if (count) totalPages = Math.ceil(count / limit);
 
-  return { products, count: count ?? 0, totalPages: totalPages ?? 0 };
+  return {
+    products,
+    count: count ?? 0,
+    totalPages: totalPages ?? 1,
+  };
 }
 
 export async function getProduct(id: number): Promise<ProductType> {
@@ -71,17 +84,22 @@ export async function getProduct(id: number): Promise<ProductType> {
   return product;
 }
 
-export async function getCategories(): Promise<CategoriesType> {
-  const { data: categories, error } = await supabase
-    .from("categories")
-    .select("id,name");
+export async function getCategories(): Promise<{
+  categories: CategoriesType;
+  count?: number;
+}> {
+  const {
+    data: categories,
+    count,
+    error,
+  } = await supabase.from("categories").select("id,name", { count: "exact" });
 
   if (error) {
     console.error(error);
     throw new Error("Categories could not be loaded");
   }
 
-  return categories;
+  return { categories, count: count ?? 0 };
 }
 
 export async function getCategory(id: number): Promise<CategoryType> {

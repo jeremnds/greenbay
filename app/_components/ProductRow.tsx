@@ -11,9 +11,7 @@ export default async function Product({ product }: { product: ProductType }) {
       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
         {product.name}
       </td>
-      {/* <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
-        {product.description}
-      </td> */}
+
       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
         {category.name}
       </td>

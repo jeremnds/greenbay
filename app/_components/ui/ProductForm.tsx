@@ -1,5 +1,3 @@
-"use client";
-
 import { CategoriesType, ProductType } from "@/app/_models/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
