@@ -96,3 +96,34 @@ export async function deleteProductAction(id: number) {
 
   redirect("/dashboard/products");
 }
+
+export async function updateCategoryAction(formData: FormData, id: number) {
+  // const session = await auth();
+  // if (!session) throw new Error("You must be logged in");
+
+  const name = formData.get("name");
+  const image = formData.get("image");
+
+  let imageUrl = null;
+  if (image && typeof image !== "string") {
+    imageUrl = await uploadImage(image, "product");
+  }
+
+  const updatedProduct = {
+    name,
+    ...(imageUrl && { image: imageUrl }),
+  };
+
+  const { error } = await supabase
+    .from("products")
+    .update(updatedProduct)
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) throw new Error("Product could not be updated");
+
+  revalidatePath("/dashboard/categories/", "layout");
+
+  redirect("/dashboard/categories");
+}

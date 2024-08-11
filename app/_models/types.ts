@@ -1,5 +1,7 @@
 import { z } from "zod";
-import { ProductSchema } from "./schemas";
+import { CategorySchema, ProductSchema } from "./schemas";
+
+export type OnUploadImageType = (value: File | null) => void;
 
 export type ProductType = {
   id: number;
@@ -28,6 +30,8 @@ export type UpdatedProductType = {
 };
 
 export type ProductFormData = z.infer<typeof ProductSchema>;
+
+export type CategoryFormData = z.infer<typeof CategorySchema>;
 
 export type CategoryNameType = {
   name: string;

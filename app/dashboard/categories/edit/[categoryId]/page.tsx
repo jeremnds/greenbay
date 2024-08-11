@@ -17,5 +17,5 @@ export default async function Page({ params }: CategoryProps) {
 
   const category = await getCategory(categoryId);
 
-  return <UpdateCategory />;
+  return <UpdateCategory category={category} />;
 }

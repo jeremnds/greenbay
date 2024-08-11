@@ -1,16 +1,16 @@
 import { ProductSchema } from "@/app/_models/schemas";
 import {
   CategoriesType,
+  OnUploadImageType,
   ProductFormData,
   ProductType,
 } from "@/app/_models/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import DeleteItemModal from "./DeleteItemModal";
+import FormField from "./FormField";
 import { Button } from "./shadcn/button";
-import { Input } from "./shadcn/input";
 import { Label } from "./shadcn/label";
-import { Textarea } from "./shadcn/textarea";
 import Spinner from "./Spinner";
 import UploadImage from "./UploadImage";
 
@@ -19,7 +19,7 @@ type ProductFormProps = {
   btnLabel: string;
   product?: ProductType;
   categories: CategoriesType;
-  onUploadImage: (value: File | null) => void;
+  onUploadImage: OnUploadImageType;
   onDeleteClient?: () => void;
 };
 
@@ -57,33 +57,19 @@ export default function ProductForm({
   return (
     <form onSubmit={handleSubmit(onFnClient)}>
       <div className="grid gap-2">
-        <div>
-          <Label htmlFor="productName">Name</Label>
-          <Input
-            {...register("productName")}
-            type="text"
-            id="productName"
-            name="productName"
-          />
-          {errors.productName?.message && (
-            <span className="text-red-700 text-sm">
-              {errors.productName?.message}
-            </span>
-          )}
-        </div>
-        <div>
-          <Label htmlFor="description">Description</Label>
-          <Textarea
-            {...register("description")}
-            id="description"
-            name="description"
-          />
-          {errors.description?.message && (
-            <span className="text-red-700 text-sm">
-              {errors.description?.message}
-            </span>
-          )}
-        </div>
+        <FormField<ProductFormData>
+          error={errors.productName}
+          inputName="productName"
+          register={register}
+          labelText="Name"
+        />
+        <FormField<ProductFormData>
+          error={errors.description}
+          inputName="description"
+          register={register}
+          labelText="Description"
+          fieldType="textarea"
+        />
         <div className="flex gap-8">
           <div>
             <Label htmlFor="category">Category</Label>
@@ -108,21 +94,14 @@ export default function ProductForm({
               )}
             </div>
           </div>
-          <div>
-            <Label htmlFor="price">Price</Label>
-            <Input
-              {...register("price")}
-              type="number"
-              id="price"
-              name="price"
-              step="any"
-            />
-            {errors.price?.message && (
-              <span className="text-red-700 text-sm">
-                {errors.price?.message}
-              </span>
-            )}
-          </div>
+          <FormField<ProductFormData>
+            error={errors.price}
+            inputName="price"
+            register={register}
+            labelText="Price"
+            type="number"
+            step="any"
+          />
         </div>
         <div>
           <Label>Upload an image</Label>

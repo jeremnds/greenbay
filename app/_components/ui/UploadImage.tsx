@@ -1,10 +1,11 @@
 "use client";
 
+import { OnUploadImageType } from "@/app/_models/types";
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 type UploadImageProps = {
-  onUploadImage: (value: File | null) => void;
+  onUploadImage: OnUploadImageType;
 };
 
 export default function UploadImage({ onUploadImage }: UploadImageProps) {
