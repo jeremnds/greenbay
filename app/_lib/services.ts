@@ -25,7 +25,7 @@ export async function getProducts(): Promise<{
     .select("id, name, description, price, image, category_id, available", {
       count: "exact",
     })
-    .order("id");
+    .order("id", { ascending: false });
 
   if (error) {
     console.error(error);
@@ -51,7 +51,7 @@ export async function getProductsWithPagination(
     .select("id, name, description, price, image, category_id, available", {
       count: "exact",
     })
-    .order("id")
+    .order("id", { ascending: false })
     .range(startIndex, endIndex);
 
   if (error) {

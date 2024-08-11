@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { createProductAction } from "../_lib/actions";
 import { CategoriesType, ProductFormData } from "../_models/types";
 import ProductForm from "./ui/ProductForm";
 
@@ -25,14 +26,14 @@ export default function CreateProduct({ categories }: CreateProductProps) {
       formData.append("image", uploadedImage);
     }
 
-    // await updateProductAction(formData);
+    await createProductAction(formData);
     toast.success(`Product succesfully created`, {
       position: "bottom-right",
     });
   };
 
   return (
-    <div className="grid  max-w-sm md:max-w-max xl:grid-cols-[20rem_1fr] w-full  items-center  gap-3 lg:gap-2">
+    <div className="grid max-w-full  items-center  gap-3 lg:gap-2">
       <ProductForm
         onFnClient={createProductClient}
         btnLabel="Add"

@@ -52,3 +52,37 @@ export async function updateProductAction(formData: FormData, id: number) {
 
   redirect("/dashboard/products");
 }
+
+export async function createProductAction(formData: FormData) {
+  // const session = await auth();
+  // if (!session) throw new Error("You must be logged in");
+
+  const name = formData.get("name");
+  const description = formData.get("description");
+  const price = Number(formData.get("price"));
+  const category_id = Number(formData.get("category_id"));
+  const available = formData.get("available");
+  const image = formData.get("image");
+
+  let imageUrl = null;
+  if (image && typeof image !== "string") {
+    imageUrl = await uploadImage(image, "product");
+  }
+
+  const newProduct = {
+    name,
+    description,
+    price,
+    category_id,
+    available,
+    ...(imageUrl && { image: imageUrl }),
+  };
+
+  const { error } = await supabase.from("products").insert([newProduct]);
+
+  if (error) throw new Error("Product could not be created");
+
+  revalidatePath("/dashboard/", "layout");
+
+  redirect("/dashboard/products");
+}
