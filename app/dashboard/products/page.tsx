@@ -1,8 +1,8 @@
-import ProductsTable from "@/app/_components/ProductsTable";
-import Pagination from "@/app/_components/ui/Pagination";
-import TableSkeleton from "@/app/_components/ui/TableSkeleton";
-import { ITEMS_PER_PAGE } from "@/app/_lib/constants";
-import { getProductsWithPagination } from "@/app/_lib/services";
+import ProductsTable from "@/src/components/ProductsTable";
+import Pagination from "@/src/components/ui/Pagination";
+import TableSkeleton from "@/src/components/ui/TableSkeleton";
+import { ITEMS_PER_PAGE } from "@/src/lib/constants";
+import { getProductsWithPagination } from "@/src/lib/services";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";

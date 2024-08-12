@@ -1,5 +1,5 @@
-import CreateProduct from "@/app/_components/CreateProduct";
-import { getCategories } from "@/app/_lib/services";
+import CreateProduct from "@/src/components/CreateProduct";
+import { getCategories } from "@/src/lib/services";
 
 export default async function Page() {
   const { categories } = await getCategories();

@@ -1,6 +1,6 @@
-import Spinner from "@/app/_components/ui/Spinner";
-import UpdateProduct from "@/app/_components/UpdateProduct";
-import { getCategories, getProduct } from "@/app/_lib/services";
+import Spinner from "@/src/components/ui/Spinner";
+import UpdateProduct from "@/src/components/UpdateProduct";
+import { getCategories, getProduct } from "@/src/lib/services";
 import { Metadata } from "next";
 import { Suspense } from "react";
 

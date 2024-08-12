@@ -1,5 +1,5 @@
-import UpdateCategory from "@/app/_components/UpdateCategory";
-import { getCategory } from "@/app/_lib/services";
+import UpdateCategory from "@/src/components/UpdateCategory";
+import { getCategory } from "@/src/lib/services";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

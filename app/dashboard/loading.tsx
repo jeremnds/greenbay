@@ -1,5 +1,5 @@
 import { LoaderCircle } from "lucide-react";
-import MaxWidthWrapper from "../_components/ui/MaxWidthWrapper";
+import MaxWidthWrapper from "../../src/components/ui/MaxWidthWrapper";
 
 export default function Loading() {
   return (

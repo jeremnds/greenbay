@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import DashboardCard from "../_components/ui/DashboardCard";
-import { getCategories, getProducts } from "../_lib/services";
+import DashboardCard from "../../src/components/ui/DashboardCard";
+import { getCategories, getProducts } from "../../src/lib/services";
 
 export const metadata: Metadata = {
   title: "Dashboard",

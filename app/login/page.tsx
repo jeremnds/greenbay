@@ -1,7 +1,6 @@
-
 import Image from "next/image";
-import MaxWidthWrapper from "../_components/ui/MaxWidthWrapper";
-import { signInAction } from "../_lib/actions";
+import MaxWidthWrapper from "../../src/components/ui/MaxWidthWrapper";
+import { signInAction } from "../../src/lib/actions";
 
 export default function page() {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
-import MaxWidthWrapper from "./_components/ui/MaxWidthWrapper";
-import { Button } from "./_components/ui/shadcn/button";
+import MaxWidthWrapper from "../src/components/ui/MaxWidthWrapper";
+import { Button } from "../src/components/ui/shadcn/button";
 
 type ErrorProps = {
   error: Error;
