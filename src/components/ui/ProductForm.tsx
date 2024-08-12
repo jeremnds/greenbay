@@ -8,7 +8,9 @@ import { useForm } from "react-hook-form";
 import DeleteItemModal from "./DeleteItemModal";
 import FormField from "./FormField";
 import { Button } from "./shadcn/button";
+import { Input } from "./shadcn/input";
 import { Label } from "./shadcn/label";
+import { Textarea } from "./shadcn/textarea";
 import Spinner from "./Spinner";
 import UploadImage from "./UploadImage";
 
@@ -56,23 +58,36 @@ export default function ProductForm({
   return (
     <form onSubmit={handleSubmit(onFnClient)}>
       <div className="grid gap-2">
-        <FormField<ProductFormData>
+        <FormField
           error={errors.productName}
           inputName="productName"
-          register={register}
           labelText="Name"
-        />
-        <FormField<ProductFormData>
+        >
+          <Input
+            type="text"
+            {...register("productName")}
+            name="productName"
+            id="productName"
+          />
+        </FormField>
+        <FormField
           error={errors.description}
           inputName="description"
-          register={register}
           labelText="Description"
-          fieldType="textarea"
-        />
-        <div className="flex gap-8">
-          <div>
-            <Label htmlFor="category">Category</Label>
+        >
+          <Textarea
+            {...register("description")}
+            name="description"
+            id="description"
+          />
+        </FormField>
 
+        <div className="flex gap-8">
+          <FormField
+            error={errors.category}
+            inputName="category"
+            labelText="Category"
+          >
             <div>
               <select
                 {...register("category")}
@@ -86,21 +101,18 @@ export default function ProductForm({
                   </option>
                 ))}
               </select>
-              {errors.category?.message && (
-                <span className="text-red-700 text-sm">
-                  {errors.category?.message}
-                </span>
-              )}
             </div>
-          </div>
-          <FormField<ProductFormData>
-            error={errors.price}
-            inputName="price"
-            register={register}
-            labelText="Price"
-            type="number"
-            step="any"
-          />
+          </FormField>
+
+          <FormField error={errors.price} inputName="price" labelText="Price">
+            <Input
+              type="number"
+              {...register("price")}
+              name="price"
+              id="price"
+              step="any"
+            />
+          </FormField>
         </div>
         <div>
           <Label>Upload an image</Label>

@@ -1,5 +1,5 @@
 import CategoryUpdate from "@/src/components/CategoryUpdate";
-import { getCategory } from "@/src/lib/getCategory.query";
+import { getCategory } from "@/src/queries/getCategory.query";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

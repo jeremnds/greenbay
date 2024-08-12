@@ -1,15 +1,15 @@
+import { CategoryType } from "@/src/models/category.type";
+import { CategoryFormData } from "@/src/models/categoryFormData.type";
+import { OnUploadImageType } from "@/src/models/onUploadImage.type";
 import { CategorySchema } from "@/src/schemas/CategorySchema.zod";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import DeleteItemModal from "./DeleteItemModal";
 import FormField from "./FormField";
 import { Button } from "./shadcn/button";
+import { Input } from "./shadcn/input";
 import Spinner from "./Spinner";
 import UploadImage from "./UploadImage";
-import { CategoryType } from "@/src/models/category.type";
-import { OnUploadImageType } from "@/src/models/onUploadImage.type";
-import { CategoryFormData } from "@/src/models/categoryFormData.type";
 
 type CategoryFormProps = {
   category?: CategoryType;
@@ -41,12 +41,19 @@ export default function CategoryForm({
 
   return (
     <form onSubmit={handleSubmit(onFnClient)} className="flex flex-col gap-3">
-      <FormField<CategoryFormData>
+      <FormField
         error={errors.categoryName}
         inputName="categoryName"
-        register={register}
         labelText="Name"
-      />
+      >
+        <Input
+          type="text"
+          {...register("categoryName")}
+          name="categoryName"
+          id="categoryName"
+        />
+      </FormField>
+
       <UploadImage onUploadImage={onUploadImage} />
 
       <div className="ml-auto flex gap-3 ">
