@@ -1,14 +1,10 @@
 import { cn } from "@/src/lib/utils";
-import { ProductType } from "@/src/models/product.type";
+import { ProductProps } from "@/src/models/productProps.type";
 import Link from "next/link";
 import { buttonVariants } from "../atoms/Button";
 import ItemImage from "../atoms/ItemImage";
 
-type ProductProps = {
-  product: ProductType;
-};
-
-export default function Product({ product }: ProductProps) {
+export default function ProductCard({ product }: ProductProps) {
   return (
     <div className="relative hover:scale-105 transition-all group">
       <Link href={`/products/${product.id}`}>
