@@ -1,9 +1,13 @@
 "use client";
 
+import { deleteProductAction, updateProductAction } from "@/src/lib/actions";
+import {
+  CategoriesType,
+  ProductFormData,
+  ProductType,
+} from "@/src/models/types";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { deleteProductAction, updateProductAction } from "../lib/actions";
-import { CategoriesType, ProductFormData, ProductType } from "../models/types";
 import ItemImage from "./ui/ItemImage";
 import ProductForm from "./ui/ProductForm";
 

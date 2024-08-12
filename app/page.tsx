@@ -1,13 +1,13 @@
+import PageContainer from "@/src/components/ui/PageContainer";
+import { buttonVariants } from "@/src/components/ui/shadcn/button";
+import { cn } from "@/src/lib/utils";
 import { Package, PhoneOutgoing, Sprout } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import MaxWidthWrapper from "../src/components/ui/MaxWidthWrapper";
-import { buttonVariants } from "../src/components/ui/shadcn/button";
-import { cn } from "../src/lib/utils";
 
 export default function Home() {
   return (
-    <MaxWidthWrapper>
+    <PageContainer>
       <div className="w-full h-96 bg-green-400 rounded-lg flex">
         <div className="pt-8 pl-8 ">
           <h1 className="font-bold text-gray-50 text-6xl tracking-tighter">
@@ -127,6 +127,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </MaxWidthWrapper>
+    </PageContainer>
   );
 }

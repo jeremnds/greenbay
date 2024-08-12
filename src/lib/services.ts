@@ -1,4 +1,3 @@
-import { randomUUID } from "crypto";
 import {
   CategoriesType,
   CategoriesWithPaginationType,
@@ -7,7 +6,8 @@ import {
   ProductsWithPaginationType,
   ProductType,
   UsersType,
-} from "../models/types";
+} from "@/src/models/types";
+import { randomUUID } from "crypto";
 import { supabase } from "./supabase";
 import { sanitizeFileName } from "./utils";
 

@@ -1,7 +1,7 @@
+import { getCategory } from "@/src/lib/services";
+import { CategoryNameType, ProductType } from "@/src/models/types";
 import { Check, X } from "lucide-react";
 import Link from "next/link";
-import { getCategory } from "../lib/services";
-import { CategoryNameType, ProductType } from "../models/types";
 import { buttonVariants } from "./ui/shadcn/button";
 
 export default async function Product({ product }: { product: ProductType }) {

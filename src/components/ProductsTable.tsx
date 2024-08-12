@@ -1,4 +1,4 @@
-import { ProductsType } from "../models/types";
+import { ProductsType } from "@/src/models/types";
 import Product from "./ProductRow";
 
 export default function ProductsTable({

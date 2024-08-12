@@ -1,9 +1,9 @@
 "use client";
 
+import { deleteCategoryAction, updateCategoryAction } from "@/src/lib/actions";
+import { CategoryFormData, CategoryType } from "@/src/models/types";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { deleteCategoryAction, updateCategoryAction } from "../lib/actions";
-import { CategoryFormData, CategoryType } from "../models/types";
 import CategoryForm from "./ui/CategoryForm";
 import ItemImage from "./ui/ItemImage";
 

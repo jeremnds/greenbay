@@ -1,5 +1,5 @@
-import MaxWidthWrapper from "../../src/components/ui/MaxWidthWrapper";
+import PageContainer from "@/src/components/ui/PageContainer";
 
 export default function page() {
-  return <MaxWidthWrapper>Product page</MaxWidthWrapper>;
+  return <PageContainer>Product page</PageContainer>;
 }
