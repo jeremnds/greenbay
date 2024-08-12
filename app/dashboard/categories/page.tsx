@@ -1,8 +1,8 @@
-import CategoriesTable from "@/app/_components/CategoriesTable";
-import Pagination from "@/app/_components/ui/Pagination";
-import TableSkeleton from "@/app/_components/ui/TableSkeleton";
-import { ITEMS_PER_PAGE } from "@/app/_lib/constants";
-import { getCategoriesWithPagination } from "@/app/_lib/services";
+import TableSkeleton from "@/src/components/atoms/TableSkeleton";
+import Pagination from "@/src/components/molecules/Pagination";
+import CategoriesTable from "@/src/components/organisms/CategoriesTable";
+import { ITEMS_PER_PAGE } from "@/src/lib/constants";
+import { getCategoriesWithPagination } from "@/src/queries/getCategoriesWithPagination.query";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";

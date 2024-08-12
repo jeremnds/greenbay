@@ -1,8 +1,9 @@
-import Spinner from "@/app/_components/ui/Spinner";
-import UpdateProduct from "@/app/_components/UpdateProduct";
-import { getCategories, getProduct } from "@/app/_lib/services";
+import Spinner from "@/src/components/atoms/Spinner";
+import { getCategories } from "@/src/queries/getCategories.query";
+import { getProduct } from "@/src/queries/getProduct.query";
 import { Metadata } from "next";
 import { Suspense } from "react";
+import ProductUpdate from "./ProductUpdate";
 
 export const metadata: Metadata = {
   title: "Product",
@@ -24,7 +25,7 @@ export default async function Page({ params }: ProductProps) {
 
   return (
     <Suspense fallback={<Spinner />}>
-      <UpdateProduct product={product} categories={categories} />
+      <ProductUpdate product={product} categories={categories} />
     </Suspense>
   );
 }

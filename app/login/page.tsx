@@ -1,11 +1,10 @@
-
+import PageContainer from "@/src/components/atoms/PageContainer";
+import { signInAction } from "@/src/lib/actions";
 import Image from "next/image";
-import MaxWidthWrapper from "../_components/ui/MaxWidthWrapper";
-import { signInAction } from "../_lib/actions";
 
 export default function page() {
   return (
-    <MaxWidthWrapper>
+    <PageContainer>
       <div className="h-screen flex justify-center items-center flex-col gap-20">
         <h3 className="text-3xl">Hey, let&apos;s sign in 👋</h3>
         <form action={signInAction}>
@@ -20,6 +19,6 @@ export default function page() {
           </button>
         </form>
       </div>
-    </MaxWidthWrapper>
+    </PageContainer>
   );
 }

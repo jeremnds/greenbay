@@ -1,8 +1,8 @@
+import NavBar from "@/src/components/organisms/NavBar";
+import { cn } from "@/src/lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
-import NavBar from "./_components/ui/NavBar";
-import { cn } from "./_lib/utils";
 import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 

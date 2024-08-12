@@ -1,6 +1,7 @@
+import DashboardCard from "@/src/components/molecules/DashboardCard";
+import { getCategories } from "@/src/queries/getCategories.query";
+import { getProducts } from "@/src/queries/getProducts.query";
 import { Metadata } from "next";
-import DashboardCard from "../_components/ui/DashboardCard";
-import { getCategories, getProducts } from "../_lib/services";
 
 export const metadata: Metadata = {
   title: "Dashboard",
