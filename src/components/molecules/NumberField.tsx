@@ -9,7 +9,7 @@ export default function NumberField() {
       <div className="flex items-center rounded border border-gray-200">
         <button
           type="button"
-          className="size-10 leading-10 text-gray-600 transition hover:opacity-75"
+          className="size-10 leading-10 text-gray-600 transition hover:text-green-800"
         >
           -
         </button>
@@ -23,7 +23,7 @@ export default function NumberField() {
 
         <button
           type="button"
-          className="size-10 leading-10 text-gray-600 transition hover:opacity-75"
+          className="size-10 leading-10 text-gray-600 transition hover:text-green-800"
         >
           +
         </button>
