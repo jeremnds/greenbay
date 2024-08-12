@@ -1,19 +1,12 @@
 import { cn } from "@/src/lib/utils";
 import { ProductProps } from "@/src/models/productProps.type";
 import Link from "next/link";
-import { useState } from "react";
 import { buttonVariants } from "../atoms/Button";
 import ItemImage from "../atoms/ItemImage";
 
 export default function ProductCard({ product }: ProductProps) {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <div
-      className="relative hover:scale-105 transition-all group"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div className="relative hover:scale-105 transition-all group">
       <Link href={`/products/${product.id}`}>
         <ItemImage item={product} className="w-full " />
         <div className="flex items-center justify-between w-full">
