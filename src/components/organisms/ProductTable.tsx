@@ -1,11 +1,7 @@
 import { ProductsType } from "../../models/products.type";
-import Product from "../molecules/ProductRow";
+import ProductRow from "../molecules/ProductRow";
 
-export default function ProductsTable({
-  products,
-}: {
-  products: ProductsType;
-}) {
+export default function ProductTable({ products }: { products: ProductsType }) {
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
@@ -30,7 +26,7 @@ export default function ProductsTable({
 
         <tbody className="divide-y divide-gray-200">
           {products.map((product) => (
-            <Product product={product} key={product.id} />
+            <ProductRow product={product} key={product.id} />
           ))}
         </tbody>
       </table>

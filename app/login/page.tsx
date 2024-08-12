@@ -2,7 +2,7 @@ import PageContainer from "@/src/components/atoms/PageContainer";
 import { signInAction } from "@/src/lib/actions";
 import Image from "next/image";
 
-export default function page() {
+export default function Page() {
   return (
     <PageContainer>
       <div className="h-screen flex justify-center items-center flex-col gap-20">

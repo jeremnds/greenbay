@@ -1,5 +1,5 @@
 import { CategoriesType } from "../../models/categories.type";
-import Category from "../molecules/CategoryRow";
+import CategoryRow from "../molecules/CategoryRow";
 
 type CategoriesTableProps = {
   categories: CategoriesType;
@@ -27,7 +27,7 @@ export default async function CategoriesTable({
 
         <tbody className="divide-y divide-gray-200">
           {categories.map((category) => (
-            <Category category={category} key={category.id} />
+            <CategoryRow category={category} key={category.id} />
           ))}
         </tbody>
       </table>
