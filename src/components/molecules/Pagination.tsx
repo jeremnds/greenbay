@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type PaginationProps = {
   totalPages: number;
@@ -12,7 +12,8 @@ export default function Pagination({
   currentPage,
 }: PaginationProps) {
   const router = useRouter();
-
+  const searchParams = useSearchParams();
+  console.log(searchParams);
   const navigateToPage = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       router.push(`?page=${page}`);
