@@ -2,7 +2,7 @@ import { signOutAction } from "@/src/lib/actions";
 import { auth } from "@/src/lib/auth";
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
-import PageContainer from "./PageContainer";
+import PageContainer from "../atoms/PageContainer";
 
 export default async function NavBar() {
   const session = await auth();

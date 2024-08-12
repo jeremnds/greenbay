@@ -1,7 +1,7 @@
 "use client";
 
-import PageContainer from "@/src/components/ui/PageContainer";
-import { Button } from "@/src/components/ui/shadcn/button";
+import PageContainer from "@/src/components/atoms/PageContainer";
+import { Button } from "@/src/components/atoms/shadcn/button";
 
 type ErrorProps = {
   error: Error;

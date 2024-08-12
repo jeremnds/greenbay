@@ -1,4 +1,4 @@
-import DashboardCard from "@/src/components/ui/DashboardCard";
+import DashboardCard from "@/src/components/molecules/DashboardCard";
 import { getCategories } from "@/src/queries/getCategories.query";
 import { getProducts } from "@/src/queries/getProducts.query";
 import { Metadata } from "next";

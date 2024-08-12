@@ -1,6 +1,6 @@
-import CategoriesTable from "@/src/components/CategoriesTable";
-import Pagination from "@/src/components/ui/Pagination";
-import TableSkeleton from "@/src/components/ui/TableSkeleton";
+import TableSkeleton from "@/src/components/atoms/TableSkeleton";
+import Pagination from "@/src/components/molecules/Pagination";
+import CategoriesTable from "@/src/components/organisms/CategoriesTable";
 import { ITEMS_PER_PAGE } from "@/src/lib/constants";
 import { getCategoriesWithPagination } from "@/src/queries/getCategoriesWithPagination.query";
 import { Metadata } from "next";

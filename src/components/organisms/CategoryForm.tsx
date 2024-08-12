@@ -4,12 +4,12 @@ import { OnUploadImageType } from "@/src/models/onUploadImage.type";
 import { CategorySchema } from "@/src/schemas/CategorySchema.zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import DeleteItemModal from "./DeleteItemModal";
-import FormField from "./FormField";
-import { Button } from "./shadcn/button";
-import { Input } from "./shadcn/input";
-import Spinner from "./Spinner";
-import UploadImage from "./UploadImage";
+import { Button } from "../atoms/shadcn/button";
+import { Input } from "../atoms/shadcn/input";
+import Spinner from "../atoms/Spinner";
+import DeleteItemModal from "../molecules/DeleteItemModal";
+import FormField from "../molecules/FormField";
+import UploadImage from "../molecules/UploadImage";
 
 type CategoryFormProps = {
   category?: CategoryType;

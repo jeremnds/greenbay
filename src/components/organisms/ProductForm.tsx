@@ -5,14 +5,14 @@ import { ProductFormData } from "@/src/models/productFormData.type";
 import { ProductSchema } from "@/src/schemas/ProductSchema.zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import DeleteItemModal from "./DeleteItemModal";
-import FormField from "./FormField";
-import { Button } from "./shadcn/button";
-import { Input } from "./shadcn/input";
-import { Label } from "./shadcn/label";
-import { Textarea } from "./shadcn/textarea";
-import Spinner from "./Spinner";
-import UploadImage from "./UploadImage";
+import { Button } from "../atoms/shadcn/button";
+import { Input } from "../atoms/shadcn/input";
+import { Label } from "../atoms/shadcn/label";
+import { Textarea } from "../atoms/shadcn/textarea";
+import Spinner from "../atoms/Spinner";
+import DeleteItemModal from "../molecules/DeleteItemModal";
+import FormField from "../molecules/FormField";
+import UploadImage from "../molecules/UploadImage";
 
 type ProductFormProps = {
   onFnClient: (data: ProductFormData) => void;

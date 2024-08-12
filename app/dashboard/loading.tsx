@@ -1,4 +1,4 @@
-import PageContainer from "@/src/components/ui/PageContainer";
+import PageContainer from "@/src/components/atoms/PageContainer";
 import { LoaderCircle } from "lucide-react";
 
 export default function Loading() {

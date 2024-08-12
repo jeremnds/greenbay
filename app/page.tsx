@@ -1,5 +1,5 @@
-import PageContainer from "@/src/components/ui/PageContainer";
-import { buttonVariants } from "@/src/components/ui/shadcn/button";
+import PageContainer from "@/src/components/atoms/PageContainer";
+import { buttonVariants } from "@/src/components/atoms/shadcn/button";
 import { cn } from "@/src/lib/utils";
 import { Package, PhoneOutgoing, Sprout } from "lucide-react";
 import Image from "next/image";

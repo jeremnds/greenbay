@@ -3,15 +3,15 @@
 import { createProductAction } from "@/src/lib/actions";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import ProductForm from "./ui/ProductForm";
-import { CategoriesType } from "../models/categories.type";
-import { ProductFormData } from "../models/productFormData.type";
+import ProductForm from "../../../../src/components/organisms/ProductForm";
+import { CategoriesType } from "../../../../src/models/categories.type";
+import { ProductFormData } from "../../../../src/models/productFormData.type";
 
 type CreateProductProps = {
   categories: CategoriesType;
 };
 
-export default function CreateProduct({ categories }: CreateProductProps) {
+export default function ProductCreate({ categories }: CreateProductProps) {
   const [uploadedImage, setUploadedImage] = useState<null | File>(null);
 
   const createProductClient = async (data: ProductFormData) => {

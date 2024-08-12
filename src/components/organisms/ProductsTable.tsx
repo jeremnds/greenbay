@@ -1,5 +1,5 @@
-import { ProductsType } from "../models/products.type";
-import Product from "./ProductRow";
+import { ProductsType } from "../../models/products.type";
+import Product from "../molecules/ProductRow";
 
 export default function ProductsTable({
   products,

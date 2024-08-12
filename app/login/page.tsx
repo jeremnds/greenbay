@@ -1,6 +1,6 @@
-import Image from "next/image";
-import PageContainer from "@/src/components/ui/PageContainer";
+import PageContainer from "@/src/components/atoms/PageContainer";
 import { signInAction } from "@/src/lib/actions";
+import Image from "next/image";
 
 export default function page() {
   return (

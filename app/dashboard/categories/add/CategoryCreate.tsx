@@ -3,10 +3,10 @@
 import { createCategoryAction } from "@/src/lib/actions";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import CategoryForm from "./ui/CategoryForm";
-import { CategoryFormData } from "../models/categoryFormData.type";
+import CategoryForm from "../../../../src/components/organisms/CategoryForm";
+import { CategoryFormData } from "../../../../src/models/categoryFormData.type";
 
-export default function CreateCategory() {
+export default function CategoryCreate() {
   const [uploadedImage, setUploadedImage] = useState<null | File>(null);
 
   const createCategoryClient = async (data: CategoryFormData) => {

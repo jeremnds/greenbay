@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "./shadcn/button";
+import { Button } from "../atoms/shadcn/button";
 import {
   Dialog,
   DialogContent,
@@ -8,8 +8,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./shadcn/dialog";
-import Spinner from "./Spinner";
+} from "../atoms/shadcn/dialog";
+import Spinner from "../atoms/Spinner";
 
 type DeleteItemModalProps = {
   onDeleteClient: () => void;

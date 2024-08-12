@@ -1,5 +1,5 @@
-import DashboardNavbar from "@/src/components/ui/DashboardNavbar";
-import PageContainer from "@/src/components/ui/PageContainer";
+import PageContainer from "@/src/components/atoms/PageContainer";
+import DashboardNavbar from "@/src/components/organisms/DashboardNavbar";
 import { Metadata } from "next";
 import { ReactNode } from "react";
 import { Toaster } from "react-hot-toast";

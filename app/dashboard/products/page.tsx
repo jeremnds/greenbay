@@ -1,6 +1,6 @@
-import ProductsTable from "@/src/components/ProductsTable";
-import Pagination from "@/src/components/ui/Pagination";
-import TableSkeleton from "@/src/components/ui/TableSkeleton";
+import TableSkeleton from "@/src/components/atoms/TableSkeleton";
+import Pagination from "@/src/components/molecules/Pagination";
+import ProductsTable from "@/src/components/organisms/ProductsTable";
 import { ITEMS_PER_PAGE } from "@/src/lib/constants";
 import { getProductsWithPagination } from "@/src/queries/getProductsWithPagination.query";
 import { Metadata } from "next";

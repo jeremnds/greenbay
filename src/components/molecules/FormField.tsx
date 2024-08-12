@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { FieldError } from "react-hook-form";
-import { Label } from "./shadcn/label";
+import { Label } from "../atoms/shadcn/label";
 
 type FormFieldProps = {
   inputName:

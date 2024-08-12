@@ -1,5 +1,5 @@
-import CreateCategory from "@/src/components/CreateCategory";
+import CategoryCreate from "./CategoryCreate";
 
 export default async function Page() {
-  return <CreateCategory />;
+  return <CategoryCreate />;
 }

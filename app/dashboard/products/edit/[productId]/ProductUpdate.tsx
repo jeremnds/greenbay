@@ -3,18 +3,18 @@
 import { deleteProductAction, updateProductAction } from "@/src/lib/actions";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { CategoriesType } from "../models/categories.type";
-import { ProductType } from "../models/product.type";
-import { ProductFormData } from "../models/productFormData.type";
-import ItemImage from "./ui/ItemImage";
-import ProductForm from "./ui/ProductForm";
+import ItemImage from "../../../../../src/components/atoms/ItemImage";
+import ProductForm from "../../../../../src/components/organisms/ProductForm";
+import { CategoriesType } from "../../../../../src/models/categories.type";
+import { ProductType } from "../../../../../src/models/product.type";
+import { ProductFormData } from "../../../../../src/models/productFormData.type";
 
 type ProductFormProps = {
   product: ProductType;
   categories: CategoriesType;
 };
 
-export default function UpdateProduct({
+export default function ProductUpdate({
   product,
   categories,
 }: ProductFormProps) {

@@ -3,16 +3,16 @@
 import { deleteCategoryAction, updateCategoryAction } from "@/src/lib/actions";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import CategoryForm from "./ui/CategoryForm";
-import ItemImage from "./ui/ItemImage";
-import { CategoryType } from "../models/category.type";
-import { CategoryFormData } from "../models/categoryFormData.type";
+import ItemImage from "../../../../../src/components/atoms/ItemImage";
+import CategoryForm from "../../../../../src/components/organisms/CategoryForm";
+import { CategoryType } from "../../../../../src/models/category.type";
+import { CategoryFormData } from "../../../../../src/models/categoryFormData.type";
 
 type UpdateCategoryProps = {
   category: CategoryType;
 };
 
-export default function UpdateCategory({ category }: UpdateCategoryProps) {
+export default function CategoryUpdate({ category }: UpdateCategoryProps) {
   const [uploadedImage, setUploadedImage] = useState<null | File>(null);
 
   const deleteCategoryClient = async () => {

@@ -1,5 +1,5 @@
-import { CategoriesType } from "../models/categories.type";
-import Category from "./CategoryRow";
+import { CategoriesType } from "../../models/categories.type";
+import Category from "../molecules/CategoryRow";
 
 type CategoriesTableProps = {
   categories: CategoriesType;
