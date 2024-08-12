@@ -3,7 +3,7 @@
 import { SearchFormData } from "@/src/models/searchFormData.type";
 import { SearchSchema } from "@/src/schemas/SearchSchema.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowRight, Search } from "lucide-react";
+import { ArrowRight, Loader, Search } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { Button } from "../atoms/Button";
@@ -45,8 +45,14 @@ export default function SearchBar() {
           defaultValue={searchParams.get("query")?.toString()}
         />
         <Button type="submit" variant="ghost" className="ml-2">
-          <ArrowRight className="text-muted-foreground w-5 h-5 " />
-          <span className="sr-only">Submit</span>
+          {isSubmitting ? (
+            <Loader className="text-muted-foreground w-5 h-5 animate-spin" />
+          ) : (
+            <>
+              <ArrowRight className="text-muted-foreground w-5 h-5" />
+              <span className="sr-only">Submit</span>
+            </>
+          )}
         </Button>
       </form>
     </div>

@@ -1,6 +1,7 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { cn } from "@/src/lib/utils";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type PaginationProps = {
   totalPages: number;
@@ -12,11 +13,13 @@ export default function Pagination({
   currentPage,
 }: PaginationProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
-  console.log(searchParams);
   const navigateToPage = (page: number) => {
     if (page >= 1 && page <= totalPages) {
-      router.push(`?page=${page}`);
+      const params = new URLSearchParams(searchParams);
+      params.set("page", page.toString());
+      router.replace(`${pathname}?${params.toString()}`);
     }
   };
 
@@ -27,9 +30,12 @@ export default function Pagination({
         <button
           onClick={() => navigateToPage(currentPage - 1)}
           disabled={currentPage === 1}
-          className={`inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 ${
-            currentPage === 1 && "opacity-50 cursor-not-allowed"
-          }`}
+          className={cn(
+            "inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900",
+            {
+              "opacity-50 cursor-not-allowed": currentPage === 1,
+            }
+          )}
         >
           <span className="sr-only">Prev Page</span>
           <svg
@@ -54,11 +60,15 @@ export default function Pagination({
           <li key={page}>
             <button
               onClick={() => navigateToPage(page)}
-              className={`block size-8 rounded border text-center leading-8 ${
-                currentPage === page
-                  ? "border-green-600 bg-green-600 text-white"
-                  : "border-gray-100 bg-white text-gray-900"
-              }`}
+              className={cn(
+                "block size-8 rounded border text-center leading-8",
+                {
+                  "border-green-600 bg-green-600 text-white":
+                    currentPage === page,
+                  "border-gray-100 bg-white text-gray-900":
+                    currentPage !== page,
+                }
+              )}
             >
               {page}
             </button>
@@ -71,9 +81,12 @@ export default function Pagination({
         <button
           onClick={() => navigateToPage(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className={`inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 ${
-            currentPage === totalPages && "opacity-50 cursor-not-allowed"
-          }`}
+          className={cn(
+            "inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900",
+            {
+              "opacity-50 cursor-not-allowed": currentPage === totalPages,
+            }
+          )}
         >
           <span className="sr-only">Next Page</span>
           <svg
