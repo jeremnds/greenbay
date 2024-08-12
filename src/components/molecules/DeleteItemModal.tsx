@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "../atoms/shadcn/button";
+import { Button } from "../atoms/Button";
 import {
   Dialog,
   DialogContent,
@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../atoms/shadcn/dialog";
+} from "../atoms/Dialog";
 import Spinner from "../atoms/Spinner";
 
 type DeleteItemModalProps = {

@@ -1,14 +1,14 @@
 import { cn } from "@/src/lib/utils";
 import Link from "next/link";
 import { ReactNode } from "react";
-import { buttonVariants } from "../atoms/shadcn/button";
+import { buttonVariants } from "../atoms/Button";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../atoms/shadcn/card";
+} from "../atoms/Card";
 
 type DashboardCardProps = {
   cardTitle: "Products" | "Categories" | "Users";

@@ -2,7 +2,7 @@ import { Check, X } from "lucide-react";
 import Link from "next/link";
 import { ProductType } from "../../models/product.type";
 import { getCategory } from "../../queries/getCategory.query";
-import { buttonVariants } from "../atoms/shadcn/button";
+import { buttonVariants } from "../atoms/Button";
 
 export default async function Product({ product }: { product: ProductType }) {
   const category: { name: string } = await getCategory(product.category_id);

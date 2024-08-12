@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CategoryType } from "../../models/category.type";
-import { buttonVariants } from "../atoms/shadcn/button";
+import { buttonVariants } from "../atoms/Button";
 
 export default function Category({ category }: { category: CategoryType }) {
   return (
