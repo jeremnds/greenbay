@@ -1,9 +1,8 @@
-import BackButton from "@/src/components/atoms/BackButton";
-import NoProduct from "@/src/components/atoms/NoProduct";
+import NoItem from "@/src/components/atoms/NoItem";
 import PageContainer from "@/src/components/atoms/PageContainer";
 import Spinner from "@/src/components/atoms/Spinner";
-import SearchBar from "@/src/components/molecules/SearchBar";
 import ProductList from "@/src/components/organisms/ProductList";
+import SearchHeader from "@/src/components/organisms/SearchHeader";
 import { ITEMS_PER_PAGE } from "@/src/lib/constants";
 import { getProductsWithPagination } from "@/src/queries/getProductsWithPagination.query";
 import { redirect } from "next/navigation";
@@ -32,10 +31,7 @@ export default async function Page({
   );
   return (
     <PageContainer>
-      <div className="flex items-center  mt-8 ">
-        {query && <BackButton />}
-        <SearchBar />
-      </div>
+      <SearchHeader className="mt-8" query={query} />
 
       {products.length > 0 ? (
         <Suspense fallback={<Spinner />} key={`${currentPage}-${query}`}>
@@ -46,7 +42,7 @@ export default async function Page({
           />
         </Suspense>
       ) : (
-        <NoProduct />
+        <NoItem itemName="product" />
       )}
     </PageContainer>
   );
