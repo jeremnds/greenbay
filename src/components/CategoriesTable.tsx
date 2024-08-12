@@ -1,4 +1,4 @@
-import { CategoriesType } from "@/src/models/types";
+import { CategoriesType } from "../models/categories.type";
 import Category from "./CategoryRow";
 
 type CategoriesTableProps = {

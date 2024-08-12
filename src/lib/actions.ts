@@ -1,9 +1,9 @@
 "use server";
 
+import { uploadImage } from "@/src/queries/uploadImage.query";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { signIn, signOut } from "./auth";
-import { uploadImage } from "./services";
 import { supabase } from "./supabase";
 
 export async function signInAction() {

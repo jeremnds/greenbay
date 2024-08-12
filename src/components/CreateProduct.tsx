@@ -1,10 +1,11 @@
 "use client";
 
 import { createProductAction } from "@/src/lib/actions";
-import { CategoriesType, ProductFormData } from "@/src/models/types";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import ProductForm from "./ui/ProductForm";
+import { CategoriesType } from "../models/categories.type";
+import { ProductFormData } from "../models/productFormData.type";
 
 type CreateProductProps = {
   categories: CategoriesType;

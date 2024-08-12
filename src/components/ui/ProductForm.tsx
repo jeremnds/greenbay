@@ -1,10 +1,8 @@
-import { ProductSchema } from "@/src/_models/schemas";
-import {
-  CategoriesType,
-  OnUploadImageType,
-  ProductFormData,
-  ProductType,
-} from "@/src/models/types";
+import { CategoriesType } from "@/src/models/categories.type";
+import { OnUploadImageType } from "@/src/models/onUploadImage.type";
+import { ProductType } from "@/src/models/product.type";
+import { ProductFormData } from "@/src/models/productFormData.type";
+import { ProductSchema } from "@/src/schemas/ProductSchema.zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import DeleteItemModal from "./DeleteItemModal";
@@ -52,6 +50,7 @@ export default function ProductForm({
   } = useForm({
     resolver: zodResolver(ProductSchema),
     defaultValues: defaultValues,
+    reValidateMode: "onBlur",
   });
 
   return (

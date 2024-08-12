@@ -1,6 +1,6 @@
 "use client";
 
-import { OnUploadImageType } from "@/src/models/types";
+import { OnUploadImageType } from "@/src/models/onUploadImage.type";
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 

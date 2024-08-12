@@ -6,3 +6,6 @@ export const navLinks = [
 ];
 
 export const ITEMS_PER_PAGE = 5;
+
+export const SUPABASE_STORAGE =
+  "https://kowwjfqvfqxwztgasfiq.supabase.co/storage/v1/object/public/images/";

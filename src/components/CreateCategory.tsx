@@ -1,10 +1,10 @@
 "use client";
 
 import { createCategoryAction } from "@/src/lib/actions";
-import { CategoryFormData } from "@/src/models/types";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import CategoryForm from "./ui/CategoryForm";
+import { CategoryFormData } from "../models/categoryFormData.type";
 
 export default function CreateCategory() {
   const [uploadedImage, setUploadedImage] = useState<null | File>(null);

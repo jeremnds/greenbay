@@ -2,7 +2,7 @@ import ProductsTable from "@/src/components/ProductsTable";
 import Pagination from "@/src/components/ui/Pagination";
 import TableSkeleton from "@/src/components/ui/TableSkeleton";
 import { ITEMS_PER_PAGE } from "@/src/lib/constants";
-import { getProductsWithPagination } from "@/src/lib/services";
+import { getProductsWithPagination } from "@/src/queries/getProductsWithPagination.query";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";

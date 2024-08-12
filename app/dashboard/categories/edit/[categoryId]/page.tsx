@@ -1,5 +1,5 @@
-import UpdateCategory from "@/src/components/UpdateCategory";
-import { getCategory } from "@/src/lib/services";
+import CategoryUpdate from "@/src/components/CategoryUpdate";
+import { getCategory } from "@/src/lib/getCategory.query";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -17,5 +17,5 @@ export default async function Page({ params }: CategoryProps) {
 
   const category = await getCategory(categoryId);
 
-  return <UpdateCategory category={category} />;
+  return <CategoryUpdate category={category} />;
 }

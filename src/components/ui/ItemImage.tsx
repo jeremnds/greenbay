@@ -1,4 +1,5 @@
-import { CategoryType, ProductType } from "@/src/models/types";
+import { CategoryType } from "@/src/models/category.type";
+import { ProductType } from "@/src/models/product.type";
 import Image from "next/image";
 
 type ItemImageProps = {

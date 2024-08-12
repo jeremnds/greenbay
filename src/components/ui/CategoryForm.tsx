@@ -1,9 +1,5 @@
-import { CategorySchema } from "@/src/_models/schemas";
-import {
-  CategoryFormData,
-  CategoryType,
-  OnUploadImageType,
-} from "@/src/models/types";
+import { CategorySchema } from "@/src/schemas/CategorySchema.zod";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import DeleteItemModal from "./DeleteItemModal";
@@ -11,6 +7,9 @@ import FormField from "./FormField";
 import { Button } from "./shadcn/button";
 import Spinner from "./Spinner";
 import UploadImage from "./UploadImage";
+import { CategoryType } from "@/src/models/category.type";
+import { OnUploadImageType } from "@/src/models/onUploadImage.type";
+import { CategoryFormData } from "@/src/models/categoryFormData.type";
 
 type CategoryFormProps = {
   category?: CategoryType;
