@@ -26,6 +26,7 @@ export default function SearchBar() {
   function handleSearch(formData: SearchFormData) {
     const params = new URLSearchParams(searchParams);
     if (formData.search) params.set("query", formData.search);
+    params.set("page", "1");
 
     replace(`${pathname}?${params.toString()}`);
   }

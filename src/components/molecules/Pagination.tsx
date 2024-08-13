@@ -32,7 +32,7 @@ export default function Pagination({
           onClick={() => navigateToPage(currentPage - 1)}
           disabled={currentPage === 1}
           className={cn(
-            "inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900",
+            "inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white dark:bg-black dark:text-gray-100 text-gray-900",
             {
               "opacity-50 cursor-not-allowed": currentPage === 1,
             }
@@ -53,9 +53,9 @@ export default function Pagination({
               className={cn(
                 "block size-8 rounded border text-center leading-8",
                 {
-                  "border-green-600 bg-green-600 text-white":
+                  "border-green-600 bg-green-600 text-white dark:text-black":
                     currentPage === page,
-                  "border-gray-100 bg-white text-gray-900":
+                  "border-gray-100 bg-white text-gray-900 dark:bg-black dark:text-gray-100":
                     currentPage !== page,
                 }
               )}
@@ -72,7 +72,7 @@ export default function Pagination({
           onClick={() => navigateToPage(currentPage + 1)}
           disabled={currentPage === totalPages}
           className={cn(
-            "inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900",
+            "inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 dark:bg-black dark:text-gray-100",
             {
               "opacity-50 cursor-not-allowed": currentPage === totalPages,
             }

@@ -3,13 +3,14 @@ import { auth } from "@/src/lib/auth";
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import PageContainer from "../atoms/PageContainer";
+import { ModeToggle } from "../molecules/ModeToggle";
 
 export default async function NavBar() {
   const session = await auth();
   const isLogged = session?.user ? true : false;
   console.log(session);
   return (
-    <header className="sticky z-50 bg-blur bg-white/75 backdrop-blur-lg border-gray-100 border-b transition-all h-20 w-full flex items-center justify-between top-0">
+    <header className="sticky z-50 bg-blur bg-white/75 backdrop-blur-lg border-gray-100 dark:border-slate-950/70 border-b transition-all h-20 w-full flex items-center justify-between top-0 dark:bg-black/75">
       <PageContainer>
         <div className="flex items-center">
           <div className="flex justify-between items-center md:w-72 w-64 ">
@@ -35,7 +36,7 @@ export default async function NavBar() {
               </li>
             </ul>
           </div>
-          <ul className="flex gap-6 ml-auto">
+          <ul className="flex gap-6 ml-auto items-center">
             <li>
               <Link
                 href="/dashboard"
@@ -59,6 +60,9 @@ export default async function NavBar() {
               <Link href="/cart" className=" hover:text-green-800">
                 <ShoppingCart />
               </Link>
+            </li>
+            <li>
+              <ModeToggle />
             </li>
           </ul>
         </div>

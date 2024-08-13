@@ -18,7 +18,7 @@ export default function ProductCard({ product }: ProductProps) {
         href="/cart"
         className={cn(
           buttonVariants({ variant: "ghost" }),
-          "rounded-full border border-input hover:bg-green-900/95 hover:text-white px-8 uppercase bottom-0 absolute bg-white left-1/2 transform -translate-x-1/2 transition-all duration-300 hidden  group-hover:animate-showup group-hover:block group-hover:bottom-8 animate-hide"
+          "rounded-full border border-input hover:bg-green-900/95 hover:text-white px-8 uppercase bottom-0 absolute bg-white left-1/2 transform -translate-x-1/2 transition-all duration-300 hidden  group-hover:animate-showup group-hover:block group-hover:bottom-8 animate-hide dark:text-black dark:hover:text-white"
         )}
       >
         Add to cart
