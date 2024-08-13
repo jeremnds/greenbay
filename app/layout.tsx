@@ -1,4 +1,5 @@
 import NavBar from "@/src/components/organisms/NavBar";
+import { ThemeProvider } from "@/src/components/organisms/ThemeProvider";
 import { cn } from "@/src/lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -24,11 +25,19 @@ export default function RootLayout({
       <body
         className={cn("relative h-full font-sans antialiased", inter.className)}
       >
-        <main className="relative flex flex-col min-h-screen">
-          <NavBar />
-          <div className="flex-grow flex-1">{children}</div>
-        </main>
-        <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <main className="relative flex flex-col min-h-screen">
+            <NavBar />
+            <div className="flex-grow flex-1">{children}</div>
+          </main>
+
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

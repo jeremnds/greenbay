@@ -1,6 +1,9 @@
+import NoItem from "@/src/components/atoms/NoItem";
 import TableSkeleton from "@/src/components/atoms/TableSkeleton";
 import Pagination from "@/src/components/molecules/Pagination";
-import ProductsTable from "@/src/components/organisms/ProductsTable";
+import ProductTable from "@/src/components/organisms/ProductTable";
+import SearchHeader from "@/src/components/organisms/SearchHeader";
+
 import { ITEMS_PER_PAGE } from "@/src/lib/constants";
 import { getProductsWithPagination } from "@/src/queries/getProductsWithPagination.query";
 import { Metadata } from "next";
@@ -16,25 +19,35 @@ export default async function Page({
 }: {
   searchParams?: {
     page?: string;
+    query?: string;
   };
 }) {
   if (!searchParams?.page) {
     redirect("/dashboard/products?page=1");
   }
 
+  const query = searchParams?.query || "";
+
   const currentPage = Number(searchParams?.page) || 1;
 
   const { products, totalPages } = await getProductsWithPagination(
     currentPage,
-    ITEMS_PER_PAGE
+    ITEMS_PER_PAGE,
+    query
   );
 
   return (
     <>
-      <Suspense fallback={<TableSkeleton />} key={currentPage}>
-        <ProductsTable products={products} />
-      </Suspense>
-      <Pagination totalPages={totalPages} currentPage={currentPage} />
+      <SearchHeader className="mb-8" query={query} />
+
+      {products.length > 0 ? (
+        <Suspense fallback={<TableSkeleton />} key={`${currentPage}-${query}`}>
+          <ProductTable products={products} />
+          <Pagination totalPages={totalPages} currentPage={currentPage} />
+        </Suspense>
+      ) : (
+        <NoItem itemName="product" />
+      )}
     </>
   );
 }

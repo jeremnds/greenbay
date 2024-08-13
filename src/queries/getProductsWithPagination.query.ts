@@ -3,16 +3,13 @@ import { ProductsWithPaginationType } from "../models/productWithPagination.type
 
 export async function getProductsWithPagination(
   page: number,
-  limit: number
+  limit: number,
+  searchQuery?: string
 ): Promise<ProductsWithPaginationType> {
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit - 1;
 
-  const {
-    data: products,
-    count,
-    error,
-  } = await supabase
+  let query = supabase
     .from("products")
     .select("id, name, description, price, image, category_id, available", {
       count: "exact",
@@ -20,6 +17,9 @@ export async function getProductsWithPagination(
     .order("id", { ascending: false })
     .range(startIndex, endIndex);
 
+  if (searchQuery) query = query.ilike("name", `%${searchQuery}%`);
+
+  const { data: products, count, error } = await query;
   if (error) {
     console.error(error);
     throw new Error("Products could not be loaded");

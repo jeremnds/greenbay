@@ -1,5 +1,5 @@
-import PageContainer from "@/src/components/atoms/PageContainer";
 import { buttonVariants } from "@/src/components/atoms/Button";
+import PageContainer from "@/src/components/atoms/PageContainer";
 import { cn } from "@/src/lib/utils";
 import { Package, PhoneOutgoing, Sprout } from "lucide-react";
 import Image from "next/image";
@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <PageContainer>
-      <div className="w-full h-96 bg-green-400 rounded-lg flex">
+      <div className="w-full h-96 bg-green-600 rounded-lg flex">
         <div className="pt-8 pl-8 ">
           <h1 className="font-bold text-gray-50 text-6xl tracking-tighter">
             Buy your <span className="font-bold text-green-800">dream</span>{" "}
@@ -63,7 +63,7 @@ export default function Home() {
 
       <section className="mt-20 flex flex-col items-center gap-3">
         <h3 className="font-bold text-2xl">About us</h3>
-        <p className="text-gray-700">
+        <p className="text-gray-700 dark:text-gray-200">
           Order now and appreciate the beauty of nature
         </p>
         <div className="grid items-center grid-cols-1 gap-8 lg:grid-cols-3 mt-6">
@@ -72,7 +72,7 @@ export default function Home() {
               <Sprout className="w-16 h-16 text-gray-100" />
             </div>
             <h4 className="font-semibold">Large Assortment</h4>
-            <p className="text-sm text-gray-800 text-center w-96 lg:w-full">
+            <p className="text-sm text-gray-800 text-center w-96 lg:w-full dark:text-gray-200">
               We offer many different types of products with fewer variations in
               each category
             </p>
@@ -82,7 +82,7 @@ export default function Home() {
               <Package className="w-16 h-16 text-gray-100" />
             </div>
             <h4 className="font-semibold">Fast & Free Shipping</h4>
-            <p className="text-sm text-gray-800 text-center w-96 lg:w-full">
+            <p className="text-sm text-gray-800 text-center w-96 lg:w-full dark:text-gray-200  ">
               4-day or less delivery time, free shipping and an expedited
               delivery option.
             </p>
@@ -92,7 +92,7 @@ export default function Home() {
               <PhoneOutgoing className="text-gray-100" width={64} height={64} />
             </div>
             <h4 className="font-semibold">24/7 Support</h4>
-            <p className="text-sm text-gray-800 text-center w-96 lg:w-full">
+            <p className="text-sm text-gray-800 text-center w-96 lg:w-full dark:text-gray-200">
               Answers to any business related inquiry 24/7 and in real-time.
             </p>
           </div>
@@ -100,20 +100,22 @@ export default function Home() {
       </section>
       <section className="mt-20 flex flex-col items-center  gap-3 ">
         <h3 className="font-bold text-2xl">Categories</h3>
-        <p className="text-gray-700">Find what you are looking for</p>
+        <p className="text-gray-700 dark:text-gray-200">
+          Find what you are looking for
+        </p>
         <div className="mt-5 pb-5 lg:pb-0 bg-green-300 h-full lg:h-96 w-full rounded-xl flex justify-center lg:items-center ">
           <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-4 lg:gap-8">
             <div className="pt-12 lg:pt-0 ">
               <div className="w-52 h-52 bg-green-800"></div>
-              <p className="pt-2 ">Natural Plants</p>
+              <p className="pt-2 text-black">Natural Plants</p>
             </div>
             <div className="">
               <div className="w-52 h-52 bg-green-800"></div>
-              <p className="pt-2 ">Plant Accessories</p>
+              <p className="pt-2 text-black">Plant Accessories</p>
             </div>
             <div className="">
               <div className="w-52 h-52 bg-green-800"></div>
-              <p className="pt-2 ">Artificial Plants</p>
+              <p className="pt-2 text-black ">Artificial Plants</p>
             </div>
             <Link
               href="/categories"

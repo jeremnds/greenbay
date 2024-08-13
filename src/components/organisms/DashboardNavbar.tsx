@@ -19,7 +19,7 @@ export default function DashboardNavbar() {
   return (
     <div className="border-r-2 border-gray-20000 h-full text-green-800">
       <div className="">
-        <ul className="text-black flex flex-col gap-6 md:gap-2 items-center md:items-start ">
+        <ul className="text-black flex flex-col gap-6 md:gap-2 items-center md:items-start dark:text-white ">
           {navLinks.map((link) => {
             const Icon = iconMap[link.name as NavLinkName];
             return (
