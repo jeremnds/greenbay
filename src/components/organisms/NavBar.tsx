@@ -3,7 +3,7 @@ import { auth } from "@/src/lib/auth";
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import PageContainer from "../atoms/PageContainer";
-import { ModeToggle } from "../molecules/ModeToggle";
+import { ThemeToggle } from "../molecules/ThemeToggle";
 
 export default async function NavBar() {
   const session = await auth();
@@ -62,7 +62,7 @@ export default async function NavBar() {
               </Link>
             </li>
             <li>
-              <ModeToggle />
+              <ThemeToggle />
             </li>
           </ul>
         </div>

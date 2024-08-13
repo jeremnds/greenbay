@@ -11,7 +11,7 @@ import {
 } from "@/src/components/atoms/DropdownMenu";
 import { Button } from "../atoms/Button";
 
-export function ModeToggle() {
+export function ThemeToggle() {
   const { setTheme } = useTheme();
 
   return (
