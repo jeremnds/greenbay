@@ -1,5 +1,6 @@
 import NavBar from "@/src/components/organisms/NavBar";
 import { ThemeProvider } from "@/src/components/organisms/ThemeProvider";
+import { auth } from "@/src/lib/auth";
 import { cn } from "@/src/lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -15,11 +16,14 @@ export const metadata: Metadata = {
   description: "Shop of plants",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+  const isLogged = !!session?.user;
+
   return (
     <html lang="en">
       <body
@@ -32,7 +36,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <main className="relative flex flex-col min-h-screen">
-            <NavBar />
+            <NavBar isLogged={isLogged} />
+
             <div className="flex-grow flex-1">{children}</div>
           </main>
 
