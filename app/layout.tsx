@@ -1,4 +1,5 @@
 import NavBar from "@/src/components/organisms/NavBar";
+import StoreProvider from "@/src/components/organisms/StoreProvider";
 import { ThemeProvider } from "@/src/components/organisms/ThemeProvider";
 import { auth } from "@/src/lib/auth";
 import { cn } from "@/src/lib/utils";
@@ -23,26 +24,27 @@ export default async function RootLayout({
 }>) {
   const session = await auth();
   const isLogged = !!session?.user;
-
   return (
     <html lang="en">
       <body
         className={cn("relative h-full font-sans antialiased", inter.className)}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <main className="relative flex flex-col min-h-screen">
-            <NavBar isLogged={isLogged} />
+        <StoreProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <main className="relative flex flex-col min-h-screen">
+              <NavBar isLogged={isLogged} />
 
-            <div className="flex-grow flex-1">{children}</div>
-          </main>
+              <div className="flex-grow flex-1">{children}</div>
+            </main>
 
-          <Toaster />
-        </ThemeProvider>
+            <Toaster />
+          </ThemeProvider>
+        </StoreProvider>
       </body>
     </html>
   );

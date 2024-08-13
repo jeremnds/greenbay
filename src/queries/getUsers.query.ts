@@ -2,7 +2,9 @@ import { supabase } from "../lib/supabase";
 import { UsersType } from "../models/users.type";
 
 export async function getUsers(): Promise<UsersType> {
-  const { data: users, error } = await supabase.from("users").select("*");
+  const { data: users, error } = await supabase
+    .from("users")
+    .select("id, email, name, role");
 
   if (error) {
     console.error(error);

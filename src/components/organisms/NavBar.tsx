@@ -1,6 +1,7 @@
 "use client";
 
 import { signOutAction } from "@/src/lib/actions";
+import { useAppSelector } from "@/src/lib/hooks";
 import { Menu, ShoppingCart, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -14,6 +15,12 @@ type NavBarProps = {
 export default function NavBar({ isLogged }: NavBarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLUListElement | null>(null);
+
+  const cart = useAppSelector((state) => state.cart);
+
+  const totalQuantity = cart
+    ?.map((item) => item.quantity)
+    .reduce((sum, quantity) => sum + quantity, 0);
 
   const handleOpen = () => {
     setIsOpen((open) => !open);
@@ -85,8 +92,11 @@ export default function NavBar({ isLogged }: NavBarProps) {
               )}
             </li>
             <li>
-              <Link href="/cart" className=" hover:text-green-800">
+              <Link href="/cart" className=" hover:text-green-800 relative">
                 <ShoppingCart />
+                <span className="absolute px-1 translate-x-1/2 text-xs bg-black text-white rounded-full top-0 right-0">
+                  {totalQuantity}
+                </span>
               </Link>
             </li>
             <li>
