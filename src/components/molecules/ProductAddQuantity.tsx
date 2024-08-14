@@ -1,12 +1,12 @@
 "use client";
 
-import { addItem } from "@/src/lib/features/cartSlice";
-import { useAppDispatch } from "@/src/lib/hooks";
 import { ProductType } from "@/src/models/product.type";
+
 import { Session } from "next-auth";
 import { useState } from "react";
 import { Button } from "../atoms/Button";
 import NumberField from "../atoms/NumberField";
+import { useCartStore } from "@/src/store/cartStore";
 
 type ProductAddQuantityProps = {
   session: Session | null;
@@ -19,7 +19,7 @@ export default function ProductAddQuantity({
 }: ProductAddQuantityProps) {
   const [quantity, setQuantity] = useState(1);
 
-  const dispatch = useAppDispatch();
+  const addItem = useCartStore((state) => state.addItem);
 
   let customerId = 1;
   if (session?.user) customerId = session.user.customerId;
@@ -49,7 +49,7 @@ export default function ProductAddQuantity({
       <Button
         className="rounded-full border border-input hover:bg-green-900/95 hover:text-white px-8 uppercase "
         variant="ghost"
-        onClick={() => dispatch(addItem(item))}
+        onClick={() => addItem(item)}
       >
         Add to cart
       </Button>

@@ -1,7 +1,7 @@
 "use client";
 
 import { signOutAction } from "@/src/lib/actions";
-import { useAppSelector } from "@/src/lib/hooks";
+import { useCartStore } from "@/src/store/cartStore";
 import { Menu, ShoppingCart, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -16,11 +16,9 @@ export default function NavBar({ isLogged }: NavBarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLUListElement | null>(null);
 
-  const cart = useAppSelector((state) => state.cart);
-
-  const totalQuantity = cart
-    ?.map((item) => item.quantity)
-    .reduce((sum, quantity) => sum + quantity, 0);
+  const cart = useCartStore((state) => state.cart);
+  const totalQuantity =
+    cart?.reduce((sum, item) => sum + item.quantity, 0) ?? 0;
 
   const handleOpen = () => {
     setIsOpen((open) => !open);

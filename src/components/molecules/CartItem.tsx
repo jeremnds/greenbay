@@ -1,5 +1,3 @@
-import { removeItem, updateQuantity } from "@/src/lib/features/cartSlice";
-import { useAppDispatch } from "@/src/lib/hooks";
 import { CartItemType } from "@/src/models/cartItem.type";
 import { ProductType } from "@/src/models/product.type";
 import { getProductClient } from "@/src/queries/getProductClient.query";
@@ -9,6 +7,7 @@ import { Button } from "../atoms/Button";
 import ItemImage from "../atoms/ItemImage";
 import NumberField from "../atoms/NumberField";
 import Spinner from "../atoms/Spinner";
+import { useCartStore } from "@/src/store/cartStore";
 
 type CartItemProps = {
   cartItem: CartItemType;
@@ -18,8 +17,10 @@ export default function CartItem({ cartItem }: CartItemProps) {
   const [product, setProduct] = useState<ProductType | null>(null);
   const productId = cartItem.product_id;
   const [isLoading, setIsLoading] = useState(true);
-  const [quantity, setquantity] = useState(cartItem.quantity);
-  const dispatch = useAppDispatch();
+  const [quantity, setQuantity] = useState(cartItem.quantity);
+
+  const updateQuantity = useCartStore((state) => state.updateQuantity);
+  const removeItem = useCartStore((state) => state.removeItem);
 
   useEffect(() => {
     async function loadProduct() {
@@ -32,27 +33,18 @@ export default function CartItem({ cartItem }: CartItemProps) {
 
   function handleDecrement() {
     const newQuantity = quantity > 1 ? quantity - 1 : quantity;
-    setquantity(newQuantity);
+    setQuantity(newQuantity);
 
-    const item = {
-      user_id: 1,
-      product_id: productId,
-      quantity: newQuantity,
-    };
-    dispatch(updateQuantity(item));
+    updateQuantity(1, productId, newQuantity);
   }
 
   function handleIncrement() {
     const newQuantity = quantity + 1;
-    setquantity(newQuantity);
+    setQuantity(newQuantity);
 
-    const item = {
-      user_id: 1,
-      product_id: productId,
-      quantity: newQuantity,
-    };
-    dispatch(updateQuantity(item));
+    updateQuantity(1, productId, newQuantity);
   }
+
   if (isLoading) return <Spinner />;
 
   return (
@@ -82,9 +74,7 @@ export default function CartItem({ cartItem }: CartItemProps) {
         <Button
           variant="ghost"
           className="border border-muted"
-          onClick={() =>
-            dispatch(removeItem({ user_id: 1, product_id: productId }))
-          }
+          onClick={() => removeItem(1, productId)} // Assuming user_id is 1
         >
           <Trash2 width={18} height={18} />
         </Button>

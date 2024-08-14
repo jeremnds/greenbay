@@ -1,5 +1,4 @@
-import NavBar from "@/src/components/organisms/NavBar";
-import StoreProvider from "@/src/components/organisms/StoreProvider";
+import Header from "@/src/components/organisms/Header";
 import { ThemeProvider } from "@/src/components/organisms/ThemeProvider";
 import { auth } from "@/src/lib/auth";
 import { cn } from "@/src/lib/utils";
@@ -29,22 +28,19 @@ export default async function RootLayout({
       <body
         className={cn("relative h-full font-sans antialiased", inter.className)}
       >
-        <StoreProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <main className="relative flex flex-col min-h-screen">
-              <NavBar isLogged={isLogged} />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <main className="relative flex flex-col min-h-screen">
+            <Header isLogged={isLogged} />
 
-              <div className="flex-grow flex-1">{children}</div>
-            </main>
-
-            <Toaster />
-          </ThemeProvider>
-        </StoreProvider>
+            <div className="flex-grow flex-1">{children}</div>
+          </main>
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

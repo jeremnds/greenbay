@@ -1,15 +1,25 @@
-import { auth } from "@/src/lib/auth";
+"use client";
+
 import { cn } from "@/src/lib/utils";
-import { ProductProps } from "@/src/models/productProps.type";
-import { getCategory } from "@/src/queries/getCategory.query";
+import { CategoryType } from "@/src/models/category.type";
+import { ProductType } from "@/src/models/product.type";
+import { Session } from "next-auth";
 import BackButton from "../atoms/BackButton";
 import { buttonVariants } from "../atoms/Button";
 import ItemImage from "../atoms/ItemImage";
 import ProductAddQuantity from "../molecules/ProductAddQuantity";
 
-export default async function Product({ product }: ProductProps) {
-  const session = await auth();
-  const category = await getCategory(product.category_id);
+type ProductPageProps = {
+  product: ProductType;
+  session: Session | null;
+  category: CategoryType;
+};
+
+export default function Product({
+  product,
+  session,
+  category,
+}: ProductPageProps) {
   return (
     <>
       <BackButton />

@@ -1,12 +1,12 @@
 "use client";
 
-import { useAppSelector } from "@/src/lib/hooks";
+import { useCartStore } from "@/src/store/cartStore";
 import CartItem from "../molecules/CartItem";
 import NoCart from "../molecules/NoCart";
 import CartTotal from "./CartTotal";
 
 export default function CartList() {
-  const cart = useAppSelector((state) => state.cart);
+  const cart = useCartStore((state) => state.cart);
   const totalPrice = Number(
     cart
       .reduce((sum, cartItem) => sum + cartItem.price * cartItem.quantity, 0)
