@@ -1,13 +1,13 @@
 import { CartItemType } from "@/src/models/cartItem.type";
 import { ProductType } from "@/src/models/product.type";
 import { getProductClient } from "@/src/queries/getProductClient.query";
+import { useCartStore } from "@/src/store/cartStore";
 import { Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "../atoms/Button";
 import ItemImage from "../atoms/ItemImage";
 import NumberField from "../atoms/NumberField";
-import Spinner from "../atoms/Spinner";
-import { useCartStore } from "@/src/store/cartStore";
+import { Skeleton } from "../atoms/Skeleton";
 
 type CartItemProps = {
   cartItem: CartItemType;
@@ -45,7 +45,7 @@ export default function CartItem({ cartItem }: CartItemProps) {
     updateQuantity(1, productId, newQuantity);
   }
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) return <Skeleton className="h-16 rounded-ful" />;
 
   return (
     <li className="flex items-center gap-4">
