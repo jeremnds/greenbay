@@ -1,12 +1,14 @@
+import { auth } from "@/src/lib/auth";
 import { cn } from "@/src/lib/utils";
 import { ProductProps } from "@/src/models/productProps.type";
 import { getCategory } from "@/src/queries/getCategory.query";
 import BackButton from "../atoms/BackButton";
-import { Button, buttonVariants } from "../atoms/Button";
+import { buttonVariants } from "../atoms/Button";
 import ItemImage from "../atoms/ItemImage";
-import NumberField from "../molecules/NumberField";
+import ProductAddQuantity from "../molecules/ProductAddQuantity";
 
 export default async function Product({ product }: ProductProps) {
+  const session = await auth();
   const category = await getCategory(product.category_id);
   return (
     <>
@@ -29,15 +31,7 @@ export default async function Product({ product }: ProductProps) {
               <h4>Category</h4>
               <p className={cn(buttonVariants())}>{category.name}</p>
             </div>
-            <div className="flex flex-col gap-3 md:flex-row md:items-end">
-              <NumberField />
-              <Button
-                className="rounded-full border border-input hover:bg-green-900/95 hover:text-white px-8 uppercase "
-                variant="ghost"
-              >
-                Add to card
-              </Button>
-            </div>
+            <ProductAddQuantity session={session} product={product} />
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { useAppDispatch } from "@/src/lib/hooks";
 import { ProductType } from "@/src/models/product.type";
 import { Session } from "next-auth";
 import Link from "next/link";
-import { Button } from "../atoms/Button";
+import AddToCartBtn from "../atoms/AddToCartBtn";
 import ItemImage from "../atoms/ItemImage";
 
 type ProductCardProps = {
@@ -33,13 +33,10 @@ export default function ProductCard({ product, session }: ProductCardProps) {
           <span className="text-green-900">${product.price}</span>
         </div>
       </Link>
-      <Button
-        variant="ghost"
-        className="rounded-full border border-input hover:bg-green-900/95 hover:text-white px-8 uppercase bottom-0 absolute bg-white left-1/2 transform -translate-x-1/2 transition-all duration-300 hidden  group-hover:animate-showup group-hover:block group-hover:bottom-8 animate-hide text-black dark:hover:text-white"
+      <AddToCartBtn
+        className="bottom-0 absolute bg-white left-1/2 transform -translate-x-1/2 transition-all duration-300 hidden  group-hover:animate-showup group-hover:block group-hover:bottom-8 animate-hide text-black dark:hover:text-white"
         onClick={() => dispatch(addItem(item))}
-      >
-        Add to cart
-      </Button>
+      />
     </div>
   );
 }

@@ -3,7 +3,9 @@ import { ProductType } from "@/src/models/product.type";
 import { getProductClient } from "@/src/queries/getProductClient.query";
 import { Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Button } from "../atoms/Button";
 import ItemImage from "../atoms/ItemImage";
+import NumberField from "../atoms/NumberField";
 
 type CartItemProps = {
   cartItem: CartItemType;
@@ -37,29 +39,11 @@ export default function CartItem({ cartItem }: CartItemProps) {
       </div>
 
       <div className="flex flex-1 items-center justify-end gap-2">
-        <form>
-          <label htmlFor="Line1Qty" className="sr-only">
-            {" "}
-            Quantity{" "}
-          </label>
+        <NumberField />
 
-          <input
-            type="number"
-            min="1"
-            defaultValue={cartItem.quantity}
-            id="Line1Qty"
-            className="h-8 w-12 rounded border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-          />
-        </form>
-
-        <button className="">
-          <span className="sr-only">Remove item</span>
-          <Trash2
-            width={16}
-            height={16}
-            className="text-gray-500 hover:text-red-600  transition  "
-          />
-        </button>
+        <Button variant="ghost" className="border border-muted">
+          <Trash2 width={18} height={18} />
+        </Button>
       </div>
     </li>
   );
