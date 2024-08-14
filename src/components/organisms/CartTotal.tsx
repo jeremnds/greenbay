@@ -6,7 +6,7 @@ export default function CartTotal({ totalPrice }: CartTotalProps) {
   return (
     <div className="mt-8 flex justify-end border-t border-gray-100 pt-8">
       <div className="w-screen max-w-lg space-y-4">
-        <dl className="space-y-0.5 text-sm text-gray-700">
+        <dl className="space-y-0.5 text-sm text-gray-700 dark:text-gray-200">
           <div className="flex justify-between !text-base font-medium">
             <dt>Total</dt>
             <dd>${totalPrice}</dd>

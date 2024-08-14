@@ -60,9 +60,11 @@ export default function CartItem({ cartItem }: CartItemProps) {
       <ItemImage item={product} className="h-16 w-16" placeholderText={false} />
 
       <div>
-        <h3 className="text-sm text-gray-900">{product?.name}</h3>
+        <h3 className="text-sm text-gray-900 dark:text-gray-100">
+          {product?.name}
+        </h3>
 
-        <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
+        <dl className="mt-0.5 space-y-px text-[10px] text-gray-600 dark:text-gray-400">
           <div>
             <dt className="inline">Price:</dt>
             <dd className="inline">${product?.price}</dd>
