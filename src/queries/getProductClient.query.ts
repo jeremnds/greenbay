@@ -1,8 +1,8 @@
-import { supabaseServer } from "../lib/supabaseServer";
+import { supabaseClient } from "../lib/supabaseClient";
 import { ProductType } from "../models/product.type";
 
-export async function getProduct(id: number): Promise<ProductType> {
-  const { data: product, error } = await supabaseServer
+export async function getProductClient(id: number): Promise<ProductType> {
+  const { data: product, error } = await supabaseClient
     .from("products")
     .select("name, image, id, description, price, category_id, available")
     .eq("id", id)

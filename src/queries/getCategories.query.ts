@@ -1,4 +1,4 @@
-import { supabase } from "@/src/lib/supabase";
+import { supabaseServer } from "../lib/supabaseServer";
 import { CategoriesType } from "../models/categories.type";
 
 export async function getCategories(): Promise<{
@@ -9,7 +9,9 @@ export async function getCategories(): Promise<{
     data: categories,
     count,
     error,
-  } = await supabase.from("categories").select("id,name", { count: "exact" });
+  } = await supabaseServer
+    .from("categories")
+    .select("id,name", { count: "exact" });
 
   if (error) {
     console.error(error);

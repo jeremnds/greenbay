@@ -4,14 +4,19 @@ import { ProductType } from "@/src/models/product.type";
 import Image from "next/image";
 
 type ItemImageProps = {
-  item: CategoryType | ProductType;
+  item: CategoryType | ProductType | null;
   className?: string;
+  placeholderText?: boolean;
 };
 
-export default function ItemImage({ item, className }: ItemImageProps) {
+export default function ItemImage({
+  item,
+  className,
+  placeholderText = true,
+}: ItemImageProps) {
   return (
     <>
-      {item.image ? (
+      {item?.image ? (
         <div className={cn("relative h-72 w-full", className)}>
           <Image
             src={item.image}
@@ -31,7 +36,7 @@ export default function ItemImage({ item, className }: ItemImageProps) {
             className
           )}
         >
-          <p>NO IMAGE YET</p>
+          {placeholderText && <p>NO IMAGE YET</p>}
         </div>
       )}
     </>

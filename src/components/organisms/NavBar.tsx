@@ -94,7 +94,7 @@ export default function NavBar({ isLogged }: NavBarProps) {
             <li>
               <Link href="/cart" className=" hover:text-green-800 relative">
                 <ShoppingCart />
-                <span className="absolute px-1 translate-x-1/2 text-xs bg-black text-white rounded-full top-0 right-0">
+                <span className="absolute px-1 translate-x-1/2 text-xs bg-black text-white rounded-full top-0 right-0 dark:bg-white dark:text-black">
                   {totalQuantity}
                 </span>
               </Link>

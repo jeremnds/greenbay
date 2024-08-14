@@ -1,4 +1,4 @@
-import { supabase } from "@/src/lib/supabase";
+import { supabaseServer } from "../lib/supabaseServer";
 import { ProductsWithPaginationType } from "../models/productWithPagination.type";
 
 export async function getProductsWithPagination(
@@ -9,7 +9,7 @@ export async function getProductsWithPagination(
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit - 1;
 
-  let query = supabase
+  let query = supabaseServer
     .from("products")
     .select("id, name, description, price, image, category_id, available", {
       count: "exact",

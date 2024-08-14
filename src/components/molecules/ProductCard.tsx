@@ -21,6 +21,7 @@ export default function ProductCard({ product, session }: ProductCardProps) {
     user_id: customerId,
     product_id: product.id,
     quantity: 1,
+    price: product.price,
   };
 
   return (
