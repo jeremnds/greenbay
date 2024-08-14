@@ -1,4 +1,4 @@
-import { updateQuantity } from "@/src/lib/features/cartSlice";
+import { removeItem, updateQuantity } from "@/src/lib/features/cartSlice";
 import { useAppDispatch } from "@/src/lib/hooks";
 import { CartItemType } from "@/src/models/cartItem.type";
 import { ProductType } from "@/src/models/product.type";
@@ -77,7 +77,13 @@ export default function CartItem({ cartItem }: CartItemProps) {
           onIncrement={handleIncrement}
         />
 
-        <Button variant="ghost" className="border border-muted">
+        <Button
+          variant="ghost"
+          className="border border-muted"
+          onClick={() =>
+            dispatch(removeItem({ user_id: 1, product_id: productId }))
+          }
+        >
           <Trash2 width={18} height={18} />
         </Button>
       </div>
