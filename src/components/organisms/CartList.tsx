@@ -7,12 +7,7 @@ import CartTotal from "./CartTotal";
 
 export default function CartList() {
   const cart = useCartStore((state) => state.cart);
-  const totalPrice = Number(
-    cart
-      .reduce((sum, cartItem) => sum + cartItem.price * cartItem.quantity, 0)
-      .toFixed(2)
-  );
-
+  const totalPrice = useCartStore((state) => state.totalPrice);
   return (
     <>
       {cart.length > 0 ? (

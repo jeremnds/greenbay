@@ -18,10 +18,9 @@ const stripePromise = loadStripe(
 export default function Page() {
   const cart = useCartStore((state) => state.cart);
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalPrice = useCartStore((state) => state.totalPrice);
 
   const { theme, systemTheme } = useTheme();
-  const resolvedTheme = theme === "system" ? systemTheme : theme;
 
   return (
     <PageContainer>
@@ -29,7 +28,7 @@ export default function Page() {
         stripe={stripePromise}
         options={{
           mode: "payment",
-          amount: convertToSubcurrency(total),
+          amount: convertToSubcurrency(totalPrice),
           currency: "usd",
           appearance: {
             theme:
@@ -43,7 +42,7 @@ export default function Page() {
           },
         }}
       >
-        <Checkout total={total} />
+        <Checkout totalPrice={totalPrice} />
       </Elements>
     </PageContainer>
   );

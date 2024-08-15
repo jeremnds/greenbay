@@ -10,7 +10,7 @@ import { Button } from "../atoms/Button";
 import { Separator } from "../atoms/Separator";
 import CheckoutList from "./CheckoutList";
 
-export default function Checkout({ total }: { total: number }) {
+export default function Checkout({ totalPrice }: { totalPrice: number }) {
   const cart = useCartStore((state) => state.cart);
   const stripe = useStripe();
   const elements = useElements();
@@ -24,11 +24,11 @@ export default function Checkout({ total }: { total: number }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ total: convertToSubcurrency(total) }),
+      body: JSON.stringify({ totalPrice: convertToSubcurrency(totalPrice) }),
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
-  }, [total]);
+  }, [totalPrice]);
   return (
     <div className="flex flex-col mt-8 gap-8 sm:flex-row">
       <CheckoutList />

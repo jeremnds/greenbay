@@ -6,11 +6,11 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export async function POST(request: NextRequest) {
   try {
-    const { total } = await request.json();
-    console.log("Total Amount:", total); // Add this to check the amount
-    if (!total) throw new Error("Amount is missing!");
+    const { totalPrice } = await request.json();
+
+    if (!totalPrice) throw new Error("Amount is missing!");
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: total,
+      amount: totalPrice,
       currency: "usd",
       automatic_payment_methods: { enabled: true },
     });
