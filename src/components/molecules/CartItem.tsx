@@ -3,6 +3,7 @@ import { ProductType } from "@/src/models/product.type";
 import { getProductClient } from "@/src/queries/getProductClient.query";
 import { useCartStore } from "@/src/store/cartStore";
 import { Trash2 } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Button } from "../atoms/Button";
 import ItemImage from "../atoms/ItemImage";
@@ -22,6 +23,9 @@ export default function CartItem({ cartItem }: CartItemProps) {
   const updateQuantity = useCartStore((state) => state.updateQuantity);
   const removeItem = useCartStore((state) => state.removeItem);
 
+  const { data: session } = useSession();
+  const customerId = session?.user?.customerId ?? 1;
+
   useEffect(() => {
     async function loadProduct() {
       const productInCart = await getProductClient(productId);
@@ -35,14 +39,14 @@ export default function CartItem({ cartItem }: CartItemProps) {
     const newQuantity = quantity > 1 ? quantity - 1 : quantity;
     setQuantity(newQuantity);
 
-    updateQuantity(1, productId, newQuantity);
+    updateQuantity(customerId, productId, newQuantity);
   }
 
   function handleIncrement() {
     const newQuantity = quantity + 1;
     setQuantity(newQuantity);
 
-    updateQuantity(1, productId, newQuantity);
+    updateQuantity(customerId, productId, newQuantity);
   }
 
   if (isLoading) return <Skeleton className="h-16 rounded-ful" />;
@@ -74,7 +78,7 @@ export default function CartItem({ cartItem }: CartItemProps) {
         <Button
           variant="ghost"
           className="border border-muted"
-          onClick={() => removeItem(1, productId)} // Assuming user_id is 1
+          onClick={() => removeItem(customerId, productId)}
         >
           <Trash2 width={18} height={18} />
         </Button>

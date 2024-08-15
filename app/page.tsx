@@ -1,5 +1,6 @@
 import { buttonVariants } from "@/src/components/atoms/Button";
 import PageContainer from "@/src/components/atoms/PageContainer";
+import CartUpdater from "@/src/components/organisms/CartUpdater";
 import { cn } from "@/src/lib/utils";
 import { Package, PhoneOutgoing, Sprout } from "lucide-react";
 import Image from "next/image";
@@ -129,6 +130,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <CartUpdater />
     </PageContainer>
   );
 }

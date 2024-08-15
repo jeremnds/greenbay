@@ -3,6 +3,7 @@ import { ThemeProvider } from "@/src/components/organisms/ThemeProvider";
 import { auth } from "@/src/lib/auth";
 import { cn } from "@/src/lib/utils";
 import type { Metadata } from "next";
+import { SessionProvider } from "next-auth/react";
 import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
@@ -34,12 +35,14 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="relative flex flex-col min-h-screen">
-            <Header isLogged={isLogged} />
+          <SessionProvider session={session}>
+            <main className="relative flex flex-col min-h-screen">
+              <Header isLogged={isLogged} />
 
-            <div className="flex-grow flex-1">{children}</div>
-          </main>
-          <Toaster />
+              <div className="flex-grow flex-1">{children}</div>
+            </main>
+            <Toaster />
+          </SessionProvider>
         </ThemeProvider>
       </body>
     </html>

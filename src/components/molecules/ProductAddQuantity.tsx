@@ -2,11 +2,11 @@
 
 import { ProductType } from "@/src/models/product.type";
 
+import { useCartStore } from "@/src/store/cartStore";
 import { Session } from "next-auth";
 import { useState } from "react";
 import { Button } from "../atoms/Button";
 import NumberField from "../atoms/NumberField";
-import { useCartStore } from "@/src/store/cartStore";
 
 type ProductAddQuantityProps = {
   session: Session | null;

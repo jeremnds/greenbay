@@ -1,7 +1,15 @@
 import NextAuth, { Session, User } from "next-auth";
 import google from "next-auth/providers/google";
+import { NextRequest } from "next/server";
 import { createUser } from "../queries/createUser.query";
 import { getUser } from "../queries/getUser.query";
+
+type AuthObject = {
+  auth: {
+    user?: Session["user"];
+  };
+};
+
 const authConfig = {
   providers: [
     google({
@@ -9,11 +17,22 @@ const authConfig = {
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
     }),
   ],
+  pages: {
+    signIn: "/login",
+  },
   callbacks: {
+    authorized({
+      request,
+      auth,
+    }: {
+      request: NextRequest;
+      auth: Session | null;
+    }) {
+      return !!auth?.user;
+    },
     async signIn({ user }: { user: User }) {
       try {
         if (user.email) {
-          console.log("User email found:", user.email);
           const existingUser = await getUser(user.email);
 
           if (!existingUser)
