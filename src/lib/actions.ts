@@ -4,7 +4,7 @@ import { uploadImage } from "@/src/queries/uploadImage.query";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { signIn, signOut } from "./auth";
-import { supabase } from "./supabase";
+import { supabaseServer } from "./supabaseServer";
 
 export async function signInAction() {
   await signIn("google", { redirectTo: "/" });
@@ -39,7 +39,7 @@ export async function updateProductAction(formData: FormData, id: number) {
     ...(imageUrl && { image: imageUrl }),
   };
 
-  const { error } = await supabase
+  const { error } = await supabaseServer
     .from("products")
     .update(updatedProduct)
     .eq("id", id)
@@ -78,7 +78,7 @@ export async function createProductAction(formData: FormData) {
     ...(imageUrl && { image: imageUrl }),
   };
 
-  const { error } = await supabase.from("products").insert([newProduct]);
+  const { error } = await supabaseServer.from("products").insert([newProduct]);
 
   if (error) throw new Error("Product could not be created");
 
@@ -88,7 +88,7 @@ export async function createProductAction(formData: FormData) {
 }
 
 export async function deleteProductAction(id: number) {
-  const { error } = await supabase.from("products").delete().eq("id", id);
+  const { error } = await supabaseServer.from("products").delete().eq("id", id);
 
   if (error) throw new Error("Product could not be created");
 
@@ -114,7 +114,7 @@ export async function updateCategoryAction(formData: FormData, id: number) {
     ...(imageUrl && { image: imageUrl }),
   };
 
-  const { error } = await supabase
+  const { error } = await supabaseServer
     .from("categories")
     .update(updatedCategory)
     .eq("id", id)
@@ -145,7 +145,9 @@ export async function createCategoryAction(formData: FormData) {
     ...(imageUrl && { image: imageUrl }),
   };
 
-  const { error } = await supabase.from("categories").insert([newCategory]);
+  const { error } = await supabaseServer
+    .from("categories")
+    .insert([newCategory]);
 
   if (error) throw new Error("Product could not be created");
 
@@ -155,7 +157,10 @@ export async function createCategoryAction(formData: FormData) {
 }
 
 export async function deleteCategoryAction(id: number) {
-  const { error } = await supabase.from("categories").delete().eq("id", id);
+  const { error } = await supabaseServer
+    .from("categories")
+    .delete()
+    .eq("id", id);
 
   if (error) throw new Error("Category could not be created");
 

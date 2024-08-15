@@ -1,14 +1,14 @@
-import { supabase } from "@/src/lib/supabase";
 import { sanitizeFileName } from "@/src/lib/utils";
 import { randomUUID } from "crypto";
 import { SUPABASE_STORAGE } from "../lib/constants";
+import { supabaseServer } from "../lib/supabaseServer";
 
 export async function uploadImage(file: File, prefix: string) {
   const uuid = randomUUID();
   const sanitizedFileName = sanitizeFileName(file.name);
   const fileName = `${prefix}-${uuid}-${sanitizedFileName}`;
 
-  const { error } = await supabase.storage
+  const { error } = await supabaseServer.storage
     .from("images")
     .upload(fileName, file);
 

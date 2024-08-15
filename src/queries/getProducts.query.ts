@@ -1,4 +1,4 @@
-import { supabase } from "@/src/lib/supabase";
+import { supabaseServer } from "../lib/supabaseServer";
 import { ProductsType } from "../models/products.type";
 
 export async function getProducts(): Promise<{
@@ -9,7 +9,7 @@ export async function getProducts(): Promise<{
     data: products,
     error,
     count,
-  } = await supabase
+  } = await supabaseServer
     .from("products")
     .select("id, name, description, price, image, category_id, available", {
       count: "exact",

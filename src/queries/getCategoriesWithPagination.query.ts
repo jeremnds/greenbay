@@ -1,4 +1,4 @@
-import { supabase } from "@/src/lib/supabase";
+import { supabaseServer } from "../lib/supabaseServer";
 import { CategoriesWithPaginationType } from "../models/categoriesWithPagination.type";
 
 export async function getCategoriesWithPagination(
@@ -9,7 +9,7 @@ export async function getCategoriesWithPagination(
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit - 1;
 
-  let query = supabase
+  let query = supabaseServer
     .from("categories")
     .select("id, name, image", {
       count: "exact",

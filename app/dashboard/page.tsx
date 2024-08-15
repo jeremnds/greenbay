@@ -22,7 +22,8 @@ export default async function Page() {
         There are currently {productsCount ? productsCount : "no"} products.
       </DashboardCard>
       <DashboardCard href="/dashboard/categories/add" cardTitle="Categories">
-        There are currently {categoriesCount ? categoriesCount : "no"} products.
+        There are currently {categoriesCount ? categoriesCount : "no"}{" "}
+        categories.
       </DashboardCard>
       <DashboardCard href="/dashboard/products/add" cardTitle="Users">
         3 Products
