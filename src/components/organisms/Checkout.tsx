@@ -50,7 +50,7 @@ export default function Checkout({ totalPrice }: { totalPrice: number }) {
       return;
     }
 
-    const { error, paymentIntent } = await stripe.confirmPayment({
+    const { error } = await stripe.confirmPayment({
       elements,
       clientSecret,
       confirmParams: {
