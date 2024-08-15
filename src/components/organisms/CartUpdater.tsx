@@ -8,13 +8,16 @@ export default function CartUpdater() {
   const { data: session } = useSession();
   const { cart, updateUserId } = useCartStore();
   useEffect(() => {
-    if (session?.user?.customerId && cart.length > 0) {
-      const currentUserId = cart[0]?.user_id;
-      if (currentUserId !== session.user.customerId) {
-        updateUserId(session.user.customerId);
-      }
+    let customerId = 1;
+    if (session?.user) {
+      customerId = session.user.customerId;
+    }
+
+    const needsUpdate = cart.some((item) => item.user_id !== customerId);
+
+    if (needsUpdate) {
+      updateUserId(customerId);
     }
   }, [session, cart, updateUserId]);
-
   return null;
 }
