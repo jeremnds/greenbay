@@ -1,8 +1,9 @@
 import { useCartStore } from "@/src/store/cartStore";
 import { Button } from "../atoms/Button";
+import CheckoutButton from "../atoms/CheckoutButton";
 
 type CartTotalProps = {
-  totalPrice: number | null;
+  totalPrice: number;
 };
 
 export default function CartTotal({ totalPrice }: CartTotalProps) {
@@ -18,19 +19,10 @@ export default function CartTotal({ totalPrice }: CartTotalProps) {
         </dl>
 
         <div className="flex justify-between items-center">
-          <Button
-            variant="destructive"
-            className="px-5 py-6"
-            onClick={clearCart}
-          >
+          <Button variant="destructive" onClick={clearCart}>
             Clear cart
           </Button>
-          <a
-            href="#"
-            className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
-          >
-            Checkout
-          </a>
+          <CheckoutButton totalPrice={totalPrice} />
         </div>
       </div>
     </div>
