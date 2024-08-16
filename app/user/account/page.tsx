@@ -17,7 +17,13 @@ export default async function Page() {
         Hello <span className="text-green-800 font-medium">{firstName}</span> 👋
       </h4>
       <div className="mt-8">
-        <OrderTable orders={orders} customerId={customerId} />
+        {orders && orders.length > 0 ? (
+          <OrderTable orders={orders} customerId={customerId} />
+        ) : (
+          <h4 className="text-center text-green-800 text-xl">
+            You don't have any orders yet.
+          </h4>
+        )}
       </div>
     </PageContainer>
   );
