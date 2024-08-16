@@ -1,5 +1,9 @@
 "use client";
 
+import BackButton from "@/src/components/atoms/BackButton";
+import { Button } from "@/src/components/atoms/Button";
+import ItemImage from "@/src/components/atoms/ItemImage";
+import PageContainer from "@/src/components/atoms/PageContainer";
 import Spinner from "@/src/components/atoms/Spinner";
 import { OrderType } from "@/src/models/order.type";
 import { getOrderClient } from "@/src/queries/getOrderClient.query";
@@ -35,7 +39,7 @@ export default function Page() {
         order.order_items.map(async (item) => {
           try {
             const product = await getProductClient(item.product_id);
-            return { ...item, name: product.name };
+            return { ...item, name: product.name, image: product.image };
           } catch (error) {
             console.error("Failed to fetch product name:", error);
             return item;
@@ -53,31 +57,56 @@ export default function Page() {
   if (!order || loadingItems) return <Spinner />;
 
   return (
-    <>
-      <div>
-        <h1>Order Summary</h1>
-        <p>Order ID: {order.id}</p>
-        <p>Total Price: ${order.total_price}</p>
-        <p>Status: {order.status}</p>
-        <div>
-          <h2>Items</h2>
-          {order.order_items.map((item) => (
-            <Link
-              href={`products/${item.product_id}`}
-              key={item.product_id}
-              style={{
-                border: "1px solid #ccc",
-                padding: "10px",
-                marginBottom: "10px",
-              }}
-            >
-              <h3>{item.name}</h3>
-              <p>Price: ${item.price}</p>
-              <p>Quantity: {item.quantity}</p>
-            </Link>
-          ))}
+    <PageContainer className="mt-8">
+      <div className="flex justify-between items-center w-full mb-8 relative">
+        <BackButton className="" />
+        <h1 className="absolute left-1/2 transform -translate-x-1/2 text-green-800 font-semibold    text-xl md:text-2xl">
+          Order Summary
+        </h1>
+      </div>
+
+      <div className="flex flex-col gap-4 ">
+        {order.order_items.map((item) => (
+          <Link href={`products/${item.product_id}`} key={item.product_id}>
+            <li className="flex items-center gap-4  hover:bg-gray-100 dark:hover:bg-gray-800">
+              <ItemImage
+                item={item}
+                className="h-16 w-16"
+                placeholderText={false}
+              />
+
+              <div>
+                <h3 className="text-sm text-gray-900 dark:text-gray-100">
+                  {item.name}
+                </h3>
+
+                <dl className="mt-0.5 space-y-px text-[10px] text-gray-600 dark:text-gray-400">
+                  <div className="flex flex-col">
+                    <div>
+                      <dt className="inline">Price: </dt>
+                      <dd className="inline">${item.price}</dd>
+                    </div>
+                    <div>
+                      <dt className="inline">Quantity: </dt>
+                      <dd className="inline">{item.quantity}</dd>
+                    </div>
+                  </div>
+                </dl>
+              </div>
+            </li>
+          </Link>
+        ))}
+        <div className="flex justify-between items-center">
+          <div>
+            <p className="text-">Total Price: </p>
+            <p className="text-sm">${order.total_price}</p>
+          </div>
+
+          <Button className="capitalize hover:bg-primary">
+            {order.status}
+          </Button>
         </div>
       </div>
-    </>
+    </PageContainer>
   );
 }

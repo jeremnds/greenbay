@@ -94,13 +94,14 @@ export default function NavBar({ isLogged }: NavBarProps) {
                 </form>
               )}
             </li>
-            <li className="flex gap-6">
+            <li>
               {isLogged && (
                 <Link href="/user/account" className=" hover:text-green-800">
-                  {" "}
                   <User />
                 </Link>
               )}
+            </li>
+            <li>
               <Link href="/cart" className=" hover:text-green-800 relative">
                 <ShoppingCart />
                 <span className="absolute px-1 translate-x-1/2 text-xs bg-black text-white rounded-full top-0 right-0 dark:bg-white dark:text-black">
@@ -193,6 +194,13 @@ export default function NavBar({ isLogged }: NavBarProps) {
                       Sign out
                     </button>
                   </form>
+                )}
+              </li>
+              <li>
+                {isLogged && (
+                  <Link href="/user/account" className=" hover:text-green-800">
+                    Account
+                  </Link>
                 )}
               </li>
               <li>

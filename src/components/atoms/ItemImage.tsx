@@ -1,10 +1,11 @@
 import { cn } from "@/src/lib/utils";
 import { CategoryType } from "@/src/models/category.type";
+import { OrderItemType } from "@/src/models/orderItem.type";
 import { ProductType } from "@/src/models/product.type";
 import Image from "next/image";
 
 type ItemImageProps = {
-  item: CategoryType | ProductType | null;
+  item: CategoryType | ProductType | OrderItemType | null;
   className?: string;
   placeholderText?: boolean;
 };
