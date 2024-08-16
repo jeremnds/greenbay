@@ -43,7 +43,7 @@ export default function Checkout({ totalPrice }: { totalPrice: number }) {
           setErrorMessage("Failed to initialize payment. Please try again.");
         });
     }
-  }, [totalPrice]);
+  }, [totalPrice, cart.length]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

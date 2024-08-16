@@ -37,7 +37,7 @@ export default function ItemImage({
               "object-cover object-bottom transition-opacity duration-500",
               imageLoaded ? "opacity-100" : "opacity-0"
             )}
-            onLoadingComplete={() => setImageLoaded(true)}
+            onLoad={() => setImageLoaded(true)}
           />
           {!imageLoaded && (
             <div

@@ -17,7 +17,7 @@ export default function NavBar({ isLogged }: NavBarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLUListElement | null>(null);
   const { data: session } = useSession();
-  const isAdmin = session?.user.role === "admin";
+  const isAdmin = session?.user?.role === "admin" ?? false;
 
   const cart = useCartStore((state) => state.cart);
   const totalQuantity =
