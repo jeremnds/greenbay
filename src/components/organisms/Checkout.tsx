@@ -22,8 +22,10 @@ export default function Checkout({ totalPrice }: { totalPrice: number }) {
 
   const [loading, setLoading] = useState(false);
 
+  if (!cart.length || totalPrice < 0) router.push("/");
+
   useEffect(() => {
-    if (totalPrice > 0) {
+    if (totalPrice > 0 && cart.length) {
       fetch("/api/create-payment-intent", {
         method: "POST",
         headers: {
@@ -40,6 +42,8 @@ export default function Checkout({ totalPrice }: { totalPrice: number }) {
         .catch((error) => {
           setErrorMessage("Failed to initialize payment. Please try again.");
         });
+    } else {
+      router.push("/");
     }
   }, [totalPrice]);
 
