@@ -1,22 +1,18 @@
-import { buttonVariants } from "@/src/components/atoms/Button";
-import ItemImage from "@/src/components/atoms/ItemImage";
 import PageContainer from "@/src/components/atoms/PageContainer";
+import Spinner from "@/src/components/atoms/Spinner";
 import CartUpdater from "@/src/components/organisms/CartUpdater";
-import { cn } from "@/src/lib/utils";
-import { getCategories } from "@/src/queries/getCategories.query";
-import { getProducts } from "@/src/queries/getProducts.query";
+import CategoriesSection from "@/src/components/organisms/CategoriesSection";
+import ProductsSection from "@/src/components/organisms/ProductsSection";
 import { Package, PhoneOutgoing, Sprout } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { Suspense } from "react";
 
-export default async function Home() {
-  const [{ products }, { categories }] = await Promise.all([
-    getProducts(),
-    getCategories(),
-  ]);
+export const revalidate = 300;
+
+export default function Home() {
   return (
     <PageContainer>
-      <div className="w-full h-96 bg-green-600 rounded-lg flex">
+      <div className="w-full h-96 bg-slate-500 rounded-lg flex">
         <div className="pt-8 pl-8 ">
           <h1 className="font-bold text-gray-50 text-6xl tracking-tighter">
             Buy your <span className="font-bold text-green-800">dream</span>{" "}
@@ -42,28 +38,9 @@ export default async function Home() {
           />
         </div>
       </div>
-
-      <section className="mt-20 grid grid-rows-2 grid-cols-2 md:grid-cols-2  lg:grid-rows-1 lg:grid-cols-4 lg:gap-6 gap-4 ">
-        <div className="flex flex-col gap-6  w-52 justify-center lg:justify-normal">
-          <h3 className="font-medium text-2xl w-36">Best Selling Plants</h3>
-          <p>Easiest way to healthy life by buying your favorite plants </p>
-          <Link href="/products" className={cn(buttonVariants())}>
-            See more &rarr;
-          </Link>
-        </div>
-
-        {products.slice(0, 3).map((product) => (
-          <Link
-            href={`/products/${product.id}`}
-            className="flex flex-col gap-1 group"
-            key={product.id}
-          >
-            <ItemImage item={product} className="h-96" />
-            <p className="group-hover:text-green-600">{product.name}</p>
-            <span>${product.price}</span>
-          </Link>
-        ))}
-      </section>
+      <Suspense fallback={<Spinner />}>
+        <ProductsSection />
+      </Suspense>
 
       <section className="mt-20 flex flex-col items-center gap-3">
         <h3 className="font-bold text-2xl">About us</h3>
@@ -102,36 +79,9 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section className="mt-20 flex flex-col items-center  gap-3 ">
-        <h3 className="font-bold text-2xl">Categories</h3>
-        <p className="text-gray-700 dark:text-gray-200">
-          Find what you are looking for
-        </p>
-        <div className="mt-5 pb-5 lg:pb-0 bg-green-600 h-full lg:h-96 w-full rounded-xl flex justify-center lg:items-center ">
-          <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-4 lg:gap-8">
-            {categories.slice(0, 3).map((category) => {
-              console.log(category); // Cela va afficher chaque catégorie dans la console
-
-              return (
-                <div className="pt-12 lg:pt-0" key={category.id}>
-                  <ItemImage item={category} className="w-52 h-52" />
-                  <p className="pt-2 text-white">{category.name}</p>
-                </div>
-              );
-            })}
-
-            <Link
-              href="/products"
-              className={cn(
-                buttonVariants({ variant: "secondary" }),
-                "text-center lg:col-start-2 mt-2 lg:mt-0"
-              )}
-            >
-              Explore
-            </Link>
-          </div>
-        </div>
-      </section>
+      <Suspense fallback={<Spinner />}>
+        <CategoriesSection />
+      </Suspense>
       <CartUpdater />
     </PageContainer>
   );

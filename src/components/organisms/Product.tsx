@@ -24,7 +24,7 @@ export default function Product({
     <>
       <BackButton />
       <div className="flex flex-col items-center gap-4 mt-4">
-        <ItemImage item={product} className="" />
+        <ItemImage item={product} className="w-60" />
         <div className="flex flex-col gap-10">
           <div className="flex w-full justify-between">
             <h3 className="text-lg font-medium">{product.name}</h3>

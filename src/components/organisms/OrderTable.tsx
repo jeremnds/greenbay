@@ -32,7 +32,7 @@ export default async function OrderTable({
 
         <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
           {orders.map((order, index) => (
-            <OrderRow order={order} index={index} />
+            <OrderRow order={order} index={index} key={order.id} />
           ))}
         </tbody>
       </table>

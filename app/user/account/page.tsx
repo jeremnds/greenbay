@@ -21,7 +21,7 @@ export default async function Page() {
           <OrderTable orders={orders} customerId={customerId} />
         ) : (
           <h4 className="text-center text-green-800 text-xl">
-            You don't have any orders yet.
+            You don&apos;t have any orders yet.
           </h4>
         )}
       </div>

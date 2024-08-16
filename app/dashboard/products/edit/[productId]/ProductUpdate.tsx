@@ -48,7 +48,7 @@ export default function ProductUpdate({
 
   return (
     <div className="grid  max-w-sm md:max-w-max xl:grid-cols-[20rem_1fr] w-full  items-center  gap-3 lg:gap-2">
-      <ItemImage item={product} />
+      <ItemImage className="" item={product} />
       <ProductForm
         onFnClient={updateProductClient}
         btnLabel="Edit"

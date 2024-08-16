@@ -30,9 +30,6 @@ export default async function Page() {
         There are currently {categoriesCount ? categoriesCount : "no"}{" "}
         categories.
       </DashboardCard>
-      <DashboardCard href="/dashboard/products/add" cardTitle="Users">
-        3 Products
-      </DashboardCard>
     </div>
   );
 }
