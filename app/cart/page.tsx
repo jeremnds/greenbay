@@ -1,5 +1,4 @@
 "use client";
-
 import PageContainer from "@/src/components/atoms/PageContainer";
 import CartList from "@/src/components/organisms/CartList";
 
@@ -11,6 +10,7 @@ export default function Page() {
           Your Cart
         </h1>
       </header>
+
       <CartList />
     </PageContainer>
   );

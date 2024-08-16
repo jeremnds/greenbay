@@ -1,13 +1,13 @@
 import { CategoriesType } from "../../models/categories.type";
 import CategoryRow from "../molecules/CategoryRow";
 
-type CategoriesTableProps = {
+type CategoryTableProps = {
   categories: CategoriesType;
 };
 
-export default async function CategoriesTable({
+export default async function CategoryTable({
   categories,
-}: CategoriesTableProps) {
+}: CategoryTableProps) {
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm dark:bg-black dark:divide-gray-700">

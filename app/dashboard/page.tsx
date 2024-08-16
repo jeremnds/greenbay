@@ -1,13 +1,18 @@
 import DashboardCard from "@/src/components/molecules/DashboardCard";
+import { auth } from "@/src/lib/auth";
 import { getCategories } from "@/src/queries/getCategories.query";
 import { getProducts } from "@/src/queries/getProducts.query";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Dashboard",
 };
 
 export default async function Page() {
+  const session = await auth();
+  if (!session || session?.user.role !== "admin") redirect("/");
+
   const [productsData, categoriesData] = await Promise.all([
     getProducts(),
     getCategories(),

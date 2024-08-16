@@ -9,13 +9,16 @@ export async function POST(request: NextRequest) {
     const { totalPrice } = await request.json();
 
     if (!totalPrice) throw new Error("Amount is missing!");
+
     const paymentIntent = await stripe.paymentIntents.create({
       amount: totalPrice,
       currency: "usd",
-      automatic_payment_methods: { enabled: true },
+      payment_method_types: ["card"],
     });
 
-    return NextResponse.json({ clientSecret: paymentIntent.client_secret });
+    return NextResponse.json({
+      clientSecret: paymentIntent.client_secret,
+    });
   } catch (error) {
     console.log("Internal Error:", error);
     return NextResponse.json(

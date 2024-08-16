@@ -1,8 +1,18 @@
+import { cn } from "@/src/lib/utils";
 import { LoaderCircle } from "lucide-react";
 
-export default function Spinner() {
+type SpinnerProps = {
+  className?: string;
+};
+
+export default function Spinner({ className }: SpinnerProps) {
   return (
-    <div className="flex gap-2 items-center justify-center text-green-800 ">
+    <div
+      className={cn(
+        "flex gap-2 items-center justify-center text-green-800 ",
+        className
+      )}
+    >
       <LoaderCircle className="animate-spin " />
     </div>
   );

@@ -1,8 +1,9 @@
 import NoItem from "@/src/components/atoms/NoItem";
 import TableSkeleton from "@/src/components/atoms/TableSkeleton";
 import Pagination from "@/src/components/molecules/Pagination";
-import CategoriesTable from "@/src/components/organisms/CategoriesTable";
+import CategoryTable from "@/src/components/organisms/CategoryTable";
 import SearchHeader from "@/src/components/organisms/SearchHeader";
+import { auth } from "@/src/lib/auth";
 import { ITEMS_PER_PAGE } from "@/src/lib/constants";
 import { getCategoriesWithPagination } from "@/src/queries/getCategoriesWithPagination.query";
 import { Metadata } from "next";
@@ -21,6 +22,9 @@ export default async function Page({
     query?: string;
   };
 }) {
+  const session = await auth();
+  if (!session || session?.user.role !== "admin") redirect("/");
+
   if (!searchParams?.page) {
     redirect("/dashboard/categories?page=1");
   }
@@ -40,7 +44,7 @@ export default async function Page({
       <SearchHeader className="mb-8" query={query} />
       {categories.length > 0 ? (
         <Suspense fallback={<TableSkeleton />} key={currentPage}>
-          <CategoriesTable categories={categories} />
+          <CategoryTable categories={categories} />
           <Pagination totalPages={totalPages} currentPage={currentPage} />
         </Suspense>
       ) : (

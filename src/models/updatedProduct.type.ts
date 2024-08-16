@@ -3,5 +3,5 @@ export type UpdatedProductType = {
   description: string;
   price: number;
   category_id: number;
-  image?: File; // Optional image property
+  image?: File;
 };

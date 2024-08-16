@@ -16,6 +16,7 @@ export type CartActions = {
     quantity: number
   ) => void;
   clearCart: () => void;
+  updateUserId: (newUserId: number) => void;
 };
 
 export type CartStore = CartState & CartActions;
@@ -103,6 +104,20 @@ export const useCartStore = create(
         });
       },
       clearCart: () => set(() => ({ cart: [], totalPrice: 0 })),
+
+      updateUserId: (newUserId: number) => {
+        set((state) => {
+          const updatedCart = state.cart.map((cartItem) => ({
+            ...cartItem,
+            user_id: newUserId,
+          }));
+
+          return {
+            cart: updatedCart,
+            totalPrice: state.totalPrice,
+          };
+        });
+      },
     }),
     {
       name: "cart-storage",
