@@ -3,6 +3,7 @@ import TableSkeleton from "@/src/components/atoms/TableSkeleton";
 import Pagination from "@/src/components/molecules/Pagination";
 import CategoriesTable from "@/src/components/organisms/CategoriesTable";
 import SearchHeader from "@/src/components/organisms/SearchHeader";
+import { auth } from "@/src/lib/auth";
 import { ITEMS_PER_PAGE } from "@/src/lib/constants";
 import { getCategoriesWithPagination } from "@/src/queries/getCategoriesWithPagination.query";
 import { Metadata } from "next";
@@ -21,6 +22,9 @@ export default async function Page({
     query?: string;
   };
 }) {
+  const session = await auth();
+  if (!session || session?.user.role !== "admin") redirect("/");
+
   if (!searchParams?.page) {
     redirect("/dashboard/categories?page=1");
   }

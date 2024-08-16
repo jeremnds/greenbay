@@ -2,7 +2,8 @@
 
 import { signOutAction } from "@/src/lib/actions";
 import { useCartStore } from "@/src/store/cartStore";
-import { Menu, ShoppingCart, X } from "lucide-react";
+import { Menu, ShoppingCart, User, X } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import PageContainer from "../atoms/PageContainer";
@@ -15,6 +16,8 @@ type NavBarProps = {
 export default function NavBar({ isLogged }: NavBarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLUListElement | null>(null);
+  const { data: session } = useSession();
+  const isAdmin = session?.user.role === "admin";
 
   const cart = useCartStore((state) => state.cart);
   const totalQuantity =
@@ -71,12 +74,14 @@ export default function NavBar({ isLogged }: NavBarProps) {
           </div>
           <ul className="flex gap-6 ml-auto items-center">
             <li>
-              <Link
-                href="/dashboard"
-                className="text-green-700 hover:text-green-800"
-              >
-                Dashboard
-              </Link>
+              {isAdmin && (
+                <Link
+                  href="/dashboard"
+                  className="text-green-700 hover:text-green-800"
+                >
+                  Dashboard
+                </Link>
+              )}
             </li>
             <li>
               {!isLogged ? (
@@ -89,7 +94,13 @@ export default function NavBar({ isLogged }: NavBarProps) {
                 </form>
               )}
             </li>
-            <li>
+            <li className="flex gap-6">
+              {isLogged && (
+                <Link href="/user/account" className=" hover:text-green-800">
+                  {" "}
+                  <User />
+                </Link>
+              )}
               <Link href="/cart" className=" hover:text-green-800 relative">
                 <ShoppingCart />
                 <span className="absolute px-1 translate-x-1/2 text-xs bg-black text-white rounded-full top-0 right-0 dark:bg-white dark:text-black">

@@ -54,6 +54,7 @@ const authConfig = {
       if (session.user?.email) {
         const user = await getUser(session.user.email);
         if (user && session.user) {
+          session.user.role = user.role;
           session.user.customerId = user.id;
         }
       }

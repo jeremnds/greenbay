@@ -3,6 +3,7 @@ import TableSkeleton from "@/src/components/atoms/TableSkeleton";
 import Pagination from "@/src/components/molecules/Pagination";
 import ProductTable from "@/src/components/organisms/ProductTable";
 import SearchHeader from "@/src/components/organisms/SearchHeader";
+import { auth } from "@/src/lib/auth";
 
 import { ITEMS_PER_PAGE } from "@/src/lib/constants";
 import { getProductsWithPagination } from "@/src/queries/getProductsWithPagination.query";
@@ -22,6 +23,9 @@ export default async function Page({
     query?: string;
   };
 }) {
+  const session = await auth();
+  if (!session || session?.user.role !== "admin") redirect("/");
+
   if (!searchParams?.page) {
     redirect("/dashboard/products?page=1");
   }

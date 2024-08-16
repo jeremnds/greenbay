@@ -3,7 +3,7 @@
 import { uploadImage } from "@/src/queries/uploadImage.query";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { signIn, signOut } from "./auth";
+import { auth, signIn, signOut } from "./auth";
 import { supabaseServer } from "./supabaseServer";
 
 export async function signInAction() {
@@ -15,8 +15,8 @@ export async function signOutAction() {
 }
 
 export async function updateProductAction(formData: FormData, id: number) {
-  // const session = await auth();
-  // if (!session) throw new Error("You must be logged in");
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in");
 
   const name = formData.get("name");
   const description = formData.get("description");
@@ -54,8 +54,8 @@ export async function updateProductAction(formData: FormData, id: number) {
 }
 
 export async function createProductAction(formData: FormData) {
-  // const session = await auth();
-  // if (!session) throw new Error("You must be logged in");
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in");
 
   const name = formData.get("name");
   const description = formData.get("description");
@@ -88,6 +88,9 @@ export async function createProductAction(formData: FormData) {
 }
 
 export async function deleteProductAction(id: number) {
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in");
+
   const { error } = await supabaseServer.from("products").delete().eq("id", id);
 
   if (error) throw new Error("Product could not be created");
@@ -98,8 +101,8 @@ export async function deleteProductAction(id: number) {
 }
 
 export async function updateCategoryAction(formData: FormData, id: number) {
-  // const session = await auth();
-  // if (!session) throw new Error("You must be logged in");
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in");
 
   const name = formData.get("name");
   const image = formData.get("image");
@@ -129,8 +132,8 @@ export async function updateCategoryAction(formData: FormData, id: number) {
 }
 
 export async function createCategoryAction(formData: FormData) {
-  // const session = await auth();
-  // if (!session) throw new Error("You must be logged in");
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in");
 
   const name = formData.get("name");
   const image = formData.get("image");
@@ -157,6 +160,9 @@ export async function createCategoryAction(formData: FormData) {
 }
 
 export async function deleteCategoryAction(id: number) {
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in");
+
   const { error } = await supabaseServer
     .from("categories")
     .delete()
