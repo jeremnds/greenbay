@@ -13,7 +13,6 @@ export default function CheckoutItem({ checkoutItem }: CheckoutItemProps) {
   const [product, setProduct] = useState<ProductType | null>(null);
   const productId = checkoutItem.product_id;
   const [isLoading, setIsLoading] = useState(true);
-  const [quantity, setQuantity] = useState(checkoutItem.quantity);
 
   useEffect(() => {
     async function loadProduct() {

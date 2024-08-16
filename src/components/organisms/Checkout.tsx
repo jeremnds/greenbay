@@ -42,8 +42,6 @@ export default function Checkout({ totalPrice }: { totalPrice: number }) {
         .catch((error) => {
           setErrorMessage("Failed to initialize payment. Please try again.");
         });
-    } else {
-      router.push("/");
     }
   }, [totalPrice]);
 

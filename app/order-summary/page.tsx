@@ -66,8 +66,6 @@ export default function Page() {
     }
   }, [orderId, customerId, router, first]);
 
-  if (first) clearCart();
-
   if (!order || loadingItems)
     return <Spinner className="h-[calc(100vh-25rem)]" />;
 
