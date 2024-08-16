@@ -8,6 +8,7 @@ import Spinner from "@/src/components/atoms/Spinner";
 import { OrderType } from "@/src/models/order.type";
 import { getOrderClient } from "@/src/queries/getOrderClient.query";
 import { getProductClient } from "@/src/queries/getProductClient.query";
+import { useCartStore } from "@/src/store/cartStore";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -20,41 +21,55 @@ export default function Page() {
   const [loadingItems, setLoadingItems] = useState(true);
   const searchParams = useSearchParams();
   const orderId = searchParams.get("order_id");
+  const first = searchParams.get("first");
   const router = useRouter();
+  const { clearCart } = useCartStore();
+
+  if (!orderId) router.push("/");
 
   useEffect(() => {
     async function fetchOrder() {
-      const { order, error } = await getOrderClient(orderId);
-      if (error) {
-        console.error("Failed to fetch order:", error);
-        return;
-      }
+      try {
+        if (orderId) {
+          const { order, error } = await getOrderClient(orderId);
+          if (error) throw error;
 
-      if (customerId !== order?.user_id) {
-        router.push("/");
-        return;
-      }
-
-      const updatedOrderItems = await Promise.all(
-        order.order_items.map(async (item) => {
-          try {
-            const product = await getProductClient(item.product_id);
-            return { ...item, name: product.name, image: product.image };
-          } catch (error) {
-            console.error("Failed to fetch product name:", error);
-            return item;
+          if (customerId !== order?.user_id) {
+            throw new Error("Unauthorized access");
           }
-        })
-      );
 
-      setOrder({ ...order, order_items: updatedOrderItems });
-      setLoadingItems(false);
+          const updatedOrderItems = await Promise.all(
+            order.order_items.map(async (item) => {
+              try {
+                const product = await getProductClient(item.product_id);
+                return { ...item, name: product.name, image: product.image };
+              } catch (error) {
+                console.error("Failed to fetch product name:", error);
+                return item;
+              }
+            })
+          );
+
+          setOrder({ ...order, order_items: updatedOrderItems });
+          setLoadingItems(false);
+        }
+      } catch (err) {
+        router.push("/");
+        setLoadingItems(false);
+      }
     }
 
     fetchOrder();
-  }, [orderId, customerId, router]);
 
-  if (!order || loadingItems) return <Spinner />;
+    if (first !== null) {
+      clearCart();
+    }
+  }, [orderId, customerId, router, first]);
+
+  if (first) clearCart();
+
+  if (!order || loadingItems)
+    return <Spinner className="h-[calc(100vh-25rem)]" />;
 
   return (
     <PageContainer className="mt-8">

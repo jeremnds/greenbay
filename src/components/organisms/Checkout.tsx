@@ -90,7 +90,7 @@ export default function Checkout({ totalPrice }: { totalPrice: number }) {
         const data = await response.json();
 
         if (response.ok) {
-          router.push(`/order-summary?order_id=${data.orderId}`);
+          router.push(`/order-summary?order_id=${data.orderId}&first`);
         } else {
           setErrorMessage("Order creation failed. Please contact support.");
         }
