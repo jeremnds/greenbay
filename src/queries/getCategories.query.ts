@@ -11,7 +11,7 @@ export async function getCategories(): Promise<{
     error,
   } = await supabaseServer
     .from("categories")
-    .select("id,name", { count: "exact" });
+    .select("id,name, image", { count: "exact" });
 
   if (error) {
     console.error(error);

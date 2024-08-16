@@ -1,12 +1,19 @@
 import { buttonVariants } from "@/src/components/atoms/Button";
+import ItemImage from "@/src/components/atoms/ItemImage";
 import PageContainer from "@/src/components/atoms/PageContainer";
 import CartUpdater from "@/src/components/organisms/CartUpdater";
 import { cn } from "@/src/lib/utils";
+import { getCategories } from "@/src/queries/getCategories.query";
+import { getProducts } from "@/src/queries/getProducts.query";
 import { Package, PhoneOutgoing, Sprout } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  const [{ products }, { categories }] = await Promise.all([
+    getProducts(),
+    getCategories(),
+  ]);
   return (
     <PageContainer>
       <div className="w-full h-96 bg-green-600 rounded-lg flex">
@@ -44,22 +51,18 @@ export default function Home() {
             See more &rarr;
           </Link>
         </div>
-        <div className="flex flex-col gap-1">
-          <div className=" h-96 bg-green-100"></div>
-          <p>Natural Plants</p>
-          <span>$100</span>
-        </div>
-        <div className="flex flex-col gap-1">
-          <div className=" h-96 bg-green-100"></div>
-          <p>Natural Plants</p>
-          <span>$100</span>
-        </div>
 
-        <div className="flex flex-col gap-1 ">
-          <div className=" h-96 bg-green-100"></div>
-          <p>Natural Plants</p>
-          <span>$100</span>
-        </div>
+        {products.slice(0, 3).map((product) => (
+          <Link
+            href={`/products/${product.id}`}
+            className="flex flex-col gap-1 group"
+            key={product.id}
+          >
+            <ItemImage item={product} className="h-96" />
+            <p className="group-hover:text-green-600">{product.name}</p>
+            <span>${product.price}</span>
+          </Link>
+        ))}
       </section>
 
       <section className="mt-20 flex flex-col items-center gap-3">
@@ -104,22 +107,21 @@ export default function Home() {
         <p className="text-gray-700 dark:text-gray-200">
           Find what you are looking for
         </p>
-        <div className="mt-5 pb-5 lg:pb-0 bg-green-300 h-full lg:h-96 w-full rounded-xl flex justify-center lg:items-center ">
+        <div className="mt-5 pb-5 lg:pb-0 bg-green-600 h-full lg:h-96 w-full rounded-xl flex justify-center lg:items-center ">
           <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-4 lg:gap-8">
-            <div className="pt-12 lg:pt-0 ">
-              <div className="w-52 h-52 bg-green-800"></div>
-              <p className="pt-2 text-black">Natural Plants</p>
-            </div>
-            <div className="">
-              <div className="w-52 h-52 bg-green-800"></div>
-              <p className="pt-2 text-black">Plant Accessories</p>
-            </div>
-            <div className="">
-              <div className="w-52 h-52 bg-green-800"></div>
-              <p className="pt-2 text-black ">Artificial Plants</p>
-            </div>
+            {categories.slice(0, 3).map((category) => {
+              console.log(category); // Cela va afficher chaque catégorie dans la console
+
+              return (
+                <div className="pt-12 lg:pt-0" key={category.id}>
+                  <ItemImage item={category} className="w-52 h-52" />
+                  <p className="pt-2 text-white">{category.name}</p>
+                </div>
+              );
+            })}
+
             <Link
-              href="/categories"
+              href="/products"
               className={cn(
                 buttonVariants({ variant: "secondary" }),
                 "text-center lg:col-start-2 mt-2 lg:mt-0"

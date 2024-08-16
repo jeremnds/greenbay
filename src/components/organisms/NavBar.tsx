@@ -49,7 +49,7 @@ export default function NavBar({ isLogged }: NavBarProps) {
     <header className="sticky z-50 bg-blur bg-white/75 backdrop-blur-lg border-gray-100 dark:border-slate-950/70 border-b transition-all h-20 w-full flex items-center justify-between top-0 dark:bg-black/75">
       <PageContainer>
         <div className="hidden md:flex items-center">
-          <div className="flex justify-between items-center md:w-72 w-64 ">
+          <div className="flex justify-between items-center lg:w-72 w-64 ">
             <Link
               href="/"
               className="font-semibold text-lg text-green-800 uppercase tracking-tight"
