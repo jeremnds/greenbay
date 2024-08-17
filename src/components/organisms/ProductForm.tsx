@@ -93,7 +93,7 @@ export default function ProductForm({
                 {...register("category")}
                 name="category"
                 id="category"
-                className=" w-full border-input rounded-lg border bg-white px-2 py-2.5 sm:text-sm  focus:outline-none focus:ring-2 ring-primary ring-offset-1"
+                className=" w-full border-input rounded-lg border bg-white dark:bg-black px-2 py-2.5 sm:text-sm  focus:outline-none focus:ring-2 ring-primary ring-offset-1"
               >
                 {categories.map((category) => (
                   <option key={category.id} value={category.id}>

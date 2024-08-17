@@ -40,8 +40,8 @@ export default async function RootLayout({
             <main className="relative flex flex-col min-h-screen">
               <Header isLogged={isLogged} />
 
-              <div className="flex-grow flex-1">{children}</div>
               <DemoMode />
+              <div className="flex-grow flex-1">{children}</div>
             </main>
             <Toaster />
           </SessionProvider>

@@ -22,7 +22,7 @@ export default function CartTotal({ totalPrice }: CartTotalProps) {
           <Button variant="destructive" onClick={clearCart}>
             Clear cart
           </Button>
-          <CheckoutButton totalPrice={totalPrice} />
+          <CheckoutButton />
         </div>
       </div>
     </div>

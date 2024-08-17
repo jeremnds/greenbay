@@ -4,11 +4,7 @@ import { cn } from "@/src/lib/utils";
 import Link from "next/link";
 import { buttonVariants } from "./Button";
 
-type CheckoutButtonProps = {
-  totalPrice: number;
-};
-
-export default function CheckoutButton({ totalPrice }: CheckoutButtonProps) {
+export default function CheckoutButton() {
   return (
     <Link
       href="/checkout"
