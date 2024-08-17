@@ -13,7 +13,7 @@ export default function SearchBar() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
   } = useForm<SearchFormData>({
     resolver: zodResolver(SearchSchema),
   });

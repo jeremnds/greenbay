@@ -15,6 +15,7 @@ export default function Checkout({ totalPrice }: { totalPrice: number }) {
   const { data: session } = useSession();
   const customerId = session?.user.customerId;
   const cart = useCartStore((state) => state.cart);
+  const isHydrated = useCartStore((state) => state.isHydrated);
   const stripe = useStripe();
   const elements = useElements();
   const router = useRouter();
@@ -42,7 +43,7 @@ export default function Checkout({ totalPrice }: { totalPrice: number }) {
   };
 
   useEffect(() => {
-    if (totalPrice > 0 && cart.length) {
+    if (isHydrated && totalPrice > 0 && cart.length) {
       fetch("/api/create-payment-intent", {
         method: "POST",
         headers: {
@@ -60,7 +61,7 @@ export default function Checkout({ totalPrice }: { totalPrice: number }) {
           setErrorMessage("Failed to initialize payment. Please try again.");
         });
     }
-  }, [totalPrice, cart.length]);
+  }, [isHydrated, totalPrice, cart.length]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -126,7 +127,7 @@ export default function Checkout({ totalPrice }: { totalPrice: number }) {
     setLoading(false);
   };
 
-  if (!clientSecret || !stripe || !elements) return <Spinner />;
+  if (!isHydrated || !clientSecret || !stripe || !elements) return <Spinner />;
 
   return (
     <div className="flex flex-col mt-8 gap-8 sm:flex-row">

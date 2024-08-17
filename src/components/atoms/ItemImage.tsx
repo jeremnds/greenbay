@@ -24,7 +24,7 @@ export default function ItemImage({
   placeholderText = true,
 }: ItemImageProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const isAvailable = isProductType(item) && item.available;
+  const isAvailable = isProductType(item) ? item.available : true;
   return (
     <div className={cn("relative h-72 w-full", className)}>
       {item?.image ? (

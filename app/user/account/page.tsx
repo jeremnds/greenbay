@@ -23,7 +23,7 @@ export default async function Page() {
       </h4>
       <div className="mt-8">
         {orders && orders.length > 0 ? (
-          <OrderTable orders={orders} customerId={customerId} />
+          <OrderTable orders={orders} />
         ) : (
           <h4 className="text-center text-green-800 text-xl">
             You don&apos;t have any orders yet.

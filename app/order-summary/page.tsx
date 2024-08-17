@@ -90,7 +90,7 @@ export default function Page() {
       <div className="flex flex-col gap-4 ">
         {order.order_items.map((item) => (
           <Link href={`products/${item.product_id}`} key={item.product_id}>
-            <li className="flex items-center gap-4  hover:bg-gray-100 dark:hover:bg-gray-800">
+            <li className="flex items-center gap-4  hover:bg-gray-100 dark:hover:bg-stone-900">
               <ItemImage
                 item={item}
                 className="h-16 w-16"

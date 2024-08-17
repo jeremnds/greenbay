@@ -3,13 +3,9 @@ import OrderRow from "../molecules/OrderRow";
 
 type OrderTableProps = {
   orders: OrderType[];
-  customerId: number;
 };
 
-export default async function OrderTable({
-  orders,
-  customerId,
-}: OrderTableProps) {
+export default async function OrderTable({ orders }: OrderTableProps) {
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm dark:bg-stone-950 dark:divide-stone-700 text-center">

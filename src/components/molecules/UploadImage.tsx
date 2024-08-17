@@ -27,17 +27,16 @@ export default function UploadImage({ onUploadImage }: UploadImageProps) {
     [onUploadImage]
   );
 
-  const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
-    useDropzone({
-      onDrop,
-      accept: {
-        "image/png": [".png"],
-        "image/jpg": [".jpg"],
-        "image/jpeg": [".jpeg"],
-      },
-      maxFiles: 1,
-      maxSize: 10000000,
-    });
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: {
+      "image/png": [".png"],
+      "image/jpg": [".jpg"],
+      "image/jpeg": [".jpeg"],
+    },
+    maxFiles: 1,
+    maxSize: 10000000,
+  });
 
   return (
     <div
