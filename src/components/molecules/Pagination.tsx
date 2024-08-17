@@ -7,26 +7,30 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 type PaginationProps = {
   totalPages: number;
   currentPage: number;
+  onPageChange?: (page: number) => void;
 };
 
 export default function Pagination({
   totalPages,
   currentPage,
+  onPageChange,
 }: PaginationProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
   const navigateToPage = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       const params = new URLSearchParams(searchParams);
       params.set("page", page.toString());
       router.replace(`${pathname}?${params.toString()}`);
+
+      if (onPageChange) onPageChange(page);
     }
   };
 
   return (
     <ol className="flex justify-center gap-1 text-xs font-medium mt-6">
-      {/* Prev Page */}
       <li>
         <button
           onClick={() => navigateToPage(currentPage - 1)}
@@ -38,12 +42,10 @@ export default function Pagination({
             }
           )}
         >
-          <span className="sr-only">Prev Page</span>
           <ChevronLeft className="h-3 w-3" />
         </button>
       </li>
 
-      {/* Numbered Pages */}
       {Array.from({ length: totalPages }, (_, index) => {
         const page = index + 1;
         return (
@@ -66,7 +68,6 @@ export default function Pagination({
         );
       })}
 
-      {/* Next Page */}
       <li>
         <button
           onClick={() => navigateToPage(currentPage + 1)}
@@ -78,7 +79,6 @@ export default function Pagination({
             }
           )}
         >
-          <span className="sr-only">Next Page</span>
           <ChevronRight className="h-3 w-3" />
         </button>
       </li>

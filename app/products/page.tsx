@@ -1,6 +1,5 @@
 import NoItem from "@/src/components/atoms/NoItem";
 import PageContainer from "@/src/components/atoms/PageContainer";
-import Spinner from "@/src/components/atoms/Spinner";
 import ProductList from "@/src/components/organisms/ProductList";
 import SearchHeader from "@/src/components/organisms/SearchHeader";
 import { auth } from "@/src/lib/auth";
@@ -8,7 +7,6 @@ import { ITEMS_PER_PAGE } from "@/src/lib/constants";
 import { getProductsWithPagination } from "@/src/queries/getProductsWithPagination.query";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Products",
@@ -42,14 +40,12 @@ export default async function Page({
       <SearchHeader className="mt-8" query={query} />
 
       {products.length > 0 ? (
-        <Suspense fallback={<Spinner />} key={`${currentPage}-${query}`}>
-          <ProductList
-            products={products}
-            totalPages={totalPages}
-            currentPage={currentPage}
-            session={session}
-          />
-        </Suspense>
+        <ProductList
+          products={products}
+          totalPages={totalPages}
+          currentPage={currentPage}
+          session={session}
+        />
       ) : (
         <NoItem itemName="product" />
       )}
