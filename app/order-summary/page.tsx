@@ -42,7 +42,12 @@ export default function Page() {
             order.order_items.map(async (item) => {
               try {
                 const product = await getProductClient(item.product_id);
-                return { ...item, name: product.name, image: product.image };
+                return {
+                  ...item,
+                  name: product.name,
+                  image: product.image,
+                  available: product.available,
+                };
               } catch (error) {
                 console.error("Failed to fetch product name:", error);
                 return item;

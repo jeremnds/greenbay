@@ -51,6 +51,7 @@ export default function CategoryForm({
           {...register("categoryName")}
           name="categoryName"
           id="categoryName"
+          className="focus:border-none"
         />
       </FormField>
 

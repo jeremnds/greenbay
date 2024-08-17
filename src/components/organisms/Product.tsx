@@ -1,11 +1,10 @@
 "use client";
 
-import { cn } from "@/src/lib/utils";
 import { CategoryType } from "@/src/models/category.type";
 import { ProductType } from "@/src/models/product.type";
 import { Session } from "next-auth";
 import BackButton from "../atoms/BackButton";
-import { buttonVariants } from "../atoms/Button";
+import { Button } from "../atoms/Button";
 import ItemImage from "../atoms/ItemImage";
 import ProductAddQuantity from "../molecules/ProductAddQuantity";
 
@@ -39,9 +38,18 @@ export default function Product({
           <div className="flex justify-between">
             <div className="flex flex-col gap-6">
               <h4>Category</h4>
-              <p className={cn(buttonVariants())}>{category.name}</p>
+              <Button className="hover:bg-primary">{category.name}</Button>
             </div>
-            <ProductAddQuantity session={session} product={product} />
+            {product.available ? (
+              <ProductAddQuantity session={session} product={product} />
+            ) : (
+              <Button
+                variant="destructive"
+                className="self-end hover:bg-destructive"
+              >
+                Not Available
+              </Button>
+            )}
           </div>
         </div>
       </div>

@@ -33,10 +33,12 @@ export default function ProductCard({ product, session }: ProductCardProps) {
           </span>
         </div>
       </Link>
-      <AddToCartBtn
-        className="bottom-0 absolute bg-white left-1/2 transform -translate-x-1/2 transition-all duration-300 hidden  group-hover:animate-showup group-hover:block group-hover:bottom-8 animate-hide text-black dark:hover:text-white"
-        onClick={() => addItem(item)}
-      />
+      {product.available && (
+        <AddToCartBtn
+          className="bottom-0 absolute bg-white left-1/2 transform -translate-x-1/2 transition-all duration-300 hidden  group-hover:animate-showup group-hover:block group-hover:bottom-8 animate-hide text-black dark:hover:text-white"
+          onClick={() => addItem(item)}
+        />
+      )}
     </div>
   );
 }

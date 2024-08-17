@@ -37,8 +37,8 @@ export default function CategoryUpdate({ category }: UpdateCategoryProps) {
   };
 
   return (
-    <div className="grid  max-w-sm md:max-w-max xl:grid-cols-[20rem_1fr] w-full  items-center  gap-3 lg:gap-2">
-      <ItemImage item={category} />
+    <div className="grid   xl:grid-cols-[20rem_1fr] w-full  items-center  gap-6 lg:gap-8">
+      <ItemImage item={category} className="max-w-sm" />
       <CategoryForm
         onFnClient={updateCategoryClient}
         onUploadImage={setUploadedImage}

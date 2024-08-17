@@ -14,13 +14,17 @@ type ItemImageProps = {
   placeholderText?: boolean;
 };
 
+function isProductType(item: any): item is ProductType {
+  return item && typeof item.available === "boolean";
+}
+
 export default function ItemImage({
   item,
   className,
   placeholderText = true,
 }: ItemImageProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
-
+  const isAvailable = isProductType(item) && item.available;
   return (
     <div className={cn("relative h-72 w-full", className)}>
       {item?.image ? (
@@ -47,6 +51,12 @@ export default function ItemImage({
               )}
             >
               <Spinner className="text-white" />
+            </div>
+          )}
+
+          {!isAvailable && (
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold ">
+              {placeholderText && <p>Not Available</p>}
             </div>
           )}
         </>

@@ -22,7 +22,9 @@ export async function updateProductAction(formData: FormData, id: number) {
   }
 
   const session = await auth();
-  if (!session) throw new Error("You must be logged in");
+  const isAdmin = session?.user?.role === "admin";
+  if (!session || !isAdmin)
+    throw new Error("You don't have the required permissions to access this.");
 
   const name = formData.get("name");
   const description = formData.get("description");
@@ -67,7 +69,9 @@ export async function createProductAction(formData: FormData) {
   }
 
   const session = await auth();
-  if (!session) throw new Error("You must be logged in");
+  const isAdmin = session?.user?.role === "admin";
+  if (!session || !isAdmin)
+    throw new Error("You don't have the required permissions to access this.");
 
   const name = formData.get("name");
   const description = formData.get("description");
@@ -107,7 +111,9 @@ export async function deleteProductAction(id: number) {
   }
 
   const session = await auth();
-  if (!session) throw new Error("You must be logged in");
+  const isAdmin = session?.user?.role === "admin";
+  if (!session || !isAdmin)
+    throw new Error("You don't have the required permissions to access this.");
 
   const { error } = await supabaseServer.from("products").delete().eq("id", id);
 
@@ -126,7 +132,9 @@ export async function updateCategoryAction(formData: FormData, id: number) {
   }
 
   const session = await auth();
-  if (!session) throw new Error("You must be logged in");
+  const isAdmin = session?.user?.role === "admin";
+  if (!session || !isAdmin)
+    throw new Error("You don't have the required permissions to access this.");
 
   const name = formData.get("name");
   const image = formData.get("image");
@@ -163,7 +171,9 @@ export async function createCategoryAction(formData: FormData) {
   }
 
   const session = await auth();
-  if (!session) throw new Error("You must be logged in");
+  const isAdmin = session?.user?.role === "admin";
+  if (!session || !isAdmin)
+    throw new Error("You don't have the required permissions to access this.");
 
   const name = formData.get("name");
   const image = formData.get("image");
@@ -197,7 +207,9 @@ export async function deleteCategoryAction(id: number) {
   }
 
   const session = await auth();
-  if (!session) throw new Error("You must be logged in");
+  const isAdmin = session?.user?.role === "admin";
+  if (!session || !isAdmin)
+    throw new Error("You don't have the required permissions to access this.");
 
   const { error } = await supabaseServer
     .from("categories")
