@@ -11,10 +11,10 @@ export default function DemoMode() {
 
   return (
     <div className="sticky top-20 left-0 w-full h-12 z-50  text-center text-xs md:text-md lg:text-lg bg-slate-800 dark:bg-stone-900  text-white flex justify-center items-center">
-      👋 Mode démo activé :{" "}
+      👋 Demo Mode:{" "}
       {!isCheckoutPage
-        ? "Connexion requise pour accéder au dashboard. Modification des produits et catégories désactivée."
-        : "Utilisez le numéro de carte  4242 4242 4242 4242 pour finaliser votre commande."}
+        ? "Login is required to access the dashboard. The ability to modify products and categories has been disabled."
+        : "Use the card number 4242 4242 4242 4242 to complete your order."}
     </div>
   );
 }

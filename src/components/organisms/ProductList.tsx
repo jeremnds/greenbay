@@ -45,7 +45,7 @@ export default function ProductList({
         <Pagination
           totalPages={totalPages}
           currentPage={currentPage}
-          onPageChange={handlePageChange} // Passer la fonction callback à Pagination
+          onPageChange={handlePageChange}
         />
       </div>
     </>
