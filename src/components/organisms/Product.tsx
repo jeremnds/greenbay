@@ -2,13 +2,13 @@
 
 import { CategoryType } from "@/src/models/category.type";
 import { ProductType } from "@/src/models/product.type";
+import { getProductClient } from "@/src/queries/getProductClient.query";
+import { Metadata } from "next";
 import { Session } from "next-auth";
 import BackButton from "../atoms/BackButton";
 import { Button } from "../atoms/Button";
 import ItemImage from "../atoms/ItemImage";
 import ProductAddQuantity from "../molecules/ProductAddQuantity";
-import { getProductClient } from "@/src/queries/getProductClient.query";
-import { Metadata } from "next";
 
 type ProductPageProps = {
   product: ProductType;
@@ -21,7 +21,7 @@ export async function generateMetadata({
 }: {
   params: { id: string };
 }): Promise<Metadata> {
-  const product: ProductType = await getProductClient(params.id);
+  const product: ProductType = await getProductClient(Number(params.id));
 
   return {
     title: `Product - ${product.name}`,

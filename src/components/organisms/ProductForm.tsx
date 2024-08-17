@@ -68,7 +68,7 @@ export default function ProductForm({
             {...register("productName")}
             name="productName"
             id="productName"
-            className="focus:border-none"
+            className="focus:border-none dark:focus-visible:ring-0"
           />
         </FormField>
         <FormField
@@ -80,7 +80,7 @@ export default function ProductForm({
             {...register("description")}
             name="description"
             id="description"
-            className="focus:border-none"
+            className="focus:border-none dark:focus-visible:ring-0"
           />
         </FormField>
 
@@ -95,7 +95,7 @@ export default function ProductForm({
                 {...register("category")}
                 name="category"
                 id="category"
-                className=" w-full border-input rounded-lg border bg-white dark:bg-black px-2 py-2.5 sm:text-sm  focus:outline-none focus:ring-2 focus:ring-primary ring-offset-1 focus:border-none"
+                className="w-full border-input rounded-lg border bg-white dark:bg-stone-950 px-2 py-2.5 sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary ring-offset-1 focus:border-none dark:focus:ring-white dark:focus:border-white"
               >
                 {categories.map((category) => (
                   <option key={category.id} value={category.id}>
@@ -113,7 +113,7 @@ export default function ProductForm({
               name="price"
               id="price"
               step="any"
-              className="focus:border-none"
+              className="focus:border-none dark:focus-visible:ring-0"
             />
           </FormField>
         </div>
@@ -125,7 +125,7 @@ export default function ProductForm({
       <div className="flex gap-4 lg:col-span-2 items-center mt-4">
         <input
           type="checkbox"
-          className=" appearance-none size-4 rounded border-input  text-primary focus:ring-2 focus:ring-primary"
+          className=" appearance-none size-4 rounded border-input  text-primary focus:ring-2 focus:ring-primary dark:focus-visible:ring-0 dark:focus:ring-0"
           id="available"
           {...register("available")}
         />

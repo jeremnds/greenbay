@@ -51,7 +51,7 @@ export default function CategoryForm({
           {...register("categoryName")}
           name="categoryName"
           id="categoryName"
-          className="focus:border-none"
+          className="focus:border-none dark:focus-visible:ring-0"
         />
       </FormField>
 
