@@ -1,6 +1,7 @@
 "use client";
 
 import { signOutAction } from "@/src/lib/actions";
+import { cn } from "@/src/lib/utils";
 import { useCartStore } from "@/src/store/cartStore";
 import { Menu, ShoppingCart, User, X } from "lucide-react";
 import { useSession } from "next-auth/react";
@@ -19,7 +20,7 @@ export default function NavBar({ isLogged }: NavBarProps) {
 
   let isAdmin;
 
-  if (isDemoMode) {
+  if (isDemoMode && session?.user) {
     isAdmin = true;
   } else {
     isAdmin = session?.user?.role === "admin" ?? false;
@@ -55,7 +56,7 @@ export default function NavBar({ isLogged }: NavBarProps) {
   }, [isOpen]);
 
   return (
-    <header className="sticky z-50 bg-blur bg-white/75 backdrop-blur-lg border-gray-100 dark:border-slate-950/70 border-b transition-all h-20 w-full flex items-center justify-between top-0 dark:bg-black/75">
+    <header className="sticky z-50  bg-blur bg-white/75 backdrop-blur-lg border-gray-100 dark:border-slate-950/70 border-b transition-all h-20 w-full flex items-center justify-between top-0 dark:bg-black/75">
       <PageContainer>
         <div className="hidden md:flex items-center">
           <div className="flex justify-between items-center lg:w-72 w-64 ">
@@ -103,13 +104,15 @@ export default function NavBar({ isLogged }: NavBarProps) {
                 </form>
               )}
             </li>
-            <li>
-              {isLogged && (
+
+            {isLogged && (
+              <li>
                 <Link href="/user/account" className=" hover:text-green-800">
                   <User />
                 </Link>
-              )}
-            </li>
+              </li>
+            )}
+
             <li>
               <Link href="/cart" className=" hover:text-green-800 relative">
                 <ShoppingCart />
@@ -154,7 +157,10 @@ export default function NavBar({ isLogged }: NavBarProps) {
 
           {isOpen && (
             <ul
-              className="flex flex-col gap-3  absolute inset-x-0 top-12 bg-white h-fit py-6 dark:bg-black  "
+              className={cn(
+                "flex flex-col gap-3  absolute inset-x-0 top-12 bg-white h-fit py-6 dark:bg-black",
+                isDemoMode && "top-24"
+              )}
               ref={menuRef}
             >
               <li>
@@ -207,20 +213,26 @@ export default function NavBar({ isLogged }: NavBarProps) {
                   </form>
                 )}
               </li>
-              <li>
-                {isLogged && (
-                  <Link href="/user/account" className=" hover:text-green-800">
+
+              {isLogged && (
+                <li>
+                  <Link
+                    href="/user/account"
+                    className=" hover:text-green-800"
+                    onClick={handleOpen}
+                  >
                     Account
                   </Link>
-                )}
-              </li>
+                </li>
+              )}
+
               <li>
                 <Link
                   href="/cart"
                   className=" hover:text-green-800"
                   onClick={handleOpen}
                 >
-                  Cart
+                  Cart ({totalQuantity})
                 </Link>
               </li>
             </ul>

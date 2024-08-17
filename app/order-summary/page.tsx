@@ -72,7 +72,7 @@ export default function Page() {
   return (
     <PageContainer className="mt-8">
       <div className="flex justify-between items-center w-full mb-8 relative">
-        <BackButton className="" />
+        {first === null && <BackButton className="" />}
         <h1 className="absolute left-1/2 transform -translate-x-1/2 text-green-800 font-semibold    text-xl md:text-2xl">
           Order Summary
         </h1>

@@ -4,7 +4,7 @@ import { LoaderCircle } from "lucide-react";
 export default function Loading() {
   return (
     <PageContainer>
-      <div className="flex text-green-800 gap-2 mt-16 justify-center h-screen">
+      <div className="flex text-green-800 gap-2 mt-16 justify-center h-96">
         <LoaderCircle className="animate-spin " /> Loading...
       </div>
     </PageContainer>
