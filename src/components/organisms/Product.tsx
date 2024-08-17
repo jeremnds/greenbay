@@ -7,12 +7,26 @@ import BackButton from "../atoms/BackButton";
 import { Button } from "../atoms/Button";
 import ItemImage from "../atoms/ItemImage";
 import ProductAddQuantity from "../molecules/ProductAddQuantity";
+import { getProductClient } from "@/src/queries/getProductClient.query";
+import { Metadata } from "next";
 
 type ProductPageProps = {
   product: ProductType;
   session: Session | null;
   category: CategoryType;
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const product: ProductType = await getProductClient(params.id);
+
+  return {
+    title: `Product - ${product.name}`,
+  };
+}
 
 export default function Product({
   product,

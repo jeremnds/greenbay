@@ -4,9 +4,15 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import CategoryUpdate from "./CategoryUpdate";
 
-export const metadata: Metadata = {
-  title: "Category",
-};
+export async function generateMetadata({
+  params,
+}: CategoryProps): Promise<Metadata> {
+  const category = await getCategory(params.categoryId);
+
+  return {
+    title: `Edit ${category.name}`,
+  };
+}
 
 type CategoryProps = {
   params: {

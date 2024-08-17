@@ -28,6 +28,10 @@ export default function Page() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    document.title = "Checkout | Greenbay";
+  }, []);
+
+  useEffect(() => {
     if (cart !== undefined && totalPrice !== undefined) {
       if (cart.length === 0 || totalPrice < 0) {
         router.push("/");

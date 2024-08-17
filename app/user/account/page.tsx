@@ -2,8 +2,13 @@ import PageContainer from "@/src/components/atoms/PageContainer";
 import OrderTable from "@/src/components/organisms/OrderTable";
 import { auth } from "@/src/lib/auth";
 import { getOrdersByUserId } from "@/src/queries/getOrders.query";
+import { Metadata } from "next";
 
 export const revalidate = 0;
+
+export const metadata: Metadata = {
+  title: "Account",
+};
 
 export default async function Page() {
   const session = await auth();

@@ -28,6 +28,10 @@ export default function Page() {
   if (!orderId) router.push("/");
 
   useEffect(() => {
+    document.title = "Order Summary | Greenbay";
+  }, []);
+
+  useEffect(() => {
     async function fetchOrder() {
       try {
         if (orderId) {

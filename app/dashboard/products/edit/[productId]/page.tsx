@@ -8,9 +8,15 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import ProductUpdate from "./ProductUpdate";
 
-export const metadata: Metadata = {
-  title: "Product",
-};
+export async function generateMetadata({
+  params,
+}: ProductParamsType): Promise<Metadata> {
+  const product = await getProduct(params.productId);
+
+  return {
+    title: `Edit ${product.name}`,
+  };
+}
 
 export default async function Page({ params }: ProductParamsType) {
   const session = await auth();

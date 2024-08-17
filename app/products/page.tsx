@@ -6,8 +6,13 @@ import SearchHeader from "@/src/components/organisms/SearchHeader";
 import { auth } from "@/src/lib/auth";
 import { ITEMS_PER_PAGE } from "@/src/lib/constants";
 import { getProductsWithPagination } from "@/src/queries/getProductsWithPagination.query";
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
+
+export const metadata: Metadata = {
+  title: "Products",
+};
 
 export default async function Page({
   searchParams,

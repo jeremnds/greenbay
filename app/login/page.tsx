@@ -1,6 +1,11 @@
 import PageContainer from "@/src/components/atoms/PageContainer";
 import { signInAction } from "@/src/lib/actions";
+import { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Login",
+};
 
 export default function Page() {
   return (

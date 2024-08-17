@@ -12,7 +12,7 @@ export default async function OrderTable({
 }: OrderTableProps) {
   return (
     <div className="overflow-x-auto">
-      <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm dark:bg-black dark:divide-gray-700 text-center">
+      <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm dark:bg-stone-950 dark:divide-stone-700 text-center">
         <thead className="">
           <tr>
             <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-400">
@@ -30,7 +30,7 @@ export default async function OrderTable({
           </tr>
         </thead>
 
-        <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+        <tbody className="divide-y divide-gray-200 dark:divide-stone-700">
           {orders.map((order, index) => (
             <OrderRow order={order} index={index} key={order.id} />
           ))}
