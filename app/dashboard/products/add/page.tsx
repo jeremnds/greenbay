@@ -5,7 +5,13 @@ import ProductCreate from "./ProductCreate";
 
 export default async function Page() {
   const session = await auth();
-  if (!session || session?.user.role !== "admin") redirect("/");
+  const isDemoMode = process.env.NEXT_PUBLIC_DEMOMODE === "true";
+
+  if (!isDemoMode) {
+    if (!session || session?.user?.role !== "admin") redirect("/");
+  } else {
+    if (!session) redirect("/");
+  }
   const { categories } = await getCategories();
 
   return <ProductCreate categories={categories} />;

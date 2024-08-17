@@ -13,12 +13,14 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <PageContainer className="py-12">
-      <div className="grid grid-cols-[4rem_1fr] md:grid-cols-[16rem_1fr] h-full  gap-4 md:gap-12">
-        <DashboardNavbar />
-        <div className="">{children}</div>
-      </div>
-      <Toaster />
-    </PageContainer>
+    <>
+      <PageContainer className="py-12">
+        <div className="grid grid-cols-[4rem_1fr] md:grid-cols-[16rem_1fr] h-full  gap-4 md:gap-12">
+          <DashboardNavbar />
+          <div className="">{children}</div>
+        </div>
+        <Toaster />
+      </PageContainer>
+    </>
   );
 }

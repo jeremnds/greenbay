@@ -15,16 +15,12 @@ export default async function CategoriesSection() {
       </p>
       <div className="mt-5 pb-5 lg:pb-0 bg-slate-500 h-full lg:h-96 w-full rounded-xl flex justify-center lg:items-center ">
         <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-4 lg:gap-8">
-          {categories.slice(0, 3).map((category) => {
-            console.log(category); // Cela va afficher chaque catégorie dans la console
-
-            return (
-              <div className="pt-12 lg:pt-0" key={category.id}>
-                <ItemImage item={category} className="w-52 h-52" />
-                <p className="pt-2 text-white">{category.name}</p>
-              </div>
-            );
-          })}
+          {categories.slice(0, 3).map((category) => (
+            <div className="pt-12 lg:pt-0" key={category.id}>
+              <ItemImage item={category} className="w-52 h-52" />
+              <p className="pt-2 text-white">{category.name}</p>
+            </div>
+          ))}
 
           <Link
             href="/products"

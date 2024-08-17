@@ -1,3 +1,4 @@
+import DemoMode from "@/src/components/organisms/DemoMode";
 import Header from "@/src/components/organisms/Header";
 import { ThemeProvider } from "@/src/components/organisms/ThemeProvider";
 import { auth } from "@/src/lib/auth";
@@ -40,6 +41,7 @@ export default async function RootLayout({
               <Header isLogged={isLogged} />
 
               <div className="flex-grow flex-1">{children}</div>
+              <DemoMode />
             </main>
             <Toaster />
           </SessionProvider>

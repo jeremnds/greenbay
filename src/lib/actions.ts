@@ -15,6 +15,12 @@ export async function signOutAction() {
 }
 
 export async function updateProductAction(formData: FormData, id: number) {
+  const isDemoMode = process.env.DEMOMODE === "true";
+
+  if (isDemoMode) {
+    throw new Error("Cette action est désactivée en mode démo.");
+  }
+
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
 
@@ -54,6 +60,12 @@ export async function updateProductAction(formData: FormData, id: number) {
 }
 
 export async function createProductAction(formData: FormData) {
+  const isDemoMode = process.env.DEMOMODE === "true";
+
+  if (isDemoMode) {
+    throw new Error("Cette action est désactivée en mode démo.");
+  }
+
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
 
@@ -88,6 +100,12 @@ export async function createProductAction(formData: FormData) {
 }
 
 export async function deleteProductAction(id: number) {
+  const isDemoMode = process.env.DEMOMODE === "true";
+
+  if (isDemoMode) {
+    throw new Error("Cette action est désactivée en mode démo.");
+  }
+
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
 
@@ -101,6 +119,12 @@ export async function deleteProductAction(id: number) {
 }
 
 export async function updateCategoryAction(formData: FormData, id: number) {
+  const isDemoMode = process.env.DEMOMODE === "true";
+
+  if (isDemoMode) {
+    throw new Error("Cette action est désactivée en mode démo.");
+  }
+
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
 
@@ -132,6 +156,12 @@ export async function updateCategoryAction(formData: FormData, id: number) {
 }
 
 export async function createCategoryAction(formData: FormData) {
+  const isDemoMode = process.env.DEMOMODE === "true";
+
+  if (isDemoMode) {
+    throw new Error("Cette action est désactivée en mode démo.");
+  }
+
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
 
@@ -160,6 +190,12 @@ export async function createCategoryAction(formData: FormData) {
 }
 
 export async function deleteCategoryAction(id: number) {
+  const isDemoMode = process.env.DEMOMODE === "true";
+
+  if (isDemoMode) {
+    throw new Error("Cette action est désactivée en mode démo.");
+  }
+
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
 

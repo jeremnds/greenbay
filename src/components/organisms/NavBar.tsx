@@ -14,10 +14,19 @@ type NavBarProps = {
 };
 
 export default function NavBar({ isLogged }: NavBarProps) {
+  const isDemoMode = process.env.NEXT_PUBLIC_DEMOMODE === "true";
+  const { data: session } = useSession();
+
+  let isAdmin;
+
+  if (isDemoMode) {
+    isAdmin = true;
+  } else {
+    isAdmin = session?.user?.role === "admin" ?? false;
+  }
+
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLUListElement | null>(null);
-  const { data: session } = useSession();
-  const isAdmin = session?.user?.role === "admin" ?? false;
 
   const cart = useCartStore((state) => state.cart);
   const totalQuantity =
@@ -167,13 +176,15 @@ export default function NavBar({ isLogged }: NavBarProps) {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/dashboard"
-                  className="text-green-700 hover:text-green-800"
-                  onClick={handleOpen}
-                >
-                  Dashboard
-                </Link>
+                {isAdmin && (
+                  <Link
+                    href="/dashboard"
+                    className="text-green-700 hover:text-green-800"
+                    onClick={handleOpen}
+                  >
+                    Dashboard
+                  </Link>
+                )}
               </li>
               <li>
                 {!isLogged ? (

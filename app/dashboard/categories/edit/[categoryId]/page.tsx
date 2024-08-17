@@ -16,7 +16,13 @@ type CategoryProps = {
 
 export default async function Page({ params }: CategoryProps) {
   const session = await auth();
-  if (!session || session?.user.role !== "admin") redirect("/");
+  const isDemoMode = process.env.NEXT_PUBLIC_DEMOMODE === "true";
+
+  if (!isDemoMode) {
+    if (!session || session?.user?.role !== "admin") redirect("/");
+  } else {
+    if (!session) redirect("/");
+  }
 
   const { categoryId } = params;
 
