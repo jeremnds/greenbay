@@ -25,7 +25,7 @@ export default function ProductCard({ product, session }: ProductCardProps) {
   return (
     <div className="relative hover:scale-105 transition-all group">
       <Link href={`/products/${product.id}`}>
-        <ItemImage item={product} className="w-full " />
+        <ItemImage item={product} className="w-full xs:h-48 sm:h-64 lg:h-72" />
         <div className="flex items-center justify-between w-full">
           <p className="group-hover:text-primary">{product.name}</p>
           <span className="text-slate-700 dark:text-slate-400">
@@ -35,7 +35,7 @@ export default function ProductCard({ product, session }: ProductCardProps) {
       </Link>
       {product.available && (
         <AddToCartBtn
-          className="bottom-0 absolute bg-white left-1/2 transform -translate-x-1/2 transition-all duration-300 hidden  group-hover:animate-showup group-hover:block group-hover:bottom-8 animate-hide text-black dark:hover:text-white"
+          className="invisible md:visible bottom-0 absolute bg-white left-1/2 transform -translate-x-1/2 transition-all duration-300 hidden  group-hover:animate-showup group-hover:block group-hover:bottom-8 animate-hide text-black dark:hover:text-white"
           onClick={() => addItem(item)}
         />
       )}
