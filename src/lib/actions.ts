@@ -11,14 +11,14 @@ export async function signInAction() {
 }
 
 export async function signOutAction() {
-  await signOut({ redirectTo: "/" });
+  await signOut({ redirectTo: "/", redirect: true });
 }
 
 export async function updateProductAction(formData: FormData, id: number) {
   const isDemoMode = process.env.DEMOMODE === "true";
 
   if (isDemoMode) {
-    throw new Error("Cette action est désactivée en mode démo.");
+    throw new Error("This action is desactivated in demo mode");
   }
 
   const session = await auth();
@@ -65,7 +65,7 @@ export async function createProductAction(formData: FormData) {
   const isDemoMode = process.env.DEMOMODE === "true";
 
   if (isDemoMode) {
-    throw new Error("Cette action est désactivée en mode démo.");
+    throw new Error("This action is desactivated in demo mode");
   }
 
   const session = await auth();
@@ -107,7 +107,7 @@ export async function deleteProductAction(id: number) {
   const isDemoMode = process.env.DEMOMODE === "true";
 
   if (isDemoMode) {
-    throw new Error("Cette action est désactivée en mode démo.");
+    throw new Error("This action is desactivated in demo mode");
   }
 
   const session = await auth();
@@ -128,7 +128,7 @@ export async function updateCategoryAction(formData: FormData, id: number) {
   const isDemoMode = process.env.DEMOMODE === "true";
 
   if (isDemoMode) {
-    throw new Error("Cette action est désactivée en mode démo.");
+    throw new Error("This action is desactivated in demo mode");
   }
 
   const session = await auth();
@@ -167,7 +167,7 @@ export async function createCategoryAction(formData: FormData) {
   const isDemoMode = process.env.DEMOMODE === "true";
 
   if (isDemoMode) {
-    throw new Error("Cette action est désactivée en mode démo.");
+    throw new Error("This action is desactivated in demo mode");
   }
 
   const session = await auth();
@@ -203,7 +203,7 @@ export async function deleteCategoryAction(id: number) {
   const isDemoMode = process.env.DEMOMODE === "true";
 
   if (isDemoMode) {
-    throw new Error("Cette action est désactivée en mode démo.");
+    throw new Error("This action is desactivated in demo mode");
   }
 
   const session = await auth();

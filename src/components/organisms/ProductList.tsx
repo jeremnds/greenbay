@@ -20,8 +20,7 @@ export default function ProductList({
   currentPage,
   session,
 }: ProductListProps) {
-  const [isLoading, setIsLoading] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     setIsLoading(false);
   }, [currentPage]);

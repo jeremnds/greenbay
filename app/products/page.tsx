@@ -11,7 +11,6 @@ import { redirect } from "next/navigation";
 export const metadata: Metadata = {
   title: "Products",
 };
-
 export default async function Page({
   searchParams,
 }: {
@@ -23,13 +22,9 @@ export default async function Page({
   if (!searchParams?.page) {
     redirect("/products?page=1");
   }
-
   const session = await auth();
-
   const query = searchParams?.query || "";
-
   const currentPage = Number(searchParams?.page) || 1;
-
   const { products, totalPages } = await getProductsWithPagination(
     currentPage,
     ITEMS_PER_PAGE,
@@ -38,7 +33,6 @@ export default async function Page({
   return (
     <PageContainer>
       <SearchHeader className="mt-8" query={query} />
-
       {products.length > 0 ? (
         <ProductList
           products={products}
