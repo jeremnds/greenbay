@@ -179,17 +179,17 @@ Executing this file will set up your database for use with the Greenbay project.
 Here are some screenshots of the Greenbay project:
 
 1. **Storefront** - Explore plant products, search, and place orders.  
-   ![Landing Page](https://imgur.com/a/1nPm3wO)
-   ![Products Page](https://imgur.com/sZcSr1k)
-   ![Cart Page](https://imgur.com/N98xmuz)
+   ![Landing Page](https://i.imgur.com/0rGtyS3.png)
+   ![Products Page](https://i.imgur.com/sZcSr1k.png)
+   ![Cart Page](https://i.imgur.com/N98xmuz.png)
 
 2. **Admin Dashboard** - Manage products and categories, upload images, and search for items.  
-   ![Admin Products Page](https://imgur.com/lgrGbqD)
-   ![Product Edit Page](https://imgur.com/KoZVfw7)
+   ![Admin Products Page](https://i.imgur.com/lgrGbqD.png)
+   ![Product Edit Page](https://i.imgur.com/KoZVfw7.png)
 
-3. **Order Summary** - Users can view their order history, see order details, and track the status of their purchases.  
-   ![Order History](https://imgur.com/i7yP5Rb)  
-   ![Order Details](https://imgur.com/dC4xRBJ)
+3. **Order Summary (in Dark Mode)** - Users can view their order history, see order details, and track the status of their purchases.  
+   ![Order History](https://i.imgur.com/i7yP5Rb.png)  
+   ![Order Details](https://i.imgur.com/dC4xRBJ.png)
 
 ## 🌐 Live Demo
 
