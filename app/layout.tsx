@@ -1,4 +1,5 @@
-import Header from "@/src/components/organisms/Header";
+import DemoMode from "@/src/components/organisms/DemoMode";
+import NavBar from "@/src/components/organisms/NavBar";
 import { ThemeProvider } from "@/src/components/organisms/ThemeProvider";
 import { auth } from "@/src/lib/auth";
 import { cn } from "@/src/lib/utils";
@@ -27,7 +28,10 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn("relative h-full font-sans antialiased", inter.className)}
+        className={cn(
+          "relative min-h-screen font-sans antialiased ",
+          inter.className
+        )}
       >
         <ThemeProvider
           attribute="class"
@@ -37,8 +41,9 @@ export default async function RootLayout({
         >
           <SessionProvider session={session}>
             <main className="relative flex flex-col min-h-screen">
-              <Header isLogged={isLogged} />
+              <NavBar session={session} />
 
+              <DemoMode />
               <div className="flex-grow flex-1">{children}</div>
             </main>
             <Toaster />

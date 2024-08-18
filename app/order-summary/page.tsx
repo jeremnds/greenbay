@@ -28,6 +28,10 @@ export default function Page() {
   if (!orderId) router.push("/");
 
   useEffect(() => {
+    document.title = "Order Summary | Greenbay";
+  }, []);
+
+  useEffect(() => {
     async function fetchOrder() {
       try {
         if (orderId) {
@@ -42,7 +46,12 @@ export default function Page() {
             order.order_items.map(async (item) => {
               try {
                 const product = await getProductClient(item.product_id);
-                return { ...item, name: product.name, image: product.image };
+                return {
+                  ...item,
+                  name: product.name,
+                  image: product.image,
+                  available: product.available,
+                };
               } catch (error) {
                 console.error("Failed to fetch product name:", error);
                 return item;
@@ -64,7 +73,7 @@ export default function Page() {
     if (first !== null) {
       clearCart();
     }
-  }, [orderId, customerId, router, first]);
+  }, [orderId, customerId, router, first, clearCart]);
 
   if (!order || loadingItems)
     return <Spinner className="h-[calc(100vh-25rem)]" />;
@@ -72,7 +81,7 @@ export default function Page() {
   return (
     <PageContainer className="mt-8">
       <div className="flex justify-between items-center w-full mb-8 relative">
-        <BackButton className="" />
+        {first === null && <BackButton className="" />}
         <h1 className="absolute left-1/2 transform -translate-x-1/2 text-green-800 font-semibold    text-xl md:text-2xl">
           Order Summary
         </h1>
@@ -81,7 +90,7 @@ export default function Page() {
       <div className="flex flex-col gap-4 ">
         {order.order_items.map((item) => (
           <Link href={`products/${item.product_id}`} key={item.product_id}>
-            <li className="flex items-center gap-4  hover:bg-gray-100 dark:hover:bg-gray-800">
+            <li className="flex items-center gap-4  hover:bg-gray-100 dark:hover:bg-stone-900">
               <ItemImage
                 item={item}
                 className="h-16 w-16"

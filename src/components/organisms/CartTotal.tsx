@@ -1,6 +1,7 @@
+import { cn } from "@/src/lib/utils";
 import { useCartStore } from "@/src/store/cartStore";
-import { Button } from "../atoms/Button";
-import CheckoutButton from "../atoms/CheckoutButton";
+import Link from "next/link";
+import { Button, buttonVariants } from "../atoms/Button";
 
 type CartTotalProps = {
   totalPrice: number;
@@ -22,7 +23,15 @@ export default function CartTotal({ totalPrice }: CartTotalProps) {
           <Button variant="destructive" onClick={clearCart}>
             Clear cart
           </Button>
-          <CheckoutButton totalPrice={totalPrice} />
+          <Link
+            href="/checkout"
+            className={cn(
+              buttonVariants({ variant: "ghost" }),
+              " bg-gray-700 text-sm text-gray-100 transition hover:bg-gray-600"
+            )}
+          >
+            Checkout
+          </Link>
         </div>
       </div>
     </div>

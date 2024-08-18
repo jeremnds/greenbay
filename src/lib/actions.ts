@@ -11,12 +11,20 @@ export async function signInAction() {
 }
 
 export async function signOutAction() {
-  await signOut({ redirectTo: "/" });
+  await signOut({ redirectTo: "/", redirect: true });
 }
 
 export async function updateProductAction(formData: FormData, id: number) {
+  const isDemoMode = process.env.DEMOMODE === "true";
+
+  if (isDemoMode) {
+    throw new Error("This action is desactivated in demo mode");
+  }
+
   const session = await auth();
-  if (!session) throw new Error("You must be logged in");
+  const isAdmin = session?.user?.role === "admin";
+  if (!session || !isAdmin)
+    throw new Error("You don't have the required permissions to access this.");
 
   const name = formData.get("name");
   const description = formData.get("description");
@@ -54,8 +62,16 @@ export async function updateProductAction(formData: FormData, id: number) {
 }
 
 export async function createProductAction(formData: FormData) {
+  const isDemoMode = process.env.DEMOMODE === "true";
+
+  if (isDemoMode) {
+    throw new Error("This action is desactivated in demo mode");
+  }
+
   const session = await auth();
-  if (!session) throw new Error("You must be logged in");
+  const isAdmin = session?.user?.role === "admin";
+  if (!session || !isAdmin)
+    throw new Error("You don't have the required permissions to access this.");
 
   const name = formData.get("name");
   const description = formData.get("description");
@@ -88,8 +104,16 @@ export async function createProductAction(formData: FormData) {
 }
 
 export async function deleteProductAction(id: number) {
+  const isDemoMode = process.env.DEMOMODE === "true";
+
+  if (isDemoMode) {
+    throw new Error("This action is desactivated in demo mode");
+  }
+
   const session = await auth();
-  if (!session) throw new Error("You must be logged in");
+  const isAdmin = session?.user?.role === "admin";
+  if (!session || !isAdmin)
+    throw new Error("You don't have the required permissions to access this.");
 
   const { error } = await supabaseServer.from("products").delete().eq("id", id);
 
@@ -101,8 +125,16 @@ export async function deleteProductAction(id: number) {
 }
 
 export async function updateCategoryAction(formData: FormData, id: number) {
+  const isDemoMode = process.env.DEMOMODE === "true";
+
+  if (isDemoMode) {
+    throw new Error("This action is desactivated in demo mode");
+  }
+
   const session = await auth();
-  if (!session) throw new Error("You must be logged in");
+  const isAdmin = session?.user?.role === "admin";
+  if (!session || !isAdmin)
+    throw new Error("You don't have the required permissions to access this.");
 
   const name = formData.get("name");
   const image = formData.get("image");
@@ -132,8 +164,16 @@ export async function updateCategoryAction(formData: FormData, id: number) {
 }
 
 export async function createCategoryAction(formData: FormData) {
+  const isDemoMode = process.env.DEMOMODE === "true";
+
+  if (isDemoMode) {
+    throw new Error("This action is desactivated in demo mode");
+  }
+
   const session = await auth();
-  if (!session) throw new Error("You must be logged in");
+  const isAdmin = session?.user?.role === "admin";
+  if (!session || !isAdmin)
+    throw new Error("You don't have the required permissions to access this.");
 
   const name = formData.get("name");
   const image = formData.get("image");
@@ -160,8 +200,16 @@ export async function createCategoryAction(formData: FormData) {
 }
 
 export async function deleteCategoryAction(id: number) {
+  const isDemoMode = process.env.DEMOMODE === "true";
+
+  if (isDemoMode) {
+    throw new Error("This action is desactivated in demo mode");
+  }
+
   const session = await auth();
-  if (!session) throw new Error("You must be logged in");
+  const isAdmin = session?.user?.role === "admin";
+  if (!session || !isAdmin)
+    throw new Error("You don't have the required permissions to access this.");
 
   const { error } = await supabaseServer
     .from("categories")

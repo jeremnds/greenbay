@@ -1,6 +1,10 @@
-"use client";
 import PageContainer from "@/src/components/atoms/PageContainer";
 import CartList from "@/src/components/organisms/CartList";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Cart",
+};
 
 export default function Page() {
   return (

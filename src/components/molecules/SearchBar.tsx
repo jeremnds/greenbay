@@ -13,7 +13,7 @@ export default function SearchBar() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
   } = useForm<SearchFormData>({
     resolver: zodResolver(SearchSchema),
   });
@@ -42,7 +42,7 @@ export default function SearchBar() {
           {...register("search")}
           type="search"
           placeholder="Search..."
-          className="flex-1 bg-transparent border-none focus:ring-0 focus:outline-none"
+          className="flex-1 bg-transparent border-none focus:ring-0 focus:outline-none focus:border-none dark:focus-visible:ring-0"
           defaultValue={searchParams.get("query")?.toString()}
         />
         <Button type="submit" variant="ghost" className="ml-2">

@@ -3,6 +3,7 @@ import { useCartStore } from "@/src/store/cartStore";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
+import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "../atoms/Button";
@@ -14,6 +15,7 @@ export default function Checkout({ totalPrice }: { totalPrice: number }) {
   const { data: session } = useSession();
   const customerId = session?.user.customerId;
   const cart = useCartStore((state) => state.cart);
+  const isHydrated = useCartStore((state) => state.isHydrated);
   const stripe = useStripe();
   const elements = useElements();
   const router = useRouter();
@@ -21,11 +23,27 @@ export default function Checkout({ totalPrice }: { totalPrice: number }) {
   const [clientSecret, setClientSecret] = useState("");
 
   const [loading, setLoading] = useState(false);
+  const { theme, systemTheme } = useTheme();
 
-  if (!cart.length || totalPrice < 0) router.push("/");
+  const isDarkMode =
+    theme === "dark" || (theme === "system" && systemTheme === "dark");
+
+  const cardElementOptions = {
+    style: {
+      base: {
+        color: isDarkMode ? "#ffffff" : "#000000",
+        "::placeholder": {
+          color: isDarkMode ? "#a0a0a0" : "#bfbfbf",
+        },
+      },
+      invalid: {
+        color: "#fa755a",
+      },
+    },
+  };
 
   useEffect(() => {
-    if (totalPrice > 0 && cart.length) {
+    if (isHydrated && totalPrice > 0 && cart.length) {
       fetch("/api/create-payment-intent", {
         method: "POST",
         headers: {
@@ -43,7 +61,7 @@ export default function Checkout({ totalPrice }: { totalPrice: number }) {
           setErrorMessage("Failed to initialize payment. Please try again.");
         });
     }
-  }, [totalPrice]);
+  }, [isHydrated, totalPrice, cart.length]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -109,20 +127,14 @@ export default function Checkout({ totalPrice }: { totalPrice: number }) {
     setLoading(false);
   };
 
-  if (!clientSecret || !stripe || !elements) {
-    return (
-      <div className="mt-28">
-        <Spinner />
-      </div>
-    );
-  }
+  if (!isHydrated || !clientSecret || !stripe || !elements) return <Spinner />;
 
   return (
     <div className="flex flex-col mt-8 gap-8 sm:flex-row">
       <CheckoutList />
       <Separator orientation="vertical" />
       <form onSubmit={handleSubmit} className="flex-1">
-        {clientSecret && <CardElement />}
+        {clientSecret && <CardElement options={cardElementOptions} />}
         {errorMessage && <div className="text-red-500">{errorMessage}</div>}
         <Button className="mt-8 w-full" disabled={!stripe || loading}>
           {!loading ? (

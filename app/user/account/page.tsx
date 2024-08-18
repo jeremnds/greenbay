@@ -2,8 +2,13 @@ import PageContainer from "@/src/components/atoms/PageContainer";
 import OrderTable from "@/src/components/organisms/OrderTable";
 import { auth } from "@/src/lib/auth";
 import { getOrdersByUserId } from "@/src/queries/getOrders.query";
+import { Metadata } from "next";
 
 export const revalidate = 0;
+
+export const metadata: Metadata = {
+  title: "Account",
+};
 
 export default async function Page() {
   const session = await auth();
@@ -18,10 +23,10 @@ export default async function Page() {
       </h4>
       <div className="mt-8">
         {orders && orders.length > 0 ? (
-          <OrderTable orders={orders} customerId={customerId} />
+          <OrderTable orders={orders} />
         ) : (
           <h4 className="text-center text-green-800 text-xl">
-            You don't have any orders yet.
+            You don&apos;t have any orders yet.
           </h4>
         )}
       </div>

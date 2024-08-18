@@ -5,6 +5,7 @@ import { CartItemType } from "../models/cartItem.type";
 export type CartState = {
   cart: CartItemType[];
   totalPrice: number;
+  isHydrated: boolean;
 };
 
 export type CartActions = {
@@ -24,11 +25,12 @@ export type CartStore = CartState & CartActions;
 export const initCartStore: CartState = {
   cart: [],
   totalPrice: 0,
+  isHydrated: false,
 };
 
 export const useCartStore = create(
   persist<CartStore>(
-    (set, get) => ({
+    (set) => ({
       ...initCartStore,
       addItem: (item) => {
         set((state) => {
@@ -121,7 +123,15 @@ export const useCartStore = create(
     }),
     {
       name: "cart-storage",
+
       storage: createJSONStorage(() => sessionStorage),
+      onRehydrateStorage: () => {
+        return (state) => {
+          if (state) {
+            state.isHydrated = true;
+          }
+        };
+      },
     }
   )
 );

@@ -1,5 +1,5 @@
 type NoItemProps = {
-  itemName: "user" | "product" | "category";
+  itemName: "product" | "category";
 };
 
 export default function NoItem({ itemName }: NoItemProps) {

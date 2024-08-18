@@ -1,9 +1,9 @@
 import { ProductType } from "@/src/models/product.type";
+import { useCartStore } from "@/src/store/cartStore";
 import { Session } from "next-auth";
 import Link from "next/link";
 import AddToCartBtn from "../atoms/AddToCartBtn";
 import ItemImage from "../atoms/ItemImage";
-import { useCartStore } from "@/src/store/cartStore";
 
 type ProductCardProps = {
   product: ProductType;
@@ -11,7 +11,7 @@ type ProductCardProps = {
 };
 
 export default function ProductCard({ product, session }: ProductCardProps) {
-  const addItem = useCartStore((state) => state.addItem);
+  const { addItem } = useCartStore();
   let customerId = 1;
   if (session?.user) customerId = session.user.customerId;
 
@@ -28,13 +28,17 @@ export default function ProductCard({ product, session }: ProductCardProps) {
         <ItemImage item={product} className="w-full " />
         <div className="flex items-center justify-between w-full">
           <p className="group-hover:text-primary">{product.name}</p>
-          <span className="text-green-900">${product.price}</span>
+          <span className="text-slate-700 dark:text-slate-400">
+            ${product.price}
+          </span>
         </div>
       </Link>
-      <AddToCartBtn
-        className="bottom-0 absolute bg-white left-1/2 transform -translate-x-1/2 transition-all duration-300 hidden  group-hover:animate-showup group-hover:block group-hover:bottom-8 animate-hide text-black dark:hover:text-white"
-        onClick={() => addItem(item)}
-      />
+      {product.available && (
+        <AddToCartBtn
+          className="bottom-0 absolute bg-white left-1/2 transform -translate-x-1/2 transition-all duration-300 hidden  group-hover:animate-showup group-hover:block group-hover:bottom-8 animate-hide text-black dark:hover:text-white"
+          onClick={() => addItem(item)}
+        />
+      )}
     </div>
   );
 }

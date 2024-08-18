@@ -1,11 +1,12 @@
 "use client";
 
-import { cn } from "@/src/lib/utils";
 import { CategoryType } from "@/src/models/category.type";
 import { ProductType } from "@/src/models/product.type";
+import { getProductClient } from "@/src/queries/getProductClient.query";
+import { Metadata } from "next";
 import { Session } from "next-auth";
 import BackButton from "../atoms/BackButton";
-import { buttonVariants } from "../atoms/Button";
+import { Button } from "../atoms/Button";
 import ItemImage from "../atoms/ItemImage";
 import ProductAddQuantity from "../molecules/ProductAddQuantity";
 
@@ -14,6 +15,18 @@ type ProductPageProps = {
   session: Session | null;
   category: CategoryType;
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const product: ProductType = await getProductClient(Number(params.id));
+
+  return {
+    title: `Product - ${product.name}`,
+  };
+}
 
 export default function Product({
   product,
@@ -24,7 +37,7 @@ export default function Product({
     <>
       <BackButton />
       <div className="flex flex-col items-center gap-4 mt-4">
-        <ItemImage item={product} className="" />
+        <ItemImage item={product} className="w-72 h-80 self-start" />
         <div className="flex flex-col gap-10">
           <div className="flex w-full justify-between">
             <h3 className="text-lg font-medium">{product.name}</h3>
@@ -39,9 +52,18 @@ export default function Product({
           <div className="flex justify-between">
             <div className="flex flex-col gap-6">
               <h4>Category</h4>
-              <p className={cn(buttonVariants())}>{category.name}</p>
+              <Button className="hover:bg-primary">{category.name}</Button>
             </div>
-            <ProductAddQuantity session={session} product={product} />
+            {product.available ? (
+              <ProductAddQuantity session={session} product={product} />
+            ) : (
+              <Button
+                variant="destructive"
+                className="self-end hover:bg-destructive"
+              >
+                Not Available
+              </Button>
+            )}
           </div>
         </div>
       </div>

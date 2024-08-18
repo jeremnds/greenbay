@@ -2,6 +2,8 @@
 
 import { ProductsType } from "@/src/models/products.type";
 import { Session } from "next-auth";
+import { useEffect, useState } from "react";
+import ProductsSkeleton from "../atoms/ProductsSkeleton";
 import Pagination from "../molecules/Pagination";
 import ProductCard from "../molecules/ProductCard";
 
@@ -18,15 +20,32 @@ export default function ProductList({
   currentPage,
   session,
 }: ProductListProps) {
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setIsLoading(false);
+  }, [currentPage]);
+
+  const handlePageChange = (page: number) => {
+    setIsLoading(true);
+  };
+
+  if (isLoading) {
+    return <ProductsSkeleton />;
+  }
+
   return (
     <>
-      <div className="grid grid-cols-2 lg:grid-cols-3 my-6 gap-8   ">
+      <div className="grid grid-cols-2 lg:grid-cols-3 my-6 gap-8">
         {products.map((product) => (
           <ProductCard product={product} key={product.id} session={session} />
         ))}
       </div>
       <div className="my-4">
-        <Pagination totalPages={totalPages} currentPage={currentPage} />
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </div>
     </>
   );

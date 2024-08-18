@@ -11,7 +11,14 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const session = await auth();
-  if (!session || session?.user.role !== "admin") redirect("/");
+
+  const isDemoMode = process.env.NEXT_PUBLIC_DEMOMODE === "true";
+
+  if (!isDemoMode) {
+    if (!session || session?.user?.role !== "admin") redirect("/");
+  } else {
+    if (!session) redirect("/");
+  }
 
   const [productsData, categoriesData] = await Promise.all([
     getProducts(),
@@ -29,9 +36,6 @@ export default async function Page() {
       <DashboardCard href="/dashboard/categories/add" cardTitle="Categories">
         There are currently {categoriesCount ? categoriesCount : "no"}{" "}
         categories.
-      </DashboardCard>
-      <DashboardCard href="/dashboard/products/add" cardTitle="Users">
-        3 Products
       </DashboardCard>
     </div>
   );

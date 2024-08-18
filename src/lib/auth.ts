@@ -61,6 +61,7 @@ const authConfig = {
       return session;
     },
   },
+  trustHost: true,
 };
 
 export const {

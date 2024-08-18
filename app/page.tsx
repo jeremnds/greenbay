@@ -1,15 +1,18 @@
-import { buttonVariants } from "@/src/components/atoms/Button";
 import PageContainer from "@/src/components/atoms/PageContainer";
+import Spinner from "@/src/components/atoms/Spinner";
 import CartUpdater from "@/src/components/organisms/CartUpdater";
-import { cn } from "@/src/lib/utils";
+import CategoriesSection from "@/src/components/organisms/CategoriesSection";
+import ProductsSection from "@/src/components/organisms/ProductsSection";
 import { Package, PhoneOutgoing, Sprout } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { Suspense } from "react";
+
+export const revalidate = 300;
 
 export default function Home() {
   return (
     <PageContainer>
-      <div className="w-full h-96 bg-green-600 rounded-lg flex">
+      <div className="w-full h-96 bg-slate-500 rounded-lg flex">
         <div className="pt-8 pl-8 ">
           <h1 className="font-bold text-gray-50 text-6xl tracking-tighter">
             Buy your <span className="font-bold text-green-800">dream</span>{" "}
@@ -35,32 +38,9 @@ export default function Home() {
           />
         </div>
       </div>
-
-      <section className="mt-20 grid grid-rows-2 grid-cols-2 md:grid-cols-2  lg:grid-rows-1 lg:grid-cols-4 lg:gap-6 gap-4 ">
-        <div className="flex flex-col gap-6  w-52 justify-center lg:justify-normal">
-          <h3 className="font-medium text-2xl w-36">Best Selling Plants</h3>
-          <p>Easiest way to healthy life by buying your favorite plants </p>
-          <Link href="/products" className={cn(buttonVariants())}>
-            See more &rarr;
-          </Link>
-        </div>
-        <div className="flex flex-col gap-1">
-          <div className=" h-96 bg-green-100"></div>
-          <p>Natural Plants</p>
-          <span>$100</span>
-        </div>
-        <div className="flex flex-col gap-1">
-          <div className=" h-96 bg-green-100"></div>
-          <p>Natural Plants</p>
-          <span>$100</span>
-        </div>
-
-        <div className="flex flex-col gap-1 ">
-          <div className=" h-96 bg-green-100"></div>
-          <p>Natural Plants</p>
-          <span>$100</span>
-        </div>
-      </section>
+      <Suspense fallback={<Spinner />}>
+        <ProductsSection />
+      </Suspense>
 
       <section className="mt-20 flex flex-col items-center gap-3">
         <h3 className="font-bold text-2xl">About us</h3>
@@ -99,37 +79,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="mt-20 flex flex-col items-center  gap-3 ">
-        <h3 className="font-bold text-2xl">Categories</h3>
-        <p className="text-gray-700 dark:text-gray-200">
-          Find what you are looking for
-        </p>
-        <div className="mt-5 pb-5 lg:pb-0 bg-green-300 h-full lg:h-96 w-full rounded-xl flex justify-center lg:items-center ">
-          <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-4 lg:gap-8">
-            <div className="pt-12 lg:pt-0 ">
-              <div className="w-52 h-52 bg-green-800"></div>
-              <p className="pt-2 text-black">Natural Plants</p>
-            </div>
-            <div className="">
-              <div className="w-52 h-52 bg-green-800"></div>
-              <p className="pt-2 text-black">Plant Accessories</p>
-            </div>
-            <div className="">
-              <div className="w-52 h-52 bg-green-800"></div>
-              <p className="pt-2 text-black ">Artificial Plants</p>
-            </div>
-            <Link
-              href="/categories"
-              className={cn(
-                buttonVariants({ variant: "secondary" }),
-                "text-center lg:col-start-2 mt-2 lg:mt-0"
-              )}
-            >
-              Explore
-            </Link>
-          </div>
-        </div>
-      </section>
+      <Suspense fallback={<Spinner />}>
+        <CategoriesSection />
+      </Suspense>
       <CartUpdater />
     </PageContainer>
   );
