@@ -7,16 +7,16 @@ Greenbay is an e-commerce platform specializing in plants and accessories, provi
 
 ## 📑 Table of Contents
 
-1. [✨ Features](#features)
-2. [🛠 Technologies Used](#technologies-used)
-3. [🔧 Prerequisites](#prerequisites)
-4. [⚙️ Installation](#installation)
-5. [🚀 Usage](#usage)
-6. [🔐 Environment Variables](#environment-variables)
-7. [🗄️ Database Schema](#database-schema)
-8. [🖼️ Screenshots](#screenshots)
-9. [🌐 Live Demo](#live-demo)
-10. [📜 License](#license)
+1. [✨ Features](#-features)
+2. [🛠 Technologies Used](#-technologies-used)
+3. [🔧 Prerequisites](#-prerequisites)
+4. [⚙️ Installation](#-installation)
+5. [🚀 Usage](#-usage)
+6. [🔐 Environment Variables](#-environment-variables)
+7. [🗄️ Database Schema](#-database-schema)
+8. [🖼️ Screenshots](#-screenshots)
+9. [🌐 Live Demo](#-live-demo)
+10. [📜 License](#-license)
 
 ## ✨ Features
 
