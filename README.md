@@ -7,18 +7,18 @@ Greenbay is an e-commerce platform specializing in plants and accessories, provi
 
 ## 📑 Table of Contents
 
-1. [Features](#features)
-2. [Technologies Used](#technologies-used)
-3. [Prerequisites](#prerequisites)
-4. [Installation](#installation)
-5. [Usage](#usage)
-6. [Environment Variables](#environment-variables)
-7. [Database Schema](#database-schema)
-8. [Screenshots](#screenshots)
-9. [Live Demo](#live-demo)
-10. [License](#license)
+1. [✨ Features](#-features)
+2. [🛠 Technologies Used](#-technologies-used)
+3. [🔧 Prerequisites](#%EF%B8%8F-prerequisites)
+4. [⚙️ Installation](#%EF%B8%8F-installation)
+5. [🚀 Usage](#-usage)
+6. [🔐 Environment Variables](#-environment-variables)
+7. [🗄️ Database Schema](#%EF%B8%8F-database-schema)
+8. [🖼️ Screenshots](#%EF%B8%8F-screenshots)
+9. [🌐 Live Demo](#-live-demo)
+10. [📜 License](#-license)
 
-## Features ✨
+## ✨ Features
 
 - **User Authentication**: Secure sign-up and log-in using Auth.js.
 - **Dashboard Management**: Add, edit, delete products and categories, and upload images for both products and categories.
@@ -28,45 +28,45 @@ Greenbay is an e-commerce platform specializing in plants and accessories, provi
 - **Responsive UI**: Designed with TailwindCSS for a seamless experience across devices.
 - **Dark Mode**: Provides a toggleable dark mode for users, improving readability and reducing eye strain in low-light environments.
 
-## Technologies Used 🛠
+## 🛠 Technologies Used
 
 Greenbay was built using the following technologies:
 
-### Framework 🧩
+### 🧩 Framework
 
 - **[Next.js](https://nextjs.org/)**: For the React-based framework optimized for production.
 
-### Frontend - Styling and UI 🎨
+### 🎨 Frontend - Styling and UI
 
 - **[TailwindCSS](https://tailwindcss.com/)**: For the styling of the user interface.
 - **[shadcn/ui](https://shadcn.dev/)**: For custom UI components.
 - **[Lucide](https://lucide.dev/)**: For iconography.
 - **[HyperUI](https://hyperui.dev/)**: For UI components such as inputs and tables.
 
-### Backend - Database and APIs 🔗
+### 🔗 Backend - Database and APIs
 
 - **[Supabase](https://supabase.com/)**: As the backend database solution.
 - **[Stripe](https://stripe.com/)**: For processing payments.
 
-### State Management and Logic 🧠
+### 🧠 State Management and Logic
 
 - **[Zustand](https://zustand-demo.pmnd.rs/)**: For state management.
 - **[React Hook Form](https://react-hook-form.com/)** & **[Zod](https://zod.dev/)**: For form validation and handling.
 
-### Authentication 🔒
+### 🔒 Authentication
 
 - **[Auth.js](https://authjs.dev/)**: For managing authentication.
 
-### File Handling 📂
+### 📂 File Handling
 
 - **[React Dropzone](https://react-dropzone.js.org/)**: For handling file uploads.
 
-## Prerequisites 🔧️
+## 🔧️ Prerequisites
 
 - Node.js >= 14.x
 - npm or yarn
 
-## Installation ⚙️
+## ⚙️ Installation
 
 To run Greenbay locally, follow these steps:
 
@@ -97,7 +97,7 @@ npm run dev
 
 The site will be available at `http://localhost:3000`.
 
-## Usage 🚀
+## 🚀 Usage
 
 To start using Greenbay:
 
@@ -118,7 +118,7 @@ To start the production server:
 npm run start
 ```
 
-## Environment Variables 🔐
+## 🔐 Environment Variables
 
 The project uses environment variables to manage sensitive data like database URLs, Stripe keys, and authentication secrets. Ensure that you set these variables in your `.env` file:
 
@@ -145,7 +145,7 @@ STRIPE_SECRET_KEY=your_stripe_secret_key
 
 Refer to the `.env.example` file for more information on required environment variables.
 
-## Database Schema 🗄️
+## 🗄️ Database Schema
 
 To set up the database schema for Greenbay, you need to execute the SQL commands that will create the necessary tables and relationships. These tables include products, categories, orders, and users.
 
@@ -174,7 +174,7 @@ This file contains the following tables:
 
 Executing this file will set up your database for use with the Greenbay project.
 
-## Screenshots 🖼️
+## 🖼️ Screenshots
 
 Here are some screenshots of the Greenbay project:
 
@@ -191,11 +191,11 @@ Here are some screenshots of the Greenbay project:
    ![Order History](https://i.imgur.com/i7yP5Rb.png)  
    ![Order Details](https://i.imgur.com/dC4xRBJ.png)
 
-## Live Demo 🌐
+## 🌐 Live Demo
 
 Check out the live version of Greenbay to explore the features and user interface:  
 [Click here](https://greenbay-mu.vercel.app/)
 
-## License 📜
+## 📜 License
 
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
