@@ -21,6 +21,11 @@ export default function NavbarMobileMenu({
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLUListElement | null>(null);
 
+  const handleSignOut = async () => {
+    await signOutAction();
+    setIsOpen((open) => !open);
+  };
+
   const handleOpen = () => {
     setIsOpen((open) => !open);
   };
@@ -98,8 +103,9 @@ export default function NavbarMobileMenu({
               Products
             </Link>
           </li>
-          <li>
-            {isAdmin && (
+
+          {isAdmin && (
+            <li>
               <Link
                 href="/dashboard"
                 className="text-green-700 hover:text-green-800"
@@ -107,8 +113,9 @@ export default function NavbarMobileMenu({
               >
                 Dashboard
               </Link>
-            )}
-          </li>
+            </li>
+          )}
+
           <li>
             {!isLogged ? (
               <Link
@@ -119,15 +126,13 @@ export default function NavbarMobileMenu({
                 Sign in
               </Link>
             ) : (
-              <form action={signOutAction}>
-                <button
-                  className="hover:text-green-800"
-                  type="submit"
-                  onClick={() => handleOpen}
-                >
-                  Sign out
-                </button>
-              </form>
+              <button
+                className="hover:text-green-800"
+                type="submit"
+                onClick={handleSignOut}
+              >
+                Sign out
+              </button>
             )}
           </li>
 
